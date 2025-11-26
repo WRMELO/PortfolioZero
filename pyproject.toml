@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "portfoliozero"
+version = "0.1.0"
+description = "Framework PortfolioZero (MuZero-based + Black-Litterman) para alocação de portfólio."
+authors = ["Owner <owner@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "portfoliozero", from = "modules" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+polars = "^1.16.0"
+pydantic = "^2.10.3"
+torch = "^2.5.1"
+ray = "^2.40.0"
+numpy = "^1.26.4"
+pandas = "^2.2.3"
+scipy = "^1.14.1"
+pyyaml = "^6.0.2"
+tqdm = "^4.67.1"
+jupyterlab = "^4.3.2"
+ipykernel = "^6.29.5"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+black = "^24.10.0"
+ruff = "^0.8.2"
+mypy = "^1.13.0"
+pytest-xdist = "^3.6.1"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+ignore = ["E501"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+

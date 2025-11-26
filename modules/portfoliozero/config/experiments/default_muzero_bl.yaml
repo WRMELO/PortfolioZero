@@ -1,0 +1,59 @@
+# =============================================
+# PortfolioZero - Configuração de Experimento Padrão
+# MuZero + Black-Litterman
+# =============================================
+
+# Metadados do experimento
+project_name: "PortfolioZero"
+run_id: "default_muzero_bl_001"
+
+# Configuração de dados de mercado
+data:
+  universe:
+    - "AAPL"
+    - "MSFT"
+    - "GOOGL"
+    - "AMZN"
+    - "META"
+    - "NVDA"
+    - "TSLA"
+    - "JPM"
+    - "V"
+    - "JNJ"
+  data_frequency: "daily"
+  lookback_window: 252
+  data_paths:
+    prices: "data/processed/prices.parquet"
+    returns: "data/processed/returns.parquet"
+    features: "data/processed/features.parquet"
+
+# Hiperparâmetros MuZero
+muzero:
+  discount: 0.99
+  num_simulations: 50
+  num_unroll_steps: 5
+  td_steps: 5
+  policy_temperature: 1.0
+  learning_rate: 0.0003
+  batch_size: 256
+  replay_buffer_size: 100000
+
+# Parâmetros Black-Litterman
+black_litterman:
+  tau: 0.05
+  risk_aversion: 2.5
+  view_confidence: 0.7
+  max_leverage: 1.0
+
+# Configuração Ray (opcional)
+ray:
+  enabled: false
+  num_workers: 1
+
+# Configuração de logging
+logging:
+  level: "INFO"
+  log_to_file: true
+  log_dir: "logs"
+
+
