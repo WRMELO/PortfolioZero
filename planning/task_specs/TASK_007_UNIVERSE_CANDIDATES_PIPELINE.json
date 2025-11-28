@@ -1,0 +1,96 @@
+{
+  "task_id": "TASK_007_UNIVERSE_CANDIDATES_PIPELINE",
+  "title": "Definir pipeline de dados para gerar UNIVERSE_CANDIDATES a partir de fontes de mercado",
+  "objective": "Especificar, em nível de arquitetura de dados, como construir o arquivo/tabulação UNIVERSE_CANDIDATES (pré-lista de 60–80 ativos) a partir de fontes de dados de mercado, respeitando o schema definido e os parâmetros da universe_selection_rules_v1.yaml. Não implementar código ainda; apenas criar documentação, configs e contratos de interface para o módulo de dados.",
+  "context": {
+    "plan_reference": "docs/PORTFOLIOZERO_PLAN_V1.md",
+    "universe_docs": [
+      "docs/universe/UNIVERSE_TRILHO_A_OVERVIEW.md",
+      "docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md"
+    ],
+    "universe_configs": [
+      "config/experiments/universe_selection_rules_v1.yaml",
+      "data/universe/UNIVERSE_CANDIDATES.schema.md"
+    ],
+    "universe_targets": {
+      "prelist_min": 60,
+      "prelist_max": 80,
+      "supervised_target": 30
+    },
+    "stack_constraints": {
+      "language": "python",
+      "version": "3.11",
+      "libs_core": ["polars", "pydantic"],
+      "project_layout": "modules/portfoliozero/*",
+      "data_root": "data/"
+    }
+  },
+  "outputs": [
+    {
+      "type": "file",
+      "path": "docs/universe/UNIVERSE_DATA_PIPELINE_V1.md",
+      "description": "Documento descrevendo o fluxo de dados para gerar UNIVERSE_CANDIDATES.",
+      "format": "markdown"
+    },
+    {
+      "type": "file",
+      "path": "config/experiments/universe_data_sources_v1.yaml",
+      "description": "Configuração das fontes de dados de mercado.",
+      "format": "yaml"
+    },
+    {
+      "type": "file",
+      "path": "config/experiments/universe_pipeline_topology_v1.yaml",
+      "description": "Configuração da topologia do pipeline.",
+      "format": "yaml"
+    },
+    {
+      "type": "file",
+      "path": "modules/portfoliozero/core/data/universe_candidates_pipeline_contract.md",
+      "description": "Contrato de interface do módulo universe_candidates_pipeline.",
+      "format": "markdown"
+    },
+    {
+      "type": "file",
+      "path": "planning/task_specs/TASK_007_UNIVERSE_CANDIDATES_PIPELINE.json",
+      "description": "Cópia deste JSON arquivada.",
+      "format": "json"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "STEP_001_UNIVERSE_DATA_PIPELINE_DOC",
+      "description": "Criar documento de visão do pipeline de dados para UNIVERSE_CANDIDATES."
+    },
+    {
+      "step_id": "STEP_002_DATA_SOURCES_CONFIG",
+      "description": "Definir arquivo YAML com informações das fontes de dados necessárias."
+    },
+    {
+      "step_id": "STEP_003_PIPELINE_TOPOLOGY_CONFIG",
+      "description": "Descrever a topologia das etapas do pipeline em um YAML separado."
+    },
+    {
+      "step_id": "STEP_004_PIPELINE_CONTRACT_DOC",
+      "description": "Criar contrato de interface do módulo universe_candidates_pipeline."
+    },
+    {
+      "step_id": "STEP_005_ARCHIVE_THIS_JSON",
+      "description": "Salvar cópia deste JSON na área padrão de specs."
+    }
+  ],
+  "acceptance_criteria": [
+    "docs/universe/UNIVERSE_DATA_PIPELINE_V1.md existe e descreve claramente o fluxo de dados.",
+    "config/experiments/universe_data_sources_v1.yaml existe com blocos de configuração para providers.",
+    "config/experiments/universe_pipeline_topology_v1.yaml existe e lista as etapas do pipeline.",
+    "modules/portfoliozero/core/data/universe_candidates_pipeline_contract.md existe e define funções públicas.",
+    "planning/task_specs/TASK_007_UNIVERSE_CANDIDATES_PIPELINE.json existe como cópia fiel.",
+    "Nada de código Python de implementação foi criado nesta task."
+  ],
+  "notes_for_agent": [
+    "Não criar universe_candidates_pipeline.py nesta task; apenas o contrato em markdown.",
+    "Não implementar lógica de ingestão ou chamadas a APIs.",
+    "Respeitar a organização de diretórios existente."
+  ]
+}
+

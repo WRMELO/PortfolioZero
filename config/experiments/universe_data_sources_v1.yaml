@@ -1,0 +1,205 @@
+# =============================================================================
+# PortfolioZero — Configuração de Fontes de Dados para UNIVERSE_CANDIDATES
+# Versão: 1.0
+# Data: 26/11/2025
+# =============================================================================
+#
+# Este arquivo define as fontes de dados necessárias para construir a tabela
+# UNIVERSE_CANDIDATES (pré-lista de 60-80 ativos).
+#
+# Referência: docs/universe/UNIVERSE_DATA_PIPELINE_V1.md
+# =============================================================================
+
+description: >
+  Configuração de fontes de dados para construção do UNIVERSE_CANDIDATES (V1).
+  Os providers marcados como "to_be_defined" serão especificados quando houver
+  acesso às fontes reais de dados.
+
+# -----------------------------------------------------------------------------
+# PROVIDERS: Fontes de dados de mercado
+# -----------------------------------------------------------------------------
+providers:
+  # ---------------------------------------------------------------------------
+  # Dados de preços e volumes históricos
+  # ---------------------------------------------------------------------------
+  primary_market_data:
+    type: to_be_defined
+    notes: >
+      Fonte principal de preços e volumes históricos. Pode ser:
+      - API de corretora (ex: XP, BTG, Inter)
+      - Provedor pago (ex: Economatica, Bloomberg, Refinitiv)
+      - Dataset local obtido de fonte pública ou privada
+    
+    required_fields:
+      - ticker           # Código do ativo na B3
+      - trade_date       # Data do pregão
+      - close_price_brl  # Preço de fechamento ajustado
+      - volume_brl       # Volume financeiro do dia
+    
+    optional_fields:
+      - open_price_brl   # Preço de abertura
+      - high_price_brl   # Máxima do dia
+      - low_price_brl    # Mínima do dia
+      - num_trades       # Número de negócios
+    
+    requirements:
+      min_history_days: 252
+      adjustment: dividends_and_splits
+      frequency: daily
+
+  # ---------------------------------------------------------------------------
+  # Lista de ativos elegíveis
+  # ---------------------------------------------------------------------------
+  universe_reference:
+    type: to_be_defined
+    notes: >
+      Fonte de lista de ativos elegíveis na B3 (ações ON/PN e BDRs).
+      Pode vir de:
+      - API da B3
+      - CVM
+      - Provedor de dados
+    
+    required_fields:
+      - ticker              # Código do ativo
+      - tipo_instrumento    # ACAO_ON, ACAO_PN, BDR
+      - situacao_listagem   # Ativo, Suspenso, etc.
+    
+    optional_fields:
+      - nome_empresa        # Nome da empresa
+      - cnpj                # CNPJ do emissor
+      - data_listagem       # Data de listagem na B3
+      - segmento_listagem   # Novo Mercado, Nível 2, etc.
+
+  # ---------------------------------------------------------------------------
+  # Classificação setorial
+  # ---------------------------------------------------------------------------
+  sector_classification:
+    type: to_be_defined
+    notes: >
+      Fonte de classificação setorial/subsetorial dos ativos.
+      Pode usar classificação da B3, Bloomberg ou personalizada.
+    
+    required_fields:
+      - ticker    # Código do ativo
+      - setor     # Setor econômico principal
+    
+    optional_fields:
+      - subsetor  # Subsetor
+      - segmento  # Segmento mais específico
+
+    # Mapeamento de setores reconhecidos
+    sector_mapping:
+      Financeiro:
+        - Bancos
+        - Seguradoras
+        - Serviços Financeiros
+        - Meios de Pagamento
+      Commodities:
+        - Mineração
+        - Siderurgia
+        - Papel e Celulose
+        - Petroquímica
+      Energia:
+        - Petróleo e Gás
+        - Energia Elétrica
+        - Distribuição de Combustíveis
+      Consumo:
+        - Varejo
+        - Alimentos e Bebidas
+        - Vestuário
+        - E-commerce
+      Saúde:
+        - Farmacêuticas
+        - Hospitais
+        - Planos de Saúde
+        - Laboratórios
+      Tecnologia:
+        - Software
+        - Hardware
+        - Telecomunicações
+        - BDRs de Tech
+      Utilidades:
+        - Saneamento
+        - Concessões
+        - Rodovias
+      Indústria:
+        - Construção Civil
+        - Transporte e Logística
+        - Máquinas e Equipamentos
+        - Aeronáutico
+
+  # ---------------------------------------------------------------------------
+  # Composição de índices
+  # ---------------------------------------------------------------------------
+  index_memberships:
+    type: optional
+    notes: >
+      Fonte com participação em índices da B3.
+      Usado para priorização na seleção.
+    
+    required_fields:
+      - ticker      # Código do ativo
+      - indice      # Nome do índice (IBOV, IBrX-50, IBrX-100)
+      - flag_membro # Se o ativo é membro do índice
+    
+    indices_tracked:
+      - IBOV
+      - IBrX-50
+      - IBrX-100
+      - IDIV       # Índice de Dividendos (opcional)
+      - SMLL       # Small Caps (opcional)
+
+# -----------------------------------------------------------------------------
+# CACHE LOCAL: Armazenamento de dados brutos
+# -----------------------------------------------------------------------------
+local_cache:
+  enabled: true
+  path_root: data/raw/market/
+  
+  structure:
+    prices: data/raw/market/prices/
+    universe: data/raw/market/universe/
+    sectors: data/raw/market/sectors/
+    indices: data/raw/market/indices/
+  
+  formats:
+    primary: parquet
+    fallback: csv
+  
+  retention:
+    max_age_days: 7
+    notes: >
+      Dados no cache são revalidados a cada 7 dias ou quando
+      o pipeline é executado com flag force_refresh=true.
+
+# -----------------------------------------------------------------------------
+# FALLBACK: Fontes alternativas
+# -----------------------------------------------------------------------------
+fallback_sources:
+  yahoo_finance:
+    enabled: false
+    notes: >
+      Yahoo Finance pode ser usado como fallback para dados de preços,
+      mas tem limitações de volume e pode ter atrasos.
+    
+  b3_public:
+    enabled: false
+    notes: >
+      Dados públicos da B3 podem ser usados para lista de ativos
+      e composição de índices.
+
+# -----------------------------------------------------------------------------
+# VALIDAÇÃO
+# -----------------------------------------------------------------------------
+validation:
+  # Verificações a serem feitas nos dados ingeridos
+  checks:
+    - no_null_tickers
+    - no_negative_prices
+    - no_negative_volumes
+    - valid_instrument_types
+    - valid_sector_names
+  
+  # Ação em caso de falha de validação
+  on_failure: warn_and_continue  # ou "fail_fast"
+

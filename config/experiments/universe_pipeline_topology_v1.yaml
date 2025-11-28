@@ -1,0 +1,276 @@
+# =============================================================================
+# PortfolioZero — Topologia do Pipeline UNIVERSE_CANDIDATES
+# Versão: 1.0
+# Data: 26/11/2025
+# =============================================================================
+#
+# Este arquivo define as etapas do pipeline para construção do
+# UNIVERSE_CANDIDATES, incluindo dependências entre etapas e caminhos de I/O.
+#
+# Referência: docs/universe/UNIVERSE_DATA_PIPELINE_V1.md
+# =============================================================================
+
+description: >
+  Topologia do pipeline para construção do UNIVERSE_CANDIDATES (V1).
+  Define as etapas, seus inputs/outputs e dependências de configuração.
+
+# -----------------------------------------------------------------------------
+# METADADOS DO PIPELINE
+# -----------------------------------------------------------------------------
+pipeline:
+  name: universe_candidates_pipeline
+  version: "1.0"
+  description: Pipeline para geração da pré-lista de ativos candidatos ao universo supervisionado
+
+# -----------------------------------------------------------------------------
+# ETAPAS DO PIPELINE
+# -----------------------------------------------------------------------------
+stages:
+  # ---------------------------------------------------------------------------
+  # ETAPA 1: Ingestão de dados brutos
+  # ---------------------------------------------------------------------------
+  - id: ingest_raw
+    name: Ingestão de Dados Brutos
+    description: >
+      Ingestão dos dados brutos de mercado a partir das fontes configuradas
+      em universe_data_sources_v1.yaml. Inclui preços, volumes, lista de
+      ativos, setores e composição de índices.
+    
+    inputs: []
+    
+    outputs:
+      - path: data/raw/market/prices/
+        format: parquet
+        description: Histórico de preços e volumes
+      - path: data/raw/market/universe/
+        format: parquet
+        description: Lista de ativos elegíveis
+      - path: data/raw/market/sectors/
+        format: parquet
+        description: Classificação setorial
+      - path: data/raw/market/indices/
+        format: parquet
+        description: Composição de índices
+    
+    config_dependencies:
+      - config/experiments/universe_data_sources_v1.yaml
+    
+    idempotent: true
+    cache_enabled: true
+    
+  # ---------------------------------------------------------------------------
+  # ETAPA 2: Normalização de identificadores
+  # ---------------------------------------------------------------------------
+  - id: normalize_identifiers
+    name: Normalização de Identificadores
+    description: >
+      Padronização de tickers, tipos de instrumento e chaves de junção
+      entre as diferentes tabelas de entrada.
+    
+    depends_on:
+      - ingest_raw
+    
+    inputs:
+      - path: data/raw/market/prices/*.parquet
+        required: true
+      - path: data/raw/market/universe/*.parquet
+        required: true
+      - path: data/raw/market/sectors/*.parquet
+        required: true
+      - path: data/raw/market/indices/*.parquet
+        required: false
+    
+    outputs:
+      - path: data/interim/universe_normalized.parquet
+        format: parquet
+        description: Dados unificados com identificadores padronizados
+    
+    transformations:
+      - uppercase_tickers
+      - strip_whitespace
+      - map_instrument_types
+      - validate_sector_names
+      - merge_tables_on_ticker
+    
+    idempotent: true
+    
+  # ---------------------------------------------------------------------------
+  # ETAPA 3: Cálculo de métricas
+  # ---------------------------------------------------------------------------
+  - id: compute_metrics
+    name: Cálculo de Métricas
+    description: >
+      Cálculo das métricas necessárias para o schema UNIVERSE_CANDIDATES:
+      volume médio, preço médio, volatilidade, flags de índices, etc.
+    
+    depends_on:
+      - normalize_identifiers
+    
+    inputs:
+      - path: data/interim/universe_normalized.parquet
+        required: true
+    
+    outputs:
+      - path: data/interim/universe_with_metrics.parquet
+        format: parquet
+        description: Dados com métricas calculadas
+    
+    metrics_computed:
+      - name: volume_medio_21d
+        description: Volume financeiro médio dos últimos 21 pregões
+        window: 21
+        aggregation: mean
+        
+      - name: preco_medio_21d
+        description: Preço de fechamento médio dos últimos 21 pregões
+        window: 21
+        aggregation: mean
+        
+      - name: volatilidade_21d
+        description: Volatilidade anualizada baseada em 60 dias
+        window: 60
+        aggregation: std
+        annualization_factor: 15.87  # sqrt(252)
+        
+      - name: dias_negociados_252d
+        description: Contagem de dias com negociação nos últimos 252 pregões
+        window: 252
+        aggregation: count
+        
+      - name: trading_days_ratio
+        description: Proporção de dias negociados
+        formula: dias_negociados_252d / 252
+    
+    classifications:
+      - name: liquidez_classe
+        based_on: volume_medio_21d
+        buckets:
+          ALTA: top_33_pct
+          MEDIA: middle_33_pct
+          BAIXA: bottom_33_pct
+          
+      - name: volatilidade_classe
+        based_on: volatilidade_21d
+        thresholds:
+          BAIXA: <= 0.20
+          MEDIA: <= 0.40
+          ALTA: "> 0.40"
+    
+    config_dependencies:
+      - config/experiments/universe_selection_rules_v1.yaml
+    
+    idempotent: true
+    
+  # ---------------------------------------------------------------------------
+  # ETAPA 4: Aplicação de filtros da pré-lista
+  # ---------------------------------------------------------------------------
+  - id: apply_prelist_filters
+    name: Aplicação de Filtros da Pré-lista
+    description: >
+      Aplicação dos filtros mínimos definidos em universe_selection_rules_v1.yaml
+      para gerar a pré-lista de 60-80 ativos candidatos.
+    
+    depends_on:
+      - compute_metrics
+    
+    inputs:
+      - path: data/interim/universe_with_metrics.parquet
+        required: true
+      - path: data/universe/owner_overrides.yaml
+        required: false
+        description: Arquivo opcional com exclusões/inclusões do Owner
+    
+    outputs:
+      - path: data/universe/UNIVERSE_CANDIDATES.parquet
+        format: parquet
+        description: Pré-lista final de candidatos
+      - path: data/universe/UNIVERSE_CANDIDATES.csv
+        format: csv
+        description: Versão CSV para inspeção manual (opcional)
+      - path: data/universe/UNIVERSE_CANDIDATES_metadata.json
+        format: json
+        description: Metadados da execução (data, contagens, etc.)
+    
+    filters_applied:
+      - name: min_avg_volume_21d_brl
+        source: universe_selection_rules_v1.yaml
+        path: prelist.min_avg_volume_21d_brl
+        
+      - name: min_price_brl
+        source: universe_selection_rules_v1.yaml
+        path: prelist.min_price_brl
+        
+      - name: min_history_days
+        source: universe_selection_rules_v1.yaml
+        path: prelist.min_history_days
+        
+      - name: min_trading_days_ratio_252d
+        source: universe_selection_rules_v1.yaml
+        path: prelist.min_trading_days_ratio_252d
+        
+      - name: allowed_instruments
+        source: universe_selection_rules_v1.yaml
+        path: prelist.allowed_instruments
+        
+      - name: owner_exclusions
+        source: owner_overrides.yaml (optional)
+        path: exclusions
+    
+    validations:
+      - check: output_count_in_range
+        min: 60
+        max: 80
+        on_failure: warn
+        
+      - check: required_columns_present
+        columns:
+          - ticker
+          - tipo_instrumento
+          - setor
+          - volume_medio_21d
+          - preco_medio_21d
+          - volatilidade_21d
+        on_failure: fail
+    
+    config_dependencies:
+      - config/experiments/universe_selection_rules_v1.yaml
+    
+    idempotent: true
+
+# -----------------------------------------------------------------------------
+# DEPENDÊNCIAS DE CONFIGURAÇÃO GLOBAIS
+# -----------------------------------------------------------------------------
+config_dependencies:
+  - config/experiments/universe_selection_rules_v1.yaml
+  - config/experiments/universe_data_sources_v1.yaml
+
+# -----------------------------------------------------------------------------
+# CAMINHOS PADRÃO
+# -----------------------------------------------------------------------------
+paths:
+  raw: data/raw/market/
+  interim: data/interim/
+  output: data/universe/
+  logs: logs/pipeline/
+
+# -----------------------------------------------------------------------------
+# OPÇÕES DE EXECUÇÃO
+# -----------------------------------------------------------------------------
+execution:
+  # Modo de execução
+  mode: sequential  # ou "parallel" para etapas independentes
+  
+  # Logging
+  log_level: INFO
+  log_to_file: true
+  
+  # Tratamento de erros
+  on_stage_failure: stop  # ou "continue"
+  
+  # Cache
+  use_cache: true
+  cache_ttl_hours: 24
+  
+  # Validação de saídas
+  validate_outputs: true
+
