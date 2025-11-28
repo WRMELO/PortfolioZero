@@ -1,0 +1,153 @@
+# =============================================================================
+# PortfolioZero — Parâmetros de Seleção do Universo Supervisionado
+# Versão: 1.0
+# Data: 26/11/2025
+# =============================================================================
+#
+# Este arquivo define os parâmetros numéricos e flags para o processo de
+# seleção do universo de ~30 ativos supervisionados.
+#
+# Referência conceitual: docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md
+# =============================================================================
+
+description: >
+  Parâmetros de seleção do universo supervisionado (~30 ativos) para o
+  PortfolioZero, V1. Estes valores são defaults sugeridos e podem ser
+  ajustados conforme necessário.
+
+# -----------------------------------------------------------------------------
+# PRÉ-LISTA: Filtros para construir a lista inicial de 60-80 candidatos
+# -----------------------------------------------------------------------------
+prelist:
+  # Volume financeiro médio diário mínimo em 21 pregões (em BRL)
+  min_avg_volume_21d_brl: 5000000  # R$ 5 milhões
+
+  # Preço médio mínimo em 21 pregões (em BRL)
+  min_price_brl: 5.0  # R$ 5,00
+
+  # Número mínimo de pregões com histórico
+  min_history_days: 252  # 1 ano de trading
+
+  # Proporção mínima de dias efetivamente negociados nos últimos 252 pregões
+  min_trading_days_ratio_252d: 0.9  # 90%
+
+  # Instrumentos permitidos
+  allowed_instruments:
+    - ACAO_ON
+    - ACAO_PN
+    - BDR
+
+  # Tamanho alvo da pré-lista
+  target_size:
+    min: 60
+    max: 80
+
+# -----------------------------------------------------------------------------
+# SETORES: Regras de concentração e diversificação setorial
+# -----------------------------------------------------------------------------
+sectors:
+  # Número mínimo de setores distintos no universo final
+  min_distinct_sectors: 6
+
+  # Fração máxima do universo que pode pertencer a um único setor
+  # Ex: 0.35 = máximo 35% dos 30 ativos (≈ 10-11 ativos) em um setor
+  max_weight_per_sector_pct: 0.35
+
+  # Número máximo de ativos por setor
+  max_names_per_sector: 6
+
+  # Lista de setores reconhecidos (para validação)
+  recognized_sectors:
+    - Financeiro
+    - Commodities
+    - Energia
+    - Consumo
+    - Saúde
+    - Tecnologia
+    - Utilidades
+    - Indústria
+    - Outros
+
+# -----------------------------------------------------------------------------
+# VOLATILIDADE: Classificação e proporções alvo
+# -----------------------------------------------------------------------------
+volatility:
+  # Janela de cálculo da volatilidade (dias úteis)
+  lookback_days: 60
+
+  # Thresholds para classificação (volatilidade anualizada)
+  thresholds:
+    # Volatilidade ≤ 20% → BAIXA
+    low_max_annualized_vol: 0.20
+
+    # Volatilidade > 20% e ≤ 40% → MEDIA
+    # Volatilidade > 40% → ALTA
+    medium_max_annualized_vol: 0.40
+
+  # Proporções alvo no universo final
+  target_proportions:
+    # Mínimo de 30% do universo deve ser classe MEDIA
+    min_medium_pct: 0.30
+
+    # Máximo de 50% do universo pode ser classe ALTA
+    max_high_pct: 0.50
+
+# -----------------------------------------------------------------------------
+# OVERRIDES DO OWNER: Inclusões e exclusões manuais
+# -----------------------------------------------------------------------------
+owner_overrides:
+  # Se true, inclusões forçadas ainda devem respeitar liquidez mínima
+  respect_min_liquidity_for_forced_inclusion: true
+
+  # Se true, todos os overrides são registrados em log
+  log_all_overrides: true
+
+  # Se true, alertar quando override quebra regras de concentração
+  alert_on_concentration_breach: true
+
+# -----------------------------------------------------------------------------
+# TAMANHO DO UNIVERSO: Limites para o universo final
+# -----------------------------------------------------------------------------
+universe_size:
+  # Tamanho alvo
+  target: 30
+
+  # Limites aceitáveis
+  min: 28
+  max: 32
+
+# -----------------------------------------------------------------------------
+# POLÍTICA DE REVISÃO
+# -----------------------------------------------------------------------------
+review_policy:
+  # Frequência de revisão ordinária (meses)
+  regular_review_months: 12
+
+  # Permitir revisões extraordinárias
+  allow_extraordinary_review: true
+
+  # Eventos que disparam revisão extraordinária
+  extraordinary_triggers:
+    - recuperacao_judicial
+    - fusao_aquisicao
+    - deslistagem
+    - perda_liquidez_severa
+    - solicitacao_owner
+
+# -----------------------------------------------------------------------------
+# PRIORIZAÇÃO: Critérios de desempate
+# -----------------------------------------------------------------------------
+prioritization:
+  # Ordem de prioridade para seleção dentro de cada grupo
+  criteria_order:
+    - volume_avg_21d        # Maior volume primeiro
+    - participation_ibov    # Participantes do IBOV têm prioridade
+    - participation_ibrx50  # Depois IBrX-50
+    - governance_level      # Novo Mercado > outros
+
+  # Peso do IBOV na priorização (multiplicador)
+  ibov_bonus: 1.2
+
+  # Peso do IBrX-50 na priorização (multiplicador)
+  ibrx50_bonus: 1.1
+

@@ -1,0 +1,84 @@
+{
+  "task_id": "TASK_006_UNIVERSE_DECISION_RULES_DETAIL",
+  "title": "Refinar regras de seleção do universo de 30 supervisionados e criar config YAML de parâmetros",
+  "objective": "Especificar em detalhes os critérios de seleção do universo de ~30 ativos supervisionados (ações + BDRs) do PortfolioZero, atualizando a documentação em markdown e criando um arquivo YAML de parâmetros numéricos que servirá de base para o pipeline de seleção em tasks futuras.",
+  "context": {
+    "plan_reference": "docs/PORTFOLIOZERO_PLAN_V1.md",
+    "trilho_A_docs": [
+      "docs/universe/UNIVERSE_TRILHO_A_OVERVIEW.md",
+      "docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md",
+      "data/universe/UNIVERSE_CANDIDATES.schema.md"
+    ],
+    "universe_targets": {
+      "supervised_universe_size_target": 30,
+      "prelist_size_target_min": 60,
+      "prelist_size_target_max": 80
+    },
+    "instruments": {
+      "allowed": ["ACAO_ON", "ACAO_PN", "BDR"],
+      "forbidden": ["FII", "ETF", "DERIVATIVO", "SHORT", "ALAVANCAGEM"]
+    },
+    "risk_alignment": {
+      "target_drawdown_interval_pct": [10, 15],
+      "return_target_real_cagr_pct": [15, 20]
+    }
+  },
+  "outputs": [
+    {
+      "type": "file_update",
+      "path": "docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md",
+      "description": "Documento atualizado com critérios detalhados de seleção do universo supervisionado.",
+      "format": "markdown"
+    },
+    {
+      "type": "file",
+      "path": "config/experiments/universe_selection_rules_v1.yaml",
+      "description": "Arquivo de configuração com parâmetros numéricos e flags para o processo de seleção do universo.",
+      "format": "yaml"
+    },
+    {
+      "type": "file",
+      "path": "docs/universe/UNIVERSE_DECISION_LOG_TEMPLATE.md",
+      "description": "Template de log de decisões sobre o universo supervisionado.",
+      "format": "markdown"
+    },
+    {
+      "type": "file",
+      "path": "planning/task_specs/TASK_006_UNIVERSE_DECISION_RULES_DETAIL.json",
+      "description": "Cópia deste JSON arquivada na área padrão de specs.",
+      "format": "json"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "STEP_001_REFINE_SELECTION_CRITERIA_DOC",
+      "description": "Atualizar docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md com regras detalhadas."
+    },
+    {
+      "step_id": "STEP_002_CREATE_UNIVERSE_RULES_YAML",
+      "description": "Criar config/experiments/universe_selection_rules_v1.yaml com parâmetros numéricos e flags."
+    },
+    {
+      "step_id": "STEP_003_CREATE_DECISION_LOG_TEMPLATE",
+      "description": "Criar docs/universe/UNIVERSE_DECISION_LOG_TEMPLATE.md como modelo de log de decisões."
+    },
+    {
+      "step_id": "STEP_004_ARCHIVE_JSON_SPEC",
+      "description": "Salvar cópia deste JSON em planning/task_specs/ conforme convenção."
+    }
+  ],
+  "acceptance_criteria": [
+    "docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md foi atualizado com seções claras sobre: objetivo, filtros quantitativos mínimos, regras setoriais, classificação de volatilidade, overrides do Owner, processo de redução e política de revisão.",
+    "config/experiments/universe_selection_rules_v1.yaml existe com parâmetros coerentes com o documento de critérios.",
+    "docs/universe/UNIVERSE_DECISION_LOG_TEMPLATE.md existe com estrutura pronta para uso como log.",
+    "planning/task_specs/TASK_006_UNIVERSE_DECISION_RULES_DETAIL.json existe como cópia fiel deste JSON.",
+    "As regras documentadas são consistentes com o Plano V1 e com o escopo do Trilho A."
+  ],
+  "notes_for_agent": [
+    "Não implementar código de seleção de universo nesta task; foco em documentação (markdown) e configuração (YAML).",
+    "Os valores numéricos no YAML são defaults sugeridos; apenas grave o arquivo, ajustes podem ser feitos depois.",
+    "Garanta que o markdown final em UNIVERSE_SELECTION_CRITERIA_V1.md esteja organizado e legível.",
+    "Lembre-se de arquivar este JSON em planning/task_specs/ conforme convenção da TASK_005."
+  ]
+}
+
