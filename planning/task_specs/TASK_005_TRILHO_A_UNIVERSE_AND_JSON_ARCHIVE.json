@@ -1,0 +1,155 @@
+{
+  "task_id": "TASK_005_TRILHO_A_UNIVERSE_AND_JSON_ARCHIVE",
+  "title": "Criar área de arquivamento de JSONs de planejamento e iniciar Trilho A de seleção dos 30 supervisionados",
+  "objective": "1) Criar uma área padrão no repositório para arquivar TODOS os JSONs de planejamento gerados pelo TPM (inclusive este), garantindo rastreabilidade. 2) Preparar a estrutura de arquivos e documentação inicial para o Trilho A de seleção do universo de ~30 tickers supervisionados (ações + BDRs), sem ainda implementar a lógica de seleção definitiva.",
+  "context": {
+    "project_name": "PortfolioZero",
+    "plan_reference": "docs/PORTFOLIOZERO_PLAN_V1.md",
+    "owner_expectation": "O Owner quer que toda especificação JSON enviada pelo TPM (como esta) seja arquivada em um local padrão do repositório, para não precisar repetir esse pedido no futuro. Esse local deve ser considerado definitivo para o projeto PortfolioZero.",
+    "universe_scope_v1": {
+      "instruments_allowed": [
+        "Acoes_B3_ON",
+        "Acoes_B3_PN",
+        "BDRs_elegiveis"
+      ],
+      "instruments_forbidden": [
+        "FIIs",
+        "ETFs",
+        "Derivativos",
+        "Short_selling",
+        "Alavancagem"
+      ],
+      "supervision_count_target": 30,
+      "action_layer_target": 10
+    }
+  },
+  "outputs": [
+    {
+      "type": "directory",
+      "path": "planning/task_specs/",
+      "description": "Diretório padrão para arquivar todos os JSONs de planejamento gerados pelo TPM (TASK_XXX_...). Deve ser criado e versionado."
+    },
+    {
+      "type": "file",
+      "path": "planning/task_specs/README_TASK_SPECS.md",
+      "description": "Documento explicando o propósito da pasta planning/task_specs/, o padrão de nome dos arquivos JSON de task e como eles se relacionam com o plano PORTFOLIOZERO_PLAN_V1.",
+      "format": "markdown"
+    },
+    {
+      "type": "file",
+      "path": "planning/task_specs/TASK_005_TRILHO_A_UNIVERSE_AND_JSON_ARCHIVE.json",
+      "description": "Cópia deste JSON de especificação, salva no diretório padrão de specs, estabelecendo o padrão de arquivamento para tasks futuras.",
+      "format": "json"
+    },
+    {
+      "type": "directory",
+      "path": "docs/universe/",
+      "description": "Área de documentação específica do universo de ativos supervisionados (Trilho A)."
+    },
+    {
+      "type": "file",
+      "path": "docs/universe/UNIVERSE_TRILHO_A_OVERVIEW.md",
+      "description": "Documento descrevendo o objetivo do Trilho A, critérios gerais de seleção para os 30 supervisionados e como esses critérios se conectam ao Plano V1.",
+      "format": "markdown"
+    },
+    {
+      "type": "file",
+      "path": "docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md",
+      "description": "Documento que lista de forma estruturada os critérios de filtro e classificação para construção da pré-lista (60–80 ativos) e posterior redução para ~30 supervisionados.",
+      "format": "markdown"
+    },
+    {
+      "type": "directory",
+      "path": "data/universe/",
+      "description": "Pasta para armazenar arquivos de trabalho relacionados à seleção do universo (listas de candidatos, universos filtrados, rótulos)."
+    },
+    {
+      "type": "file",
+      "path": "data/universe/UNIVERSE_CANDIDATES.schema.md",
+      "description": "Especificação de schema para um arquivo tabular (CSV/Parquet) contendo a pré-lista de ativos candidatos ao universo supervisionado.",
+      "format": "markdown"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "STEP_001_CREATE_JSON_ARCHIVE_AREA",
+      "description": "Criar a área padrão de arquivamento de JSONs de planejamento e registrar a convenção de nomes.",
+      "actions": [
+        {
+          "action_id": "FS_001_CREATE_PLANNING_DIR",
+          "type": "create_directory",
+          "path": "planning/"
+        },
+        {
+          "action_id": "FS_002_CREATE_TASK_SPECS_DIR",
+          "type": "create_directory",
+          "path": "planning/task_specs/"
+        },
+        {
+          "action_id": "DOC_001_TASK_SPECS_README",
+          "type": "write_file_markdown",
+          "path": "planning/task_specs/README_TASK_SPECS.md"
+        },
+        {
+          "action_id": "FS_003_SAVE_THIS_JSON",
+          "type": "write_file_json",
+          "path": "planning/task_specs/TASK_005_TRILHO_A_UNIVERSE_AND_JSON_ARCHIVE.json",
+          "content_from": "this_task_json"
+        }
+      ]
+    },
+    {
+      "step_id": "STEP_002_SETUP_UNIVERSE_DOCS",
+      "description": "Criar a estrutura de documentação para o Trilho A (universo supervisionado).",
+      "actions": [
+        {
+          "action_id": "FS_010_CREATE_UNIVERSE_DOCS_DIR",
+          "type": "create_directory",
+          "path": "docs/universe/"
+        },
+        {
+          "action_id": "DOC_010_UNIVERSE_OVERVIEW",
+          "type": "write_file_markdown",
+          "path": "docs/universe/UNIVERSE_TRILHO_A_OVERVIEW.md"
+        },
+        {
+          "action_id": "DOC_011_UNIVERSE_CRITERIA_V1",
+          "type": "write_file_markdown",
+          "path": "docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md"
+        }
+      ]
+    },
+    {
+      "step_id": "STEP_003_UNIVERSE_DATA_SCHEMA",
+      "description": "Definir o schema esperado para arquivos tabulares de candidatos ao universo.",
+      "actions": [
+        {
+          "action_id": "FS_020_CREATE_UNIVERSE_DATA_DIR",
+          "type": "create_directory",
+          "path": "data/universe/"
+        },
+        {
+          "action_id": "DOC_020_UNIVERSE_SCHEMA",
+          "type": "write_file_markdown",
+          "path": "data/universe/UNIVERSE_CANDIDATES.schema.md"
+        }
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    "A pasta planning/task_specs/ existe e está versionada no repositório.",
+    "O arquivo planning/task_specs/README_TASK_SPECS.md explica claramente que TODOS os JSONs de planejamento devem ser arquivados ali, incluindo convenção de nomes.",
+    "Este próprio JSON foi salvo em planning/task_specs/TASK_005_TRILHO_A_UNIVERSE_AND_JSON_ARCHIVE.json.",
+    "A pasta docs/universe/ existe com os arquivos UNIVERSE_TRILHO_A_OVERVIEW.md e UNIVERSE_SELECTION_CRITERIA_V1.md, descrevendo claramente o objetivo do Trilho A e os critérios iniciais de seleção.",
+    "A pasta data/universe/ existe com o arquivo UNIVERSE_CANDIDATES.schema.md, contendo o schema mínimo esperado para arquivos de candidatos ao universo.",
+    "As decisões do Plano V1 (universo de 30 supervisionados, ações + BDRs, long-only, sem alavancagem) estão refletidas nos documentos criados.",
+    "O agente passa a usar planning/task_specs/ como local padrão para salvar todos os JSONs de tasks futuros enviados pelo TPM, sem necessidade de repetir essa instrução."
+  ],
+  "notes_for_agent": [
+    "IMPORTANTE: A partir desta task, sempre que o TPM fornecer um JSON de especificação de task no chat, você deve salvar uma cópia fiel em planning/task_specs/, seguindo o padrão de nome `TASK_XXX_<NOME>.json`.",
+    "Considere planning/task_specs/ como o repositório canônico de specs de planejamento do PortfolioZero. Não é necessário perguntar novamente onde guardar esses JSONs.",
+    "Não implemente lógica de seleção de universo nesta task; o foco aqui é preparação de estrutura (pastas, markdowns e schema). A lógica de seleção virá em tasks posteriores.",
+    "Mantenha o tom dos documentos em linguagem clara, adequada para leitura pelo Owner, mesmo sendo documentação técnica de alto nível."
+  ]
+}
+
