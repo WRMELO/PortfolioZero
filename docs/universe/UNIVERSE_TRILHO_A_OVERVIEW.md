@@ -122,3 +122,5 @@ Para atingir essas metas, o universo precisa ter:
 |--------|------|-----------|
 | 1.0 | 26/11/2025 | Versão inicial do documento |
 
+
+

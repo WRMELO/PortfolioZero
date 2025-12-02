@@ -119,3 +119,5 @@ Isso permite rastrear a evolução do universo ao longo do tempo.
 |--------|------|-----------|
 | 1.0 | 26/11/2025 | Versão inicial do schema |
 
+
+

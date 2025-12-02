@@ -280,3 +280,5 @@ tests/integration/core/data/test_universe_pipeline_integration.py
 |--------|------|-----------|
 | 1.0 | 26/11/2025 | Versão inicial do contrato |
 
+
+

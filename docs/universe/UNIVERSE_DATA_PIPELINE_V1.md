@@ -284,3 +284,5 @@ O pipeline depende dos seguintes arquivos de configuração:
 |--------|------|-----------|
 | 1.0 | 26/11/2025 | Versão inicial do documento |
 
+
+

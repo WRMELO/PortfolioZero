@@ -548,3 +548,5 @@ O Owner utilizará:
 
 *Este documento é a referência de negócio e risco para todas as tasks técnicas do PortfolioZero. Qualquer alteração significativa nas premissas aqui descritas deve gerar uma nova versão do plano (V2, V3, etc.).*
 
+
+
