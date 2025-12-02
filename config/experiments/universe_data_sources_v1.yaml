@@ -1,7 +1,7 @@
 # =============================================================================
 # PortfolioZero — Configuração de Fontes de Dados para UNIVERSE_CANDIDATES
-# Versão: 1.0
-# Data: 26/11/2025
+# Versão: 1.1
+# Data: 02/12/2024
 # =============================================================================
 #
 # Este arquivo define as fontes de dados necessárias para construir a tabela
@@ -12,196 +12,344 @@
 
 description: >
   Configuração de fontes de dados para construção do UNIVERSE_CANDIDATES (V1).
-  Os providers marcados como "to_be_defined" serão especificados quando houver
-  acesso às fontes reais de dados.
+  Provider primário: Yahoo Finance via yfinance.
 
 # -----------------------------------------------------------------------------
-# PROVIDERS: Fontes de dados de mercado
+# PROVIDER PRINCIPAL: Yahoo Finance
 # -----------------------------------------------------------------------------
-providers:
-  # ---------------------------------------------------------------------------
-  # Dados de preços e volumes históricos
-  # ---------------------------------------------------------------------------
-  primary_market_data:
-    type: to_be_defined
-    notes: >
-      Fonte principal de preços e volumes históricos. Pode ser:
-      - API de corretora (ex: XP, BTG, Inter)
-      - Provedor pago (ex: Economatica, Bloomberg, Refinitiv)
-      - Dataset local obtido de fonte pública ou privada
-    
-    required_fields:
-      - ticker           # Código do ativo na B3
-      - trade_date       # Data do pregão
-      - close_price_brl  # Preço de fechamento ajustado
-      - volume_brl       # Volume financeiro do dia
-    
-    optional_fields:
-      - open_price_brl   # Preço de abertura
-      - high_price_brl   # Máxima do dia
-      - low_price_brl    # Mínima do dia
-      - num_trades       # Número de negócios
-    
-    requirements:
-      min_history_days: 252
-      adjustment: dividends_and_splits
-      frequency: daily
-
-  # ---------------------------------------------------------------------------
-  # Lista de ativos elegíveis
-  # ---------------------------------------------------------------------------
-  universe_reference:
-    type: to_be_defined
-    notes: >
-      Fonte de lista de ativos elegíveis na B3 (ações ON/PN e BDRs).
-      Pode vir de:
-      - API da B3
-      - CVM
-      - Provedor de dados
-    
-    required_fields:
-      - ticker              # Código do ativo
-      - tipo_instrumento    # ACAO_ON, ACAO_PN, BDR
-      - situacao_listagem   # Ativo, Suspenso, etc.
-    
-    optional_fields:
-      - nome_empresa        # Nome da empresa
-      - cnpj                # CNPJ do emissor
-      - data_listagem       # Data de listagem na B3
-      - segmento_listagem   # Novo Mercado, Nível 2, etc.
-
-  # ---------------------------------------------------------------------------
-  # Classificação setorial
-  # ---------------------------------------------------------------------------
-  sector_classification:
-    type: to_be_defined
-    notes: >
-      Fonte de classificação setorial/subsetorial dos ativos.
-      Pode usar classificação da B3, Bloomberg ou personalizada.
-    
-    required_fields:
-      - ticker    # Código do ativo
-      - setor     # Setor econômico principal
-    
-    optional_fields:
-      - subsetor  # Subsetor
-      - segmento  # Segmento mais específico
-
-    # Mapeamento de setores reconhecidos
-    sector_mapping:
-      Financeiro:
-        - Bancos
-        - Seguradoras
-        - Serviços Financeiros
-        - Meios de Pagamento
-      Commodities:
-        - Mineração
-        - Siderurgia
-        - Papel e Celulose
-        - Petroquímica
-      Energia:
-        - Petróleo e Gás
-        - Energia Elétrica
-        - Distribuição de Combustíveis
-      Consumo:
-        - Varejo
-        - Alimentos e Bebidas
-        - Vestuário
-        - E-commerce
-      Saúde:
-        - Farmacêuticas
-        - Hospitais
-        - Planos de Saúde
-        - Laboratórios
-      Tecnologia:
-        - Software
-        - Hardware
-        - Telecomunicações
-        - BDRs de Tech
-      Utilidades:
-        - Saneamento
-        - Concessões
-        - Rodovias
-      Indústria:
-        - Construção Civil
-        - Transporte e Logística
-        - Máquinas e Equipamentos
-        - Aeronáutico
-
-  # ---------------------------------------------------------------------------
-  # Composição de índices
-  # ---------------------------------------------------------------------------
-  index_memberships:
-    type: optional
-    notes: >
-      Fonte com participação em índices da B3.
-      Usado para priorização na seleção.
-    
-    required_fields:
-      - ticker      # Código do ativo
-      - indice      # Nome do índice (IBOV, IBrX-50, IBrX-100)
-      - flag_membro # Se o ativo é membro do índice
-    
-    indices_tracked:
-      - IBOV
-      - IBrX-50
-      - IBrX-100
-      - IDIV       # Índice de Dividendos (opcional)
-      - SMLL       # Small Caps (opcional)
+provider: yahoo_finance
 
 # -----------------------------------------------------------------------------
-# CACHE LOCAL: Armazenamento de dados brutos
+# UNIVERSO DE TICKERS: Ativos a serem monitorados
 # -----------------------------------------------------------------------------
-local_cache:
-  enabled: true
-  path_root: data/raw/market/
+# Formato: ticker.SA para ativos da B3
+# Lista inicial com ~80 ativos para gerar pré-lista de 60-80 candidatos
+universe:
+  # Blue Chips - Financeiro
+  - ITUB4.SA
+  - BBDC4.SA
+  - BBAS3.SA
+  - SANB11.SA
+  - ITSA4.SA
+  - B3SA3.SA
+  - BBSE3.SA
   
-  structure:
-    prices: data/raw/market/prices/
-    universe: data/raw/market/universe/
-    sectors: data/raw/market/sectors/
-    indices: data/raw/market/indices/
+  # Blue Chips - Commodities
+  - VALE3.SA
+  - PETR4.SA
+  - PETR3.SA
+  - CSNA3.SA
+  - GGBR4.SA
+  - USIM5.SA
+  - BRAP4.SA
+  - SUZB3.SA
+  - KLBN11.SA
   
-  formats:
-    primary: parquet
-    fallback: csv
+  # Energia
+  - ELET3.SA
+  - ELET6.SA
+  - ENBR3.SA
+  - ENGI11.SA
+  - CPFE3.SA
+  - TAEE11.SA
+  - CPLE6.SA
+  - CMIG4.SA
+  - AURE3.SA
   
-  retention:
-    max_age_days: 7
-    notes: >
-      Dados no cache são revalidados a cada 7 dias ou quando
-      o pipeline é executado com flag force_refresh=true.
+  # Consumo
+  - ABEV3.SA
+  - MGLU3.SA
+  - LREN3.SA
+  - NTCO3.SA
+  - PCAR3.SA
+  - ASAI3.SA
+  - CRFB3.SA
+  - AMER3.SA
+  - SOMA3.SA
+  - ARZZ3.SA
+  - PETZ3.SA
+  
+  # Saúde
+  - RDOR3.SA
+  - HAPV3.SA
+  - FLRY3.SA
+  - RADL3.SA
+  - QUAL3.SA
+  - HYPE3.SA
+  
+  # Indústria / Construção
+  - WEGE3.SA
+  - EMBR3.SA
+  - RENT3.SA
+  - EQTL3.SA
+  - MRVE3.SA
+  - CYRE3.SA
+  - TEND3.SA
+  - EVEN3.SA
+  - SBSP3.SA
+  
+  # Telecomunicações / Tech
+  - VIVT3.SA
+  - TIMS3.SA
+  - TOTS3.SA
+  - LWSA3.SA
+  - CASH3.SA
+  - POSI3.SA
+  
+  # Outros / Utilidades
+  - JBSS3.SA
+  - BRFS3.SA
+  - BEEF3.SA
+  - CCRO3.SA
+  - ECOR3.SA
+  - RAIL3.SA
+  - UGPA3.SA
+  - CSAN3.SA
+  - RAIZ4.SA
+  - VBBR3.SA
+  - PRIO3.SA
+  - RRRP3.SA
+  
+  # BDRs (Tech Internacional)
+  - AAPL34.SA
+  - MSFT34.SA
+  - GOOGL34.SA
+  - AMZO34.SA
+  - NVDC34.SA
+  - TSLA34.SA
+  - META34.SA
+
+# Símbolos de índices para referência
+index_symbols:
+  - ^BVSP  # Ibovespa
 
 # -----------------------------------------------------------------------------
-# FALLBACK: Fontes alternativas
+# PERÍODO DE DADOS
 # -----------------------------------------------------------------------------
-fallback_sources:
-  yahoo_finance:
-    enabled: false
-    notes: >
-      Yahoo Finance pode ser usado como fallback para dados de preços,
-      mas tem limitações de volume e pode ter atrasos.
-    
-  b3_public:
-    enabled: false
-    notes: >
-      Dados públicos da B3 podem ser usados para lista de ativos
-      e composição de índices.
+date_range:
+  start: "2022-01-01"
+  end: "today"  # Será resolvido para a data atual
+
+# -----------------------------------------------------------------------------
+# FREQUÊNCIA E CAMPOS
+# -----------------------------------------------------------------------------
+frequency: "1d"
+
+fields:
+  - open
+  - high
+  - low
+  - close
+  - adj_close
+  - volume
+
+# -----------------------------------------------------------------------------
+# OUTPUT: Configuração de persistência
+# -----------------------------------------------------------------------------
+output:
+  path: data/raw/market/
+  partitioning: per_ticker  # Opções: per_ticker, per_ticker_year, single_file
+  format: parquet
+
+# -----------------------------------------------------------------------------
+# CLASSIFICAÇÃO SETORIAL (manual para v1)
+# -----------------------------------------------------------------------------
+sector_mapping:
+  # Financeiro
+  ITUB4.SA: Financeiro
+  BBDC4.SA: Financeiro
+  BBAS3.SA: Financeiro
+  SANB11.SA: Financeiro
+  ITSA4.SA: Financeiro
+  B3SA3.SA: Financeiro
+  BBSE3.SA: Financeiro
+  
+  # Commodities
+  VALE3.SA: Commodities
+  PETR4.SA: Commodities
+  PETR3.SA: Commodities
+  CSNA3.SA: Commodities
+  GGBR4.SA: Commodities
+  USIM5.SA: Commodities
+  BRAP4.SA: Commodities
+  SUZB3.SA: Commodities
+  KLBN11.SA: Commodities
+  
+  # Energia
+  ELET3.SA: Energia
+  ELET6.SA: Energia
+  ENBR3.SA: Energia
+  ENGI11.SA: Energia
+  CPFE3.SA: Energia
+  TAEE11.SA: Energia
+  CPLE6.SA: Energia
+  CMIG4.SA: Energia
+  AURE3.SA: Energia
+  
+  # Consumo
+  ABEV3.SA: Consumo
+  MGLU3.SA: Consumo
+  LREN3.SA: Consumo
+  NTCO3.SA: Consumo
+  PCAR3.SA: Consumo
+  ASAI3.SA: Consumo
+  CRFB3.SA: Consumo
+  AMER3.SA: Consumo
+  SOMA3.SA: Consumo
+  ARZZ3.SA: Consumo
+  PETZ3.SA: Consumo
+  
+  # Saúde
+  RDOR3.SA: Saúde
+  HAPV3.SA: Saúde
+  FLRY3.SA: Saúde
+  RADL3.SA: Saúde
+  QUAL3.SA: Saúde
+  HYPE3.SA: Saúde
+  
+  # Indústria
+  WEGE3.SA: Indústria
+  EMBR3.SA: Indústria
+  RENT3.SA: Indústria
+  EQTL3.SA: Indústria
+  MRVE3.SA: Indústria
+  CYRE3.SA: Indústria
+  TEND3.SA: Indústria
+  EVEN3.SA: Indústria
+  SBSP3.SA: Utilidades
+  
+  # Telecomunicações / Tech
+  VIVT3.SA: Tecnologia
+  TIMS3.SA: Tecnologia
+  TOTS3.SA: Tecnologia
+  LWSA3.SA: Tecnologia
+  CASH3.SA: Tecnologia
+  POSI3.SA: Tecnologia
+  
+  # Outros
+  JBSS3.SA: Consumo
+  BRFS3.SA: Consumo
+  BEEF3.SA: Consumo
+  CCRO3.SA: Utilidades
+  ECOR3.SA: Utilidades
+  RAIL3.SA: Utilidades
+  UGPA3.SA: Energia
+  CSAN3.SA: Energia
+  RAIZ4.SA: Energia
+  VBBR3.SA: Energia
+  PRIO3.SA: Commodities
+  RRRP3.SA: Commodities
+  
+  # BDRs
+  AAPL34.SA: Tecnologia
+  MSFT34.SA: Tecnologia
+  GOOGL34.SA: Tecnologia
+  AMZO34.SA: Tecnologia
+  NVDC34.SA: Tecnologia
+  TSLA34.SA: Tecnologia
+  META34.SA: Tecnologia
+
+# Mapeamento de tipo de instrumento
+instrument_type_mapping:
+  # Ações ON
+  VALE3.SA: ACAO_ON
+  PETR3.SA: ACAO_ON
+  BBAS3.SA: ACAO_ON
+  WEGE3.SA: ACAO_ON
+  MGLU3.SA: ACAO_ON
+  LREN3.SA: ACAO_ON
+  ABEV3.SA: ACAO_ON
+  ELET3.SA: ACAO_ON
+  CSNA3.SA: ACAO_ON
+  EMBR3.SA: ACAO_ON
+  RENT3.SA: ACAO_ON
+  EQTL3.SA: ACAO_ON
+  MRVE3.SA: ACAO_ON
+  CYRE3.SA: ACAO_ON
+  TEND3.SA: ACAO_ON
+  EVEN3.SA: ACAO_ON
+  SBSP3.SA: ACAO_ON
+  VIVT3.SA: ACAO_ON
+  TIMS3.SA: ACAO_ON
+  TOTS3.SA: ACAO_ON
+  LWSA3.SA: ACAO_ON
+  CASH3.SA: ACAO_ON
+  POSI3.SA: ACAO_ON
+  JBSS3.SA: ACAO_ON
+  BRFS3.SA: ACAO_ON
+  BEEF3.SA: ACAO_ON
+  CCRO3.SA: ACAO_ON
+  ECOR3.SA: ACAO_ON
+  RAIL3.SA: ACAO_ON
+  UGPA3.SA: ACAO_ON
+  CSAN3.SA: ACAO_ON
+  PRIO3.SA: ACAO_ON
+  RRRP3.SA: ACAO_ON
+  NTCO3.SA: ACAO_ON
+  PCAR3.SA: ACAO_ON
+  ASAI3.SA: ACAO_ON
+  CRFB3.SA: ACAO_ON
+  AMER3.SA: ACAO_ON
+  SOMA3.SA: ACAO_ON
+  ARZZ3.SA: ACAO_ON
+  PETZ3.SA: ACAO_ON
+  RDOR3.SA: ACAO_ON
+  HAPV3.SA: ACAO_ON
+  FLRY3.SA: ACAO_ON
+  RADL3.SA: ACAO_ON
+  QUAL3.SA: ACAO_ON
+  HYPE3.SA: ACAO_ON
+  AURE3.SA: ACAO_ON
+  CPFE3.SA: ACAO_ON
+  
+  # Ações PN
+  ITUB4.SA: ACAO_PN
+  BBDC4.SA: ACAO_PN
+  PETR4.SA: ACAO_PN
+  ITSA4.SA: ACAO_PN
+  GGBR4.SA: ACAO_PN
+  USIM5.SA: ACAO_PN
+  BRAP4.SA: ACAO_PN
+  ELET6.SA: ACAO_PN
+  CPLE6.SA: ACAO_PN
+  CMIG4.SA: ACAO_PN
+  RAIZ4.SA: ACAO_PN
+  VBBR3.SA: ACAO_ON
+  
+  # Units
+  SANB11.SA: ACAO_PN
+  KLBN11.SA: ACAO_PN
+  ENGI11.SA: ACAO_PN
+  TAEE11.SA: ACAO_PN
+  SUZB3.SA: ACAO_ON
+  B3SA3.SA: ACAO_ON
+  BBSE3.SA: ACAO_ON
+  ENBR3.SA: ACAO_ON
+  
+  # BDRs
+  AAPL34.SA: BDR
+  MSFT34.SA: BDR
+  GOOGL34.SA: BDR
+  AMZO34.SA: BDR
+  NVDC34.SA: BDR
+  TSLA34.SA: BDR
+  META34.SA: BDR
 
 # -----------------------------------------------------------------------------
 # VALIDAÇÃO
 # -----------------------------------------------------------------------------
 validation:
-  # Verificações a serem feitas nos dados ingeridos
   checks:
     - no_null_tickers
     - no_negative_prices
     - no_negative_volumes
-    - valid_instrument_types
-    - valid_sector_names
+    - min_records_per_ticker: 100
   
-  # Ação em caso de falha de validação
-  on_failure: warn_and_continue  # ou "fail_fast"
+  on_failure: warn_and_continue
 
-
-
+# -----------------------------------------------------------------------------
+# RATE LIMITING
+# -----------------------------------------------------------------------------
+rate_limit:
+  requests_per_minute: 30
+  delay_between_tickers_seconds: 0.5

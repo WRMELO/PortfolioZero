@@ -1,0 +1,30 @@
+{
+  "task_id": "TASK_009_MARKET_DATA_INGESTION_ADAPTER_V1",
+  "title": "Implementar adaptador de ingestão de dados de mercado para o Trilho A do PortfolioZero",
+  "role": "coding_agent",
+  "priority": "high",
+  "status": "in_progress",
+  "depends_on": ["TASK_008_UNIVERSE_CANDIDATES_PIPELINE_V1"],
+  "scope": {
+    "in_scope": [
+      "Definir Yahoo Finance (yfinance) como fonte padrão v1",
+      "Implementar módulo market_data_ingestion.py",
+      "Ler parâmetros de universe_data_sources_v1.yaml",
+      "Baixar dados OHLCV e persistir em data/raw/market/",
+      "Script CLI fetch_market_data.py",
+      "Testes unitários com mocks"
+    ],
+    "out_of_scope": [
+      "Alterar universe_candidates_pipeline.py",
+      "Seleção final dos 30 supervisionados",
+      "MuZero, RL, Black-Litterman",
+      "Dados intraday"
+    ]
+  },
+  "required_artifacts": {
+    "modules": ["modules/portfoliozero/core/data/market_data_ingestion.py"],
+    "scripts": ["scripts/fetch_market_data.py"],
+    "tests": ["tests/unit/core/data/test_market_data_ingestion.py"]
+  }
+}
+
