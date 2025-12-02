@@ -458,10 +458,10 @@ def _apply_sector_constraints(
     ])
 
     before = len(df)
-    df = df.filter(pl.col("rank_in_sector") <= max_per_sector)
+    df = df.filter(pl.col("rank_in_sector") < max_per_sector)
     df = df.drop("rank_in_sector")
 
-    metadata.filters_applied.append(f"max_names_per_sector <= {max_per_sector}")
+    metadata.filters_applied.append(f"max_names_per_sector < {max_per_sector}")
     logger.info(f"Após limite por setor: {len(df)} ativos (removidos: {before - len(df)})")
 
     return df
