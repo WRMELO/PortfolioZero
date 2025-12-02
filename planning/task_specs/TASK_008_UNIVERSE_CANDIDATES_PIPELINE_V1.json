@@ -1,0 +1,39 @@
+{
+  "task_id": "TASK_008_UNIVERSE_CANDIDATES_PIPELINE_V1",
+  "title": "Implementar pipeline UNIVERSE_CANDIDATES para o Trilho A do PortfolioZero",
+  "role": "coding_agent",
+  "priority": "high",
+  "status": "completed",
+  "background": {
+    "business_context": "Projeto PortfolioZero, bolso de R$ 500k em circuito fechado, operação long-only sem alavancagem, foco em 15–20% CAGR real com drawdown máximo desejado de 10–15%. Universo final: ~30 ativos supervisionados, carteira ativa ~10 ativos.",
+    "technical_context": "Stack já definida com Python 3.11.14, Polars como engine principal de DataFrames, Pydantic para configs."
+  },
+  "scope": {
+    "in_scope": [
+      "Criar o módulo modules/portfoliozero/core/data/universe_candidates_pipeline.py",
+      "Implementar build_universe_candidates(), load_universe_candidates(), validate_universe_candidates()",
+      "Definir dataclasses ValidationResult e PipelineMetadata",
+      "Carregar regras a partir dos YAMLs",
+      "Aplicar filtros de pré-lista"
+    ],
+    "out_of_scope": [
+      "Implementar seleção final dos 30 supervisionados",
+      "Conectar a APIs externas",
+      "Implementar MuZero, Black-Litterman"
+    ]
+  },
+  "required_artifacts": {
+    "module_file": "modules/portfoliozero/core/data/universe_candidates_pipeline.py",
+    "outputs": [
+      "data/universe/UNIVERSE_CANDIDATES.parquet",
+      "data/universe/UNIVERSE_CANDIDATES.csv (opcional)"
+    ]
+  },
+  "acceptance_criteria": [
+    "build_universe_candidates() produz UNIVERSE_CANDIDATES.parquet sem erros",
+    "load_universe_candidates() retorna DataFrame Polars com colunas esperadas",
+    "validate_universe_candidates() retorna ValidationResult",
+    "Código segue padrão de estilo do projeto"
+  ]
+}
+

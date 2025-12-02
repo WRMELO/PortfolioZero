@@ -56,8 +56,9 @@ coverage.xml
 # ---------------------------------------------
 data/raw/
 data/interim/
-*.parquet
-*.csv
+data/universe/*.parquet
+data/universe/*.csv
+data/universe/*_metadata.json
 *.h5
 *.hdf5
 *.feather
