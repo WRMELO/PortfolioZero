@@ -1,0 +1,122 @@
+# =============================================================================
+# PortfolioZero — Regras de Seleção do Universo Supervisionado
+# Versão: 1.0
+# Data: 02/12/2024
+# =============================================================================
+#
+# Este arquivo define as regras para selecionar os 30 ativos supervisionados
+# (UNIVERSE_SUPERVISED) a partir da pré-lista de ~68 candidatos (UNIVERSE_CANDIDATES).
+#
+# Referência: docs/universe/UNIVERSE_SUPERVISED_RUNBOOK_V1.md
+# =============================================================================
+
+description: >
+  Configuração de regras para seleção do universo supervisionado (~30 ativos)
+  a partir dos candidatos pré-filtrados em UNIVERSE_CANDIDATES.
+
+# -----------------------------------------------------------------------------
+# TAMANHO DO UNIVERSO SUPERVISIONADO
+# -----------------------------------------------------------------------------
+target_size: 30
+
+# Limites aceitáveis (tolerância)
+min_size: 28
+max_size: 32
+
+# -----------------------------------------------------------------------------
+# RESTRIÇÕES POR SETOR
+# -----------------------------------------------------------------------------
+sector_constraints:
+  # Número mínimo de ativos por setor representado
+  min_per_sector: 2
+  
+  # Número máximo de ativos por setor
+  max_per_sector: 6
+  
+  # Se true, permite violar max_per_sector para forced_includes
+  allow_override_for_forced_includes: true
+
+# -----------------------------------------------------------------------------
+# MIX DE VOLATILIDADE
+# -----------------------------------------------------------------------------
+# Objetivo: balancear o portfólio entre ativos defensivos e de oportunidade
+volatility_mix:
+  # Proporção alvo de ativos BAIXA volatilidade (defensivos)
+  target_low_pct: 0.30  # 30% = ~9 ativos
+  
+  # Proporção alvo de ativos MEDIA volatilidade (core)
+  target_medium_pct: 0.50  # 50% = ~15 ativos
+  
+  # Proporção alvo de ativos ALTA volatilidade (oportunidades)
+  target_high_pct: 0.20  # 20% = ~6 ativos
+  
+  # Tolerância para desvio das proporções alvo
+  tolerance_pct: 0.10  # ±10%
+
+# -----------------------------------------------------------------------------
+# PREFERÊNCIAS DE LIQUIDEZ
+# -----------------------------------------------------------------------------
+liquidity_preferences:
+  # Mínimo percentual de ativos com liquidez ALTA
+  min_high_liquidity_pct: 0.50  # 50% = ~15 ativos
+  
+  # Número máximo de ativos com liquidez BAIXA
+  max_low_liquidity_count: 3
+
+# -----------------------------------------------------------------------------
+# OVERRIDES DO OWNER
+# -----------------------------------------------------------------------------
+# O Owner pode forçar inclusão ou exclusão de tickers específicos
+owner_overrides:
+  # Tickers que DEVEM ser incluídos (se existirem em UNIVERSE_CANDIDATES)
+  forced_includes:
+    - PETR4.SA   # Petrobras PN - blue chip, alta liquidez
+    - VALE3.SA   # Vale ON - blue chip, commodities
+    - ITUB4.SA   # Itaú PN - maior banco privado
+    - BBDC4.SA   # Bradesco PN - blue chip financeiro
+    - BBAS3.SA   # BB ON - banco estatal
+    - WEGE3.SA   # WEG ON - referência industrial
+  
+  # Tickers que NÃO DEVEM ser incluídos (mesmo se passarem nos filtros)
+  forced_excludes: []
+  # Exemplo: 
+  # - MGLU3.SA  # Excluir Magazine Luiza por risco específico
+  
+  # Se true, valida que todos os forced_includes existem em UNIVERSE_CANDIDATES
+  validate_forced_includes: true
+
+# -----------------------------------------------------------------------------
+# CRITÉRIOS DE DESEMPATE (TIE-BREAKER)
+# -----------------------------------------------------------------------------
+# Quando há múltiplos candidatos equivalentes para uma vaga, usar esta ordem:
+tie_breaker_priority:
+  - higher_liquidity_first      # 1º: Liquidez ALTA > MEDIA > BAIXA
+  - lower_volatility_within_class  # 2º: Menor volatilidade dentro da classe
+  - higher_avg_volume_21d       # 3º: Maior volume médio 21 dias
+
+# -----------------------------------------------------------------------------
+# COMPORTAMENTO EM CASO DE CONFLITO
+# -----------------------------------------------------------------------------
+conflict_behavior:
+  # Se for impossível satisfazer todas as restrições simultaneamente
+  on_constraint_conflict: best_effort  # Opções: best_effort, fail
+  
+  # Se true, gera warnings detalhados quando constraints são violados
+  verbose_warnings: true
+  
+  # Se true, permite que o resultado tenha menos de min_size se não houver candidatos
+  allow_undersized_result: false
+
+# -----------------------------------------------------------------------------
+# LOGS E OUTPUTS
+# -----------------------------------------------------------------------------
+output:
+  # Gerar arquivo CSV além do Parquet
+  generate_csv: true
+  
+  # Gerar log estruturado de decisões
+  generate_selection_log: true
+  
+  # Gerar arquivo texto com lista simples de tickers
+  generate_ticker_list: true
+
