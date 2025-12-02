@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-12-02T19:20:59.057669",
+  "total_candidates": 40,
+  "target_range": {
+    "min": 60,
+    "max": 80
+  },
+  "in_target_range": false,
+  "by_sector": {
+    "Saúde": 5,
+    "Consumo": 5,
+    "Financeiro": 5,
+    "Energia": 5,
+    "Commodities": 5,
+    "Tecnologia": 5,
+    "Indústria": 5,
+    "Utilidades": 5
+  },
+  "by_volatility_class": {
+    "ALTA": 40
+  },
+  "by_liquidity_class": {
+    "ALTA": 29,
+    "BAIXA": 1,
+    "MEDIA": 10
+  },
+  "pipeline_metadata": {
+    "execution_date": "2025-12-02T19:20:59.024287",
+    "input_record_count": 25650,
+    "output_record_count": 40,
+    "filters_applied": [
+      "min_history_days >= 252",
+      "trading_days_ratio >= 0.9",
+      "avg_volume_21d >= R$ 5,000,000",
+      "avg_price >= R$ 5.00",
+      "tipo_instrumento in ['ACAO_ON', 'ACAO_PN', 'BDR']",
+      "max_names_per_sector < 6"
+    ],
+    "warnings": [
+      "Universo muito grande: 40 > 32 (máximo esperado)"
+    ]
+  }
+}

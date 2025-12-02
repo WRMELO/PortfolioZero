@@ -1,0 +1,33 @@
+{
+  "task_id": "TASK_010_UNIVERSE_PRELIST_REAL_DATA_V1",
+  "title": "Construir pré-lista UNIVERSE_CANDIDATES (60–80 tickers) com dados reais",
+  "role": "coding_agent",
+  "priority": "high",
+  "status": "in_progress",
+  "scope": {
+    "in_scope": [
+      "Criar script scripts/build_universe_candidates.py",
+      "CLI com flags --with-ingestion, --validate-only, --output-summary-path",
+      "Função summarize_universe_candidates()",
+      "Testes de integração",
+      "Documentação RUNBOOK"
+    ],
+    "out_of_scope": [
+      "Alterar parâmetros de seleção",
+      "Implementar UNIVERSE_SUPERVISED",
+      "MuZero, Black-Litterman"
+    ]
+  },
+  "required_artifacts": {
+    "scripts": ["scripts/build_universe_candidates.py"],
+    "tests": ["tests/integration/test_universe_prelist_pipeline.py"],
+    "docs": ["docs/universe/UNIVERSE_PRELIST_RUNBOOK_V1.md"]
+  },
+  "acceptance_criteria": [
+    "CLI funcional com --validate-only e --with-ingestion",
+    "summarize_universe_candidates() produz dicionário correto",
+    "Exit code 0 quando 60-80 candidatos, != 0 caso contrário",
+    "Testes de integração passam offline"
+  ]
+}
+
