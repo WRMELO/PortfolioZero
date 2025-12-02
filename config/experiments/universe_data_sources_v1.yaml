@@ -25,7 +25,11 @@ provider: yahoo_finance
 # Formato: ticker.SA para ativos da B3
 # Lista inicial com ~80 ativos para gerar pré-lista de 60-80 candidatos
 universe:
-  # Blue Chips - Financeiro
+  # =========================================================================
+  # AÇÕES BRASILEIRAS (~100 tickers)
+  # =========================================================================
+  
+  # Blue Chips - Financeiro (12)
   - ITUB4.SA
   - BBDC4.SA
   - BBAS3.SA
@@ -33,8 +37,13 @@ universe:
   - ITSA4.SA
   - B3SA3.SA
   - BBSE3.SA
+  - BPAC11.SA   # BTG Pactual
+  - CIEL3.SA    # Cielo
+  - WIZC3.SA    # Wiz
+  - IRBR3.SA    # IRB Brasil
+  - BBDC3.SA    # Bradesco ON
   
-  # Blue Chips - Commodities
+  # Blue Chips - Commodities (14)
   - VALE3.SA
   - PETR4.SA
   - PETR3.SA
@@ -44,8 +53,13 @@ universe:
   - BRAP4.SA
   - SUZB3.SA
   - KLBN11.SA
+  - CMIN3.SA    # CSN Mineração
+  - GOAU4.SA    # Gerdau Metalúrgica
+  - GGBR3.SA    # Gerdau ON
+  - DXCO3.SA    # Dexco
+  - UNIP6.SA    # Unipar
   
-  # Energia
+  # Energia (15)
   - ELET3.SA
   - ELET6.SA
   - ENBR3.SA
@@ -55,8 +69,14 @@ universe:
   - CPLE6.SA
   - CMIG4.SA
   - AURE3.SA
+  - NEOE3.SA    # Neoenergia
+  - TRPL4.SA    # Transmissão Paulista
+  - CESP6.SA    # CESP
+  - ALUP11.SA   # Alupar
+  - EGIE3.SA    # Engie
+  - AESB3.SA    # AES Brasil
   
-  # Consumo
+  # Consumo (16)
   - ABEV3.SA
   - MGLU3.SA
   - LREN3.SA
@@ -68,16 +88,29 @@ universe:
   - SOMA3.SA
   - ARZZ3.SA
   - PETZ3.SA
+  - BHIA3.SA    # Casas Bahia
+  - VIVA3.SA    # Vivara
+  - MOVI3.SA    # Movida
+  - GRND3.SA    # Grendene
+  - ALPA4.SA    # Alpargatas
   
-  # Saúde
+  # Educação (4)
+  - YDUQ3.SA    # Yduqs
+  - COGN3.SA    # Cogna
+  - ANIM3.SA    # Ânima
+  - SEER3.SA    # Ser Educacional
+  
+  # Saúde (8)
   - RDOR3.SA
   - HAPV3.SA
   - FLRY3.SA
   - RADL3.SA
   - QUAL3.SA
   - HYPE3.SA
+  - ONCO3.SA    # Oncoclinicas
+  - DASA3.SA    # Dasa
   
-  # Indústria / Construção
+  # Indústria / Construção (14)
   - WEGE3.SA
   - EMBR3.SA
   - RENT3.SA
@@ -87,16 +120,25 @@ universe:
   - TEND3.SA
   - EVEN3.SA
   - SBSP3.SA
+  - AZUL4.SA    # Azul
+  - GOLL4.SA    # Gol
+  - CVCB3.SA    # CVC
+  - RAPT4.SA    # Randon
+  - TUPY3.SA    # Tupy
   
-  # Telecomunicações / Tech
+  # Telecomunicações / Tech (10)
   - VIVT3.SA
   - TIMS3.SA
   - TOTS3.SA
   - LWSA3.SA
   - CASH3.SA
   - POSI3.SA
+  - INTB3.SA    # Intelbras
+  - MLAS3.SA    # Multilaser
+  - BMOB3.SA    # Bemobi
+  - SQIA3.SA    # Sinqia
   
-  # Outros / Utilidades
+  # Outros / Utilidades (16)
   - JBSS3.SA
   - BRFS3.SA
   - BEEF3.SA
@@ -109,15 +151,56 @@ universe:
   - VBBR3.SA
   - PRIO3.SA
   - RRRP3.SA
+  - SMTO3.SA    # São Martinho
+  - SLCE3.SA    # SLC Agrícola
+  - SAPR11.SA   # Sanepar
+  - CSMG3.SA    # Copasa
   
-  # BDRs (Tech Internacional)
-  - AAPL34.SA
-  - MSFT34.SA
-  - GOOGL34.SA
-  - AMZO34.SA
-  - NVDC34.SA
-  - TSLA34.SA
-  - META34.SA
+  # =========================================================================
+  # BDRs - EMPRESAS INTERNACIONAIS (~30 tickers)
+  # =========================================================================
+  
+  # BDRs - Tech (12)
+  - AAPL34.SA   # Apple
+  - MSFT34.SA   # Microsoft
+  - GOOGL34.SA  # Alphabet
+  - AMZO34.SA   # Amazon
+  - NVDC34.SA   # Nvidia
+  - TSLA34.SA   # Tesla
+  - META34.SA   # Meta
+  - NFLX34.SA   # Netflix
+  - ADBE34.SA   # Adobe
+  - INBR32.SA   # Intel
+  - ORCL34.SA   # Oracle
+  - CSCO34.SA   # Cisco
+  
+  # BDRs - Financeiro (6)
+  - JPMC34.SA   # JP Morgan
+  - BOAC34.SA   # Bank of America
+  - GSGI34.SA   # Goldman Sachs
+  - VISA34.SA   # Visa
+  - MSCD34.SA   # Mastercard
+  - PYPL34.SA   # PayPal
+  
+  # BDRs - Consumo (6)
+  - COCA34.SA   # Coca-Cola
+  - MCDH34.SA   # McDonald's
+  - NIKE34.SA   # Nike
+  - SBUB34.SA   # Starbucks
+  - WALM34.SA   # Walmart
+  - DISB34.SA   # Disney
+  
+  # BDRs - Saúde (4)
+  - JNJB34.SA   # Johnson & Johnson
+  - PFIZ34.SA   # Pfizer
+  - MRCK34.SA   # Merck
+  - ABBV34.SA   # AbbVie
+  
+  # BDRs - Indústria (4)
+  - BERK34.SA   # Berkshire
+  - XOMH34.SA   # Exxon
+  - CHEVR34.SA  # Chevron
+  - BABA34.SA   # Alibaba
 
 # Símbolos de índices para referência
 index_symbols:
@@ -155,14 +238,23 @@ output:
 # CLASSIFICAÇÃO SETORIAL (manual para v1)
 # -----------------------------------------------------------------------------
 sector_mapping:
+  # =========================================================================
+  # AÇÕES BRASILEIRAS
+  # =========================================================================
+  
   # Financeiro
   ITUB4.SA: Financeiro
   BBDC4.SA: Financeiro
+  BBDC3.SA: Financeiro
   BBAS3.SA: Financeiro
   SANB11.SA: Financeiro
   ITSA4.SA: Financeiro
   B3SA3.SA: Financeiro
   BBSE3.SA: Financeiro
+  BPAC11.SA: Financeiro
+  CIEL3.SA: Financeiro
+  WIZC3.SA: Financeiro
+  IRBR3.SA: Financeiro
   
   # Commodities
   VALE3.SA: Commodities
@@ -170,10 +262,17 @@ sector_mapping:
   PETR3.SA: Commodities
   CSNA3.SA: Commodities
   GGBR4.SA: Commodities
+  GGBR3.SA: Commodities
   USIM5.SA: Commodities
   BRAP4.SA: Commodities
   SUZB3.SA: Commodities
   KLBN11.SA: Commodities
+  CMIN3.SA: Commodities
+  GOAU4.SA: Commodities
+  DXCO3.SA: Commodities
+  UNIP6.SA: Commodities
+  PRIO3.SA: Commodities
+  RRRP3.SA: Commodities
   
   # Energia
   ELET3.SA: Energia
@@ -185,6 +284,16 @@ sector_mapping:
   CPLE6.SA: Energia
   CMIG4.SA: Energia
   AURE3.SA: Energia
+  NEOE3.SA: Energia
+  TRPL4.SA: Energia
+  CESP6.SA: Energia
+  ALUP11.SA: Energia
+  EGIE3.SA: Energia
+  AESB3.SA: Energia
+  UGPA3.SA: Energia
+  CSAN3.SA: Energia
+  RAIZ4.SA: Energia
+  VBBR3.SA: Energia
   
   # Consumo
   ABEV3.SA: Consumo
@@ -198,6 +307,22 @@ sector_mapping:
   SOMA3.SA: Consumo
   ARZZ3.SA: Consumo
   PETZ3.SA: Consumo
+  BHIA3.SA: Consumo
+  VIVA3.SA: Consumo
+  MOVI3.SA: Consumo
+  GRND3.SA: Consumo
+  ALPA4.SA: Consumo
+  JBSS3.SA: Consumo
+  BRFS3.SA: Consumo
+  BEEF3.SA: Consumo
+  SMTO3.SA: Consumo
+  SLCE3.SA: Consumo
+  
+  # Educação
+  YDUQ3.SA: Educação
+  COGN3.SA: Educação
+  ANIM3.SA: Educação
+  SEER3.SA: Educação
   
   # Saúde
   RDOR3.SA: Saúde
@@ -206,6 +331,8 @@ sector_mapping:
   RADL3.SA: Saúde
   QUAL3.SA: Saúde
   HYPE3.SA: Saúde
+  ONCO3.SA: Saúde
+  DASA3.SA: Saúde
   
   # Indústria
   WEGE3.SA: Indústria
@@ -216,31 +343,37 @@ sector_mapping:
   CYRE3.SA: Indústria
   TEND3.SA: Indústria
   EVEN3.SA: Indústria
-  SBSP3.SA: Utilidades
+  AZUL4.SA: Indústria
+  GOLL4.SA: Indústria
+  CVCB3.SA: Indústria
+  RAPT4.SA: Indústria
+  TUPY3.SA: Indústria
   
-  # Telecomunicações / Tech
+  # Utilidades
+  SBSP3.SA: Utilidades
+  CCRO3.SA: Utilidades
+  ECOR3.SA: Utilidades
+  RAIL3.SA: Utilidades
+  SAPR11.SA: Utilidades
+  CSMG3.SA: Utilidades
+  
+  # Tecnologia
   VIVT3.SA: Tecnologia
   TIMS3.SA: Tecnologia
   TOTS3.SA: Tecnologia
   LWSA3.SA: Tecnologia
   CASH3.SA: Tecnologia
   POSI3.SA: Tecnologia
+  INTB3.SA: Tecnologia
+  MLAS3.SA: Tecnologia
+  BMOB3.SA: Tecnologia
+  SQIA3.SA: Tecnologia
   
-  # Outros
-  JBSS3.SA: Consumo
-  BRFS3.SA: Consumo
-  BEEF3.SA: Consumo
-  CCRO3.SA: Utilidades
-  ECOR3.SA: Utilidades
-  RAIL3.SA: Utilidades
-  UGPA3.SA: Energia
-  CSAN3.SA: Energia
-  RAIZ4.SA: Energia
-  VBBR3.SA: Energia
-  PRIO3.SA: Commodities
-  RRRP3.SA: Commodities
-  
+  # =========================================================================
   # BDRs
+  # =========================================================================
+  
+  # BDRs - Tecnologia
   AAPL34.SA: Tecnologia
   MSFT34.SA: Tecnologia
   GOOGL34.SA: Tecnologia
@@ -248,19 +381,56 @@ sector_mapping:
   NVDC34.SA: Tecnologia
   TSLA34.SA: Tecnologia
   META34.SA: Tecnologia
+  NFLX34.SA: Tecnologia
+  ADBE34.SA: Tecnologia
+  INBR32.SA: Tecnologia
+  ORCL34.SA: Tecnologia
+  CSCO34.SA: Tecnologia
+  
+  # BDRs - Financeiro
+  JPMC34.SA: Financeiro
+  BOAC34.SA: Financeiro
+  GSGI34.SA: Financeiro
+  VISA34.SA: Financeiro
+  MSCD34.SA: Financeiro
+  PYPL34.SA: Financeiro
+  
+  # BDRs - Consumo
+  COCA34.SA: Consumo
+  MCDH34.SA: Consumo
+  NIKE34.SA: Consumo
+  SBUB34.SA: Consumo
+  WALM34.SA: Consumo
+  DISB34.SA: Consumo
+  
+  # BDRs - Saúde
+  JNJB34.SA: Saúde
+  PFIZ34.SA: Saúde
+  MRCK34.SA: Saúde
+  ABBV34.SA: Saúde
+  
+  # BDRs - Indústria/Energia
+  BERK34.SA: Indústria
+  XOMH34.SA: Energia
+  CHEVR34.SA: Energia
+  BABA34.SA: Tecnologia
 
 # Mapeamento de tipo de instrumento
 instrument_type_mapping:
-  # Ações ON
+  # =========================================================================
+  # AÇÕES ON (terminadas em 3)
+  # =========================================================================
   VALE3.SA: ACAO_ON
   PETR3.SA: ACAO_ON
   BBAS3.SA: ACAO_ON
+  BBDC3.SA: ACAO_ON
   WEGE3.SA: ACAO_ON
   MGLU3.SA: ACAO_ON
   LREN3.SA: ACAO_ON
   ABEV3.SA: ACAO_ON
   ELET3.SA: ACAO_ON
   CSNA3.SA: ACAO_ON
+  GGBR3.SA: ACAO_ON
   EMBR3.SA: ACAO_ON
   RENT3.SA: ACAO_ON
   EQTL3.SA: ACAO_ON
@@ -301,8 +471,42 @@ instrument_type_mapping:
   HYPE3.SA: ACAO_ON
   AURE3.SA: ACAO_ON
   CPFE3.SA: ACAO_ON
+  VBBR3.SA: ACAO_ON
+  SUZB3.SA: ACAO_ON
+  B3SA3.SA: ACAO_ON
+  BBSE3.SA: ACAO_ON
+  ENBR3.SA: ACAO_ON
+  CIEL3.SA: ACAO_ON
+  WIZC3.SA: ACAO_ON
+  IRBR3.SA: ACAO_ON
+  CMIN3.SA: ACAO_ON
+  DXCO3.SA: ACAO_ON
+  NEOE3.SA: ACAO_ON
+  EGIE3.SA: ACAO_ON
+  AESB3.SA: ACAO_ON
+  BHIA3.SA: ACAO_ON
+  VIVA3.SA: ACAO_ON
+  MOVI3.SA: ACAO_ON
+  GRND3.SA: ACAO_ON
+  YDUQ3.SA: ACAO_ON
+  COGN3.SA: ACAO_ON
+  ANIM3.SA: ACAO_ON
+  SEER3.SA: ACAO_ON
+  ONCO3.SA: ACAO_ON
+  DASA3.SA: ACAO_ON
+  CVCB3.SA: ACAO_ON
+  TUPY3.SA: ACAO_ON
+  INTB3.SA: ACAO_ON
+  MLAS3.SA: ACAO_ON
+  BMOB3.SA: ACAO_ON
+  SQIA3.SA: ACAO_ON
+  SMTO3.SA: ACAO_ON
+  SLCE3.SA: ACAO_ON
+  CSMG3.SA: ACAO_ON
   
-  # Ações PN
+  # =========================================================================
+  # AÇÕES PN (terminadas em 4, 5, 6)
+  # =========================================================================
   ITUB4.SA: ACAO_PN
   BBDC4.SA: ACAO_PN
   PETR4.SA: ACAO_PN
@@ -314,19 +518,29 @@ instrument_type_mapping:
   CPLE6.SA: ACAO_PN
   CMIG4.SA: ACAO_PN
   RAIZ4.SA: ACAO_PN
-  VBBR3.SA: ACAO_ON
+  GOAU4.SA: ACAO_PN
+  UNIP6.SA: ACAO_PN
+  TRPL4.SA: ACAO_PN
+  CESP6.SA: ACAO_PN
+  ALPA4.SA: ACAO_PN
+  AZUL4.SA: ACAO_PN
+  GOLL4.SA: ACAO_PN
+  RAPT4.SA: ACAO_PN
   
-  # Units
+  # =========================================================================
+  # UNITS (terminadas em 11)
+  # =========================================================================
   SANB11.SA: ACAO_PN
   KLBN11.SA: ACAO_PN
   ENGI11.SA: ACAO_PN
   TAEE11.SA: ACAO_PN
-  SUZB3.SA: ACAO_ON
-  B3SA3.SA: ACAO_ON
-  BBSE3.SA: ACAO_ON
-  ENBR3.SA: ACAO_ON
+  BPAC11.SA: ACAO_PN
+  ALUP11.SA: ACAO_PN
+  SAPR11.SA: ACAO_PN
   
-  # BDRs
+  # =========================================================================
+  # BDRs (terminados em 34 ou 32)
+  # =========================================================================
   AAPL34.SA: BDR
   MSFT34.SA: BDR
   GOOGL34.SA: BDR
@@ -334,6 +548,31 @@ instrument_type_mapping:
   NVDC34.SA: BDR
   TSLA34.SA: BDR
   META34.SA: BDR
+  NFLX34.SA: BDR
+  ADBE34.SA: BDR
+  INBR32.SA: BDR
+  ORCL34.SA: BDR
+  CSCO34.SA: BDR
+  JPMC34.SA: BDR
+  BOAC34.SA: BDR
+  GSGI34.SA: BDR
+  VISA34.SA: BDR
+  MSCD34.SA: BDR
+  PYPL34.SA: BDR
+  COCA34.SA: BDR
+  MCDH34.SA: BDR
+  NIKE34.SA: BDR
+  SBUB34.SA: BDR
+  WALM34.SA: BDR
+  DISB34.SA: BDR
+  JNJB34.SA: BDR
+  PFIZ34.SA: BDR
+  MRCK34.SA: BDR
+  ABBV34.SA: BDR
+  BERK34.SA: BDR
+  XOMH34.SA: BDR
+  CHEVR34.SA: BDR
+  BABA34.SA: BDR
 
 # -----------------------------------------------------------------------------
 # VALIDAÇÃO

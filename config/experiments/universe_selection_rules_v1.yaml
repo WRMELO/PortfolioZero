@@ -20,10 +20,11 @@ description: >
 # -----------------------------------------------------------------------------
 prelist:
   # Volume financeiro médio diário mínimo em 21 pregões (em BRL)
-  min_avg_volume_21d_brl: 5000000  # R$ 5 milhões
+  # Reduzido para R$ 1 milhão para capturar mais BDRs e ações de média liquidez
+  min_avg_volume_21d_brl: 1000000  # R$ 1 milhão
 
   # Preço médio mínimo em 21 pregões (em BRL)
-  min_price_brl: 5.0  # R$ 5,00
+  min_price_brl: 3.0  # R$ 3,00 (reduzido para capturar mais ativos)
 
   # Número mínimo de pregões com histórico
   min_history_days: 252  # 1 ano de trading
@@ -51,10 +52,10 @@ sectors:
 
   # Fração máxima do universo que pode pertencer a um único setor
   # Ex: 0.35 = máximo 35% dos 30 ativos (≈ 10-11 ativos) em um setor
-  max_weight_per_sector_pct: 0.35
+  max_weight_per_sector_pct: 0.40
 
-  # Número máximo de ativos por setor
-  max_names_per_sector: 6
+  # Número máximo de ativos por setor (aumentado para ter mais candidatos)
+  max_names_per_sector: 10
 
   # Lista de setores reconhecidos (para validação)
   recognized_sectors:
@@ -66,6 +67,7 @@ sectors:
     - Tecnologia
     - Utilidades
     - Indústria
+    - Educação
     - Outros
 
 # -----------------------------------------------------------------------------
