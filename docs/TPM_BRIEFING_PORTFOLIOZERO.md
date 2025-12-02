@@ -29,6 +29,7 @@
 ### O que é o PortfolioZero?
 
 Um **sistema de alocação de portfólio** que combina:
+
 - **MuZero** (RL baseado em planejamento) para decisões de compra/venda
 - **Black-Litterman** para transformar as preferências do agente em pesos de carteira
 
@@ -504,6 +505,7 @@ Regras     Dados      MuZero     B-L        Backtest   Dry Run
 **Decisão:** Usar **Polars** como biblioteca principal de DataFrames.
 
 **Racional:**
+
 - Performance superior para datasets grandes
 - API mais consistente
 - Lazy evaluation nativo
@@ -514,6 +516,7 @@ Regras     Dados      MuZero     B-L        Backtest   Dry Run
 **Decisão:** Todas as configurações são classes Pydantic.
 
 **Racional:**
+
 - Validação estrita de tipos
 - Serialização/deserialização automática
 - Documentação embutida nos fields
@@ -524,6 +527,7 @@ Regras     Dados      MuZero     B-L        Backtest   Dry Run
 **Decisão:** Parâmetros ajustáveis em arquivos YAML separados.
 
 **Racional:**
+
 - Fácil de editar sem tocar no código
 - Versionável
 - Pode ser sobrescrito por experimento
@@ -533,6 +537,7 @@ Regras     Dados      MuZero     B-L        Backtest   Dry Run
 **Decisão:** O pipeline de candidatos (60-80) é separado da seleção final (30).
 
 **Racional:**
+
 - Pipeline é determinístico e automatizado
 - Seleção final pode ter overrides do Owner
 - Facilita debugging e reprocessamento
@@ -542,6 +547,7 @@ Regras     Dados      MuZero     B-L        Backtest   Dry Run
 **Decisão:** Usar Parquet para todos os datasets intermediários e finais.
 
 **Racional:**
+
 - Compressão eficiente
 - Schema embutido
 - Leitura rápida com Polars
@@ -585,4 +591,3 @@ docker run -p 8888:8888 portfoliozero:latest
 ---
 
 *Este documento deve ser atualizado quando houver mudanças significativas no projeto.*
-
