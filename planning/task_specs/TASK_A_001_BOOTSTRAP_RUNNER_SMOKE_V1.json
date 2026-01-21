@@ -1,0 +1,70 @@
+{
+    "task_id": "TASK_A_001",
+    "name": "BOOTSTRAP_RUNNER_SMOKE_V1",
+    "title": "Smoke: runner + ambiente base (imports) + testes unit (PASS)",
+    "objective": "Confirmar que o runner padrão (scripts/agno_runner.py) funciona, que o ambiente do repo está íntegro e que os testes unitários passam, gerando artifacts e report em planning/runs/.",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero"
+    },
+    "workflow": [
+      {
+        "step_id": "S1_CHECK_RUNNER",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && pwd",
+          "cd /home/wilson/PortfolioZero && test -f scripts/agno_runner.py",
+          "cd /home/wilson/PortfolioZero && chmod +x scripts/agno_runner.py",
+          "cd /home/wilson/PortfolioZero && python -m py_compile scripts/agno_runner.py",
+          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_001/S1_CHECK_RUNNER.txt"
+        ]
+      },
+      {
+        "step_id": "S2_PROVE_REPO_GIT",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git rev-parse --show-toplevel",
+          "cd /home/wilson/PortfolioZero && git rev-parse --short HEAD",
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 50"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_001/S2_PROVE_REPO_GIT.txt"
+        ]
+      },
+      {
+        "step_id": "S3_PROVE_PY_ENV",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -V",
+          "cd /home/wilson/PortfolioZero && python -c \"import sys; print(sys.executable); print(sys.version)\"",
+          "cd /home/wilson/PortfolioZero && python -m pip -V"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_001/S3_PROVE_PY_ENV.txt"
+        ]
+      },
+      {
+        "step_id": "S4_IMPORTS_SMOKE",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport importlib\nmods = [\n  'agno','polars','pydantic','torch','ray','numpy','pandas','scipy','yaml','tqdm','yfinance','pyarrow'\n]\nfor m in mods:\n  importlib.import_module(m)\nprint('IMPORTS_OK')\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_001/S4_IMPORTS_SMOKE.txt"
+        ]
+      },
+      {
+        "step_id": "S5_TESTS_UNIT_SMOKE",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m pytest -q tests/unit"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_001/S5_TESTS_UNIT_SMOKE.txt"
+        ]
+      }
+    ]
+  }
+  
