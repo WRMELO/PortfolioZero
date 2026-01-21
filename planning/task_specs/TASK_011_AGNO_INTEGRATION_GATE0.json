@@ -1,0 +1,114 @@
+{
+  "task_id": "TASK_011",
+  "series": "TASK_A",
+  "series_seq": "001",
+  "name": "AGNO_INTEGRATION_GATE0",
+  "title": "Gate 0 — Integrar Agno no repo e provar execução mínima reprodutível",
+  "objective": "Consolidar infra reprodutível do PortfolioZero com Python 3.12 + Poetry + Agno instalado no ambiente do repo, e registrar evidências auditáveis (versões, paths, lockfile, status git, testes mínimos).",
+  "scope": {
+    "in": [
+      "Validar que o repo está em /home/wilson/PortfolioZero e sincronizado com origin/main",
+      "Garantir que Poetry usa .venv in-project com Python 3.12",
+      "Garantir que Agno está instalado via Poetry (group agno) e importável",
+      "Gerar evidências: versões, paths, lockfile atualizado, status git, e execução mínima de pytest (smoke)"
+    ],
+    "out": [
+      "Implementar lógica nova de negócio do Universe",
+      "Refatorar módulos existentes",
+      "Criar pipelines novos além do runner mínimo de execução por spec (se necessário)"
+    ]
+  },
+  "inputs": {
+    "repo_path": "/home/wilson/PortfolioZero",
+    "task_specs_dir": "planning/task_specs",
+    "runs_dir": "planning/runs/TASK_011",
+    "venv_dir": ".venv",
+    "python_target": "3.12",
+    "poetry_version_min": "2.x",
+    "agno_group": "agno",
+    "gate_s1_allowlist": [
+      "pyproject.toml",
+      "poetry.lock",
+      "planning/task_specs/TASK_011_AGNO_INTEGRATION_GATE0.json",
+      "planning/runs/",
+      "poetry.toml",
+      "pyproject.toml.bak_20260121"
+    ]
+  },
+  "workflow": [
+    {
+      "step_id": "S1_PROVE_REPO",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && pwd",
+        "cd /home/wilson/PortfolioZero && git rev-parse --show-toplevel",
+        "cd /home/wilson/PortfolioZero && git rev-parse --short HEAD",
+        "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 50",
+        "cd /home/wilson/PortfolioZero && git remote -v",
+        "cd /home/wilson/PortfolioZero && git branch -vv | head -n 50"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_011/S1_PROVE_REPO.txt"
+      ],
+      "gate": {
+        "must_hold": [
+          "repo_path e toplevel devem ser /home/wilson/PortfolioZero",
+          "git status pode estar sujo, mas SOMENTE por itens allowlist (inputs.gate_s1_allowlist)"
+        ]
+      }
+    },
+    {
+      "step_id": "S2_PROVE_PYTHON_POETRY",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && poetry --version",
+        "cd /home/wilson/PortfolioZero && poetry config --local virtualenvs.in-project true",
+        "cd /home/wilson/PortfolioZero && poetry env info -p",
+        "cd /home/wilson/PortfolioZero && poetry run python -V",
+        "cd /home/wilson/PortfolioZero && poetry run python -c 'import sys; print(sys.executable); print(sys.version)'"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_011/S2_PROVE_PYTHON_POETRY.txt"
+      ]
+    },
+    {
+      "step_id": "S3_PROVE_AGNO",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && poetry show agno",
+        "cd /home/wilson/PortfolioZero && poetry run python -c 'import agno, sys; print(getattr(agno, \"__version__\", \"?\")); print(sys.version)'"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_011/S3_PROVE_AGNO.txt"
+      ]
+    },
+    {
+      "step_id": "S4_SMOKE_TESTS",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && poetry run pytest -q --disable-warnings --maxfail=1"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_011/S4_SMOKE_TESTS.txt"
+      ]
+    },
+    {
+      "step_id": "S5_REPORT",
+      "type": "artifact",
+      "artifacts": [
+        "planning/runs/TASK_011/report.json"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    "Repo comprovado em /home/wilson/PortfolioZero",
+    "Poetry usando .venv in-project com Python 3.12",
+    "Agno instalado e importável via poetry run",
+    "Smoke test de pytest passando (ou falhando com log completo no artifact)",
+    "Artifacts gravados sob planning/runs/TASK_011/"
+  ],
+  "notes": {
+    "immutability": "Este JSON não deve ser modificado após arquivado. Correções devem gerar nova TASK.",
+    "naming_policy": "Série TASK_A é registrada via campos series/series_seq sem violar convenção TASK_XXX."
+  }
+}

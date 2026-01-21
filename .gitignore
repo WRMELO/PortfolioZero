@@ -138,3 +138,11 @@ checkpoints/
 secrets/
 
 
+
+# --- PortfolioZero: runtime artifacts (do not version) ---
+planning/runs/
+poetry.toml
+pyproject.toml.bak_*
+
+# --- PortfolioZero: lockfile MUST be versioned ---
+!poetry.lock
