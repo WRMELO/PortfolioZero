@@ -1,0 +1,55 @@
+{
+    "task_id": "TASK_A_003",
+    "name": "AGNO_CAPABILITIES_SNAPSHOT_V1",
+    "title": "Gerar snapshot auditável das capacidades do Agno (API/CLI/entrypoints) no .venv",
+    "objective": "Gerar um JSON único com a evidência completa do pacote agno instalado, para embasar a integração real no runner sem inferir API.",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero"
+    },
+    "workflow": [
+      {
+        "step_id": "S1_PROVE_REPO_GIT",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git rev-parse --short HEAD",
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 50"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_003/S1_PROVE_REPO_GIT.txt"
+        ]
+      },
+      {
+        "step_id": "S2_RUN_AGNO_PROBE",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_probe.py --out planning/runs/TASK_A_003/agno_probe.json --repo /home/wilson/PortfolioZero",
+          "cd /home/wilson/PortfolioZero && python -c \"import json; p='planning/runs/TASK_A_003/agno_probe.json'; d=json.load(open(p,'r',encoding='utf-8')); print('agno_version=',d.get('agno_version')); print('console_scripts=',len(d.get('entrypoints_console_scripts',[]))); print('submodules=',len(d.get('agno_submodules',[])))\""
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_003/S2_RUN_AGNO_PROBE.txt"
+        ]
+      },
+      {
+        "step_id": "S3_SHOW_HELP_SNIPPETS",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && (command -v agno && agno --help | head -n 120) || true",
+          "cd /home/wilson/PortfolioZero && (python -m agno --help | head -n 120) || true"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_003/S3_SHOW_HELP_SNIPPETS.txt"
+        ]
+      },
+      {
+        "step_id": "S4_PIP_SHOW_AGNO",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m pip show agno"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_003/S4_PIP_SHOW_AGNO.txt"
+        ]
+      }
+    ]
+  }
+  

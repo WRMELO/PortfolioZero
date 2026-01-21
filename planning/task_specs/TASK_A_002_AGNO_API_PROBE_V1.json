@@ -1,0 +1,52 @@
+{
+    "task_id": "TASK_A_002",
+    "name": "AGNO_API_PROBE_V1",
+    "title": "Provar API real do agno instalado (evidência) para integrar como orquestrador",
+    "objective": "Inspecionar o pacote agno dentro do .venv do repo, registrando versão, símbolos públicos, submódulos e metadados de instalação. Sem inferir API: só evidência.",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero"
+    },
+    "workflow": [
+      {
+        "step_id": "S1_RUNNER_VERSION",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_002/S1_RUNNER_VERSION.txt"
+        ]
+      },
+      {
+        "step_id": "S2_AGNO_METADATA",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport agno, inspect\nprint('agno_version=', getattr(agno,'__version__','?'))\nprint('agno_file=', getattr(agno,'__file__','?'))\nprint('agno_has_path=', hasattr(agno,'__path__'))\nprint('agno_dir_top60=')\nfor n in sorted([x for x in dir(agno) if not x.startswith('_')])[:60]:\n    print(' -', n)\nprint('---')\nprint('inspect.getsourcefile(agno)=', inspect.getsourcefile(agno))\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_002/S2_AGNO_METADATA.txt"
+        ]
+      },
+      {
+        "step_id": "S3_AGNO_SUBMODULES",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport agno, pkgutil\nnames = []\nif hasattr(agno, '__path__'):\n    for m in pkgutil.iter_modules(agno.__path__):\n        names.append(m.name)\nprint('submodules_count=', len(names))\nfor n in sorted(names)[:200]:\n    print(n)\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_002/S3_AGNO_SUBMODULES.txt"
+        ]
+      },
+      {
+        "step_id": "S4_PIP_SHOW_AGNO",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m pip show agno"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_002/S4_PIP_SHOW_AGNO.txt"
+        ]
+      }
+    ]
+  }
+  
