@@ -120,3 +120,5 @@ output:
   # Gerar arquivo texto com lista simples de tickers
   generate_ticker_list: true
 
+
+
