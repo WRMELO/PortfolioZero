@@ -1,0 +1,211 @@
+DOC_AUDIT_MARKET_PRICES_V1 - S1_REPO_AND_TREE_SNAPSHOT
+
+GIT
+branch: main
+head: a49059f03dee4f31833cedaca23ce18267dd3b2f
+status:
+  ?? "PORTIFOLIOZERO — Manifesto do Estado Atual.md"
+
+TASK_SPECS_ALL_JSON
+/home/wilson/PortfolioZero/planning/task_specs/TASK_005_TRILHO_A_UNIVERSE_AND_JSON_ARCHIVE.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_006_UNIVERSE_DECISION_RULES_DETAIL.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_007_UNIVERSE_CANDIDATES_PIPELINE.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_008_UNIVERSE_CANDIDATES_PIPELINE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_009_MARKET_DATA_INGESTION_ADAPTER_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_010_UNIVERSE_PRELIST_REAL_DATA_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_011_AGNO_INTEGRATION_GATE0.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_001_BOOTSTRAP_RUNNER_SMOKE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_002_AGNO_API_PROBE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_003_AGNO_CAPABILITIES_SNAPSHOT_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_004_AGNO_API_MAP_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_009_UNIVERSE_MINI_PIPELINE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_010_UNIVERSE_E2E_SAMPLE_TO_SUPERVISED_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_011_DECISION_PACKAGE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_012_UNIVERSE_E2E_STRICT_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_013_RISK_PACKAGE_V0.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_014_DAILY_DECISION_SELL_ONLY_V1.json
+
+TASK_SPECS_TASK_JSON
+/home/wilson/PortfolioZero/planning/task_specs/TASK_005_TRILHO_A_UNIVERSE_AND_JSON_ARCHIVE.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_006_UNIVERSE_DECISION_RULES_DETAIL.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_007_UNIVERSE_CANDIDATES_PIPELINE.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_008_UNIVERSE_CANDIDATES_PIPELINE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_009_MARKET_DATA_INGESTION_ADAPTER_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_010_UNIVERSE_PRELIST_REAL_DATA_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_011_AGNO_INTEGRATION_GATE0.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_001_BOOTSTRAP_RUNNER_SMOKE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_002_AGNO_API_PROBE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_003_AGNO_CAPABILITIES_SNAPSHOT_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_004_AGNO_API_MAP_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_009_UNIVERSE_MINI_PIPELINE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_010_UNIVERSE_E2E_SAMPLE_TO_SUPERVISED_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_011_DECISION_PACKAGE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_012_UNIVERSE_E2E_STRICT_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_013_RISK_PACKAGE_V0.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_014_DAILY_DECISION_SELL_ONLY_V1.json
+
+TASK_SPECS_TASK_A_JSON
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_001_BOOTSTRAP_RUNNER_SMOKE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_002_AGNO_API_PROBE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_003_AGNO_CAPABILITIES_SNAPSHOT_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_004_AGNO_API_MAP_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_009_UNIVERSE_MINI_PIPELINE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_010_UNIVERSE_E2E_SAMPLE_TO_SUPERVISED_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_011_DECISION_PACKAGE_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_012_UNIVERSE_E2E_STRICT_V1.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_013_RISK_PACKAGE_V0.json
+/home/wilson/PortfolioZero/planning/task_specs/TASK_A_014_DAILY_DECISION_SELL_ONLY_V1.json
+
+NOTEBOOKS_IPYNB
+/home/wilson/PortfolioZero/notebooks/build_universe_candidates.ipynb
+/home/wilson/PortfolioZero/notebooks/select_universe_supervised.ipynb
+
+PRICES_FILE_COUNT 122
+
+PRICES_DIR_LISTING (name<TAB>size_bytes<TAB>mtime_epoch)
+AAPL34_SA.parquet	24730	1764706935
+ABBV34_SA.parquet	23330	1764706957
+ABEV3_SA.parquet	22264	1764706883
+ADBE34_SA.parquet	24105	1764706941
+ALPA4_SA.parquet	23316	1764706892
+ALUP11_SA.parquet	24207	1764706880
+AMER3_SA.parquet	19940	1764706887
+AMZO34_SA.parquet	25077	1764706937
+ANIM3_SA.parquet	21729	1764706894
+ASAI3_SA.parquet	24217	1764706886
+AURE3_SA.parquet	20711	1764706878
+AZUL4_SA.parquet	24288	1764706910
+B3SA3_SA.parquet	23147	1764706855
+BABA34_SA.parquet	24090	1764706959
+BBAS3_SA.parquet	24970	1764706853
+BBDC3_SA.parquet	22953	1764706859
+BBDC4_SA.parquet	24183	1764706852
+BBSE3_SA.parquet	23697	1764706856
+BEEF3_SA.parquet	22783	1764706923
+BERK34_SA.parquet	23367	1764706957
+BHIA3_SA.parquet	22967	1764706889
+BMOB3_SA.parquet	22821	1764706921
+BOAC34_SA.parquet	23893	1764706945
+BPAC11_SA.parquet	24873	1764706856
+BRAP4_SA.parquet	23701	1764706865
+CASH3_SA.parquet	23258	1764706917
+CMIG4_SA.parquet	23101	1764706877
+CMIN3_SA.parquet	21257	1764706868
+COCA34_SA.parquet	23329	1764706949
+COGN3_SA.parquet	20210	1764706893
+CPFE3_SA.parquet	23157	1764706875
+CPLE6_SA.parquet	22237	1764706876
+CSAN3_SA.parquet	23906	1764706927
+CSCO34_SA.parquet	23484	1764706944
+CSMG3_SA.parquet	23823	1764706934
+CSNA3_SA.parquet	23977	1764706863
+CVCB3_SA.parquet	23526	1764706912
+CYRE3_SA.parquet	24083	1764706907
+DASA3_SA.parquet	22924	1764706902
+DISB34_SA.parquet	23739	1764706953
+DXCO3_SA.parquet	22534	1764706870
+ECOR3_SA.parquet	21849	1764706925
+EGIE3_SA.parquet	23417	1764706881
+ELET3_SA.parquet	24445	1764706872
+ELET6_SA.parquet	24203	1764706873
+EMBR3_SA.parquet	25081	1764706903
+ENGI11_SA.parquet	24489	1764706874
+EQTL3_SA.parquet	24729	1764706905
+EVEN3_SA.parquet	21076	1764706908
+FLRY3_SA.parquet	24108	1764706898
+GGBR3_SA.parquet	23676	1764706869
+GGBR4_SA.parquet	25145	1764706864
+GOAU4_SA.parquet	22023	1764706869
+GRND3_SA.parquet	20676	1764706891
+GSGI34_SA.parquet	24400	1764706946
+HAPV3_SA.parquet	22181	1764706897
+HYPE3_SA.parquet	24668	1764706900
+INBR32_SA.parquet	21253	1764706942
+INTB3_SA.parquet	24257	1764706919
+IRBR3_SA.parquet	24514	1764706859
+ITSA4_SA.parquet	24040	1764706854
+ITUB4_SA.parquet	25177	1764706851
+JNJB34_SA.parquet	23466	1764706954
+JPMC34_SA.parquet	24115	1764706944
+KLBN11_SA.parquet	23917	1764706867
+LREN3_SA.parquet	25797	1764706884
+LWSA3_SA.parquet	22595	1764706917
+MGLU3_SA.parquet	25027	1764706884
+MLAS3_SA.parquet	20164	1764706920
+MOVI3_SA.parquet	23497	1764706890
+MRCK34_SA.parquet	23880	1764706956
+MRVE3_SA.parquet	22971	1764706906
+MSCD34_SA.parquet	23961	1764706948
+MSFT34_SA.parquet	24875	1764706935
+NEOE3_SA.parquet	23061	1764706879
+NFLX34_SA.parquet	26039	1764706941
+NIKE34_SA.parquet	23966	1764706951
+NVDC34_SA.parquet	26003	1764706938
+ONCO3_SA.parquet	24102	1764706901
+ORCL34_SA.parquet	24059	1764706943
+PCAR3_SA.parquet	22672	1764706885
+PETR3_SA.parquet	24825	1764706862
+PETR4_SA.parquet	25252	1764706861
+PETZ3_SA.parquet	22611	1764706888
+PFIZ34_SA.parquet	23580	1764706955
+POSI3_SA.parquet	22237	1764706918
+PRIO3_SA.parquet	24972	1764706930
+PYPL34_SA.parquet	23513	1764706949
+QUAL3_SA.parquet	22047	1764706899
+RADL3_SA.parquet	24466	1764706898
+RAIL3_SA.parquet	23447	1764706925
+RAIZ4_SA.parquet	21439	1764706928
+RAPT4_SA.parquet	22237	1764706913
+RDOR3_SA.parquet	24580	1764706896
+RENT3_SA.parquet	26174	1764706904
+SANB11_SA.parquet	23328	1764706853
+SAPR11_SA.parquet	23627	1764706933
+SBSP3_SA.parquet	25017	1764706909
+SBUB34_SA.parquet	23644	1764706952
+SEER3_SA.parquet	22154	1764706895
+SLCE3_SA.parquet	23820	1764706932
+SMTO3_SA.parquet	24622	1764706931
+SUZB3_SA.parquet	24709	1764706866
+TAEE11_SA.parquet	22776	1764706875
+TEND3_SA.parquet	25165	1764706908
+TIMS3_SA.parquet	23139	1764706915
+TOTS3_SA.parquet	24162	1764706916
+TSLA34_SA.parquet	25365	1764706939
+TUPY3_SA.parquet	23659	1764706913
+UGPA3_SA.parquet	23804	1764706926
+UNIP6_SA.parquet	25487	1764706871
+USIM5_SA.parquet	22751	1764706864
+VALE3_SA.parquet	25602	1764706860
+VBBR3_SA.parquet	25248	1764706929
+VISA34_SA.parquet	24029	1764706947
+VIVA3_SA.parquet	24080	1764706889
+VIVT3_SA.parquet	24325	1764706914
+WALM34_SA.parquet	24291	1764706953
+WEGE3_SA.parquet	24621	1764706903
+WIZC3_SA.parquet	20655	1764706858
+YDUQ3_SA.parquet	24084	1764706893
+sample_market_data.parquet	256315	1769090990
+
+TREE_SNAPSHOT_COUNTS
+data/raw/market/prices: files=122, dirs=0
+data/universe: files=16, dirs=2
+data/risk: files=1, dirs=0
+data/portfolio: files=1, dirs=0
+data/decisions: files=2, dirs=0
+notebooks: files=4, dirs=2
+scripts: files=35, dirs=1
+modules: files=54, dirs=28
+planning/task_specs: files=22, dirs=0
+docs: files=14, dirs=1

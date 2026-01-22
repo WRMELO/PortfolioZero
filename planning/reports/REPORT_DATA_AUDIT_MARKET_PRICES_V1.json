@@ -1,0 +1,414 @@
+{
+  "repo": "/home/wilson/PortfolioZero",
+  "head": "a49059f03dee4f31833cedaca23ce18267dd3b2f",
+  "data_inventory": {
+    "n_files": 122,
+    "files_sample": [
+      "AAPL34_SA.parquet",
+      "ABBV34_SA.parquet",
+      "ABEV3_SA.parquet",
+      "ADBE34_SA.parquet",
+      "ALPA4_SA.parquet",
+      "ALUP11_SA.parquet",
+      "AMER3_SA.parquet",
+      "AMZO34_SA.parquet",
+      "ANIM3_SA.parquet",
+      "ASAI3_SA.parquet"
+    ],
+    "n_schema_clusters": 2,
+    "schema_clusters": [
+      {
+        "hash": "6625713d19",
+        "count": 121,
+        "columns": [
+          "date",
+          "ticker",
+          "open",
+          "high",
+          "low",
+          "close",
+          "adj_close",
+          "volume",
+          "tipo_instrumento",
+          "setor"
+        ]
+      },
+      {
+        "hash": "84ac4969a7",
+        "count": 1,
+        "columns": [
+          "date",
+          "ticker",
+          "close",
+          "volume",
+          "tipo_instrumento",
+          "setor"
+        ]
+      }
+    ]
+  },
+  "coverage_summary": {
+    "date_col_candidates_seen": [
+      "date"
+    ],
+    "per_ticker_summary_sample": [
+      {
+        "file": "sample_market_data.parquet",
+        "n_rows": 34032,
+        "date_col": "date",
+        "min_date": "2023-05-22 00:00:00",
+        "max_date": "2024-11-29 00:00:00",
+        "has_dupes": true,
+        "monotonic": false,
+        "cols_hash": "84ac4969a7",
+        "n_cols": 6
+      },
+      {
+        "file": "RENT3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "NFLX34_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "NVDC34_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "LREN3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "AAPL34_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "ABBV34_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "ABEV3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "ADBE34_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "ALPA4_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "ALUP11_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "AMER3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "AMZO34_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "ANIM3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "ASAI3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "AURE3_SA.parquet",
+        "n_rows": 922,
+        "date_col": "date",
+        "min_date": "2022-03-28 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "AZUL4_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "B3SA3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BABA34_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BBAS3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BBDC3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BBDC4_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BBSE3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BEEF3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BERK34_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BHIA3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BMOB3_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BOAC34_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BPAC11_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      },
+      {
+        "file": "BRAP4_SA.parquet",
+        "n_rows": 980,
+        "date_col": "date",
+        "min_date": "2022-01-03 00:00:00",
+        "max_date": "2025-12-01 00:00:00",
+        "has_dupes": false,
+        "monotonic": true,
+        "cols_hash": "6625713d19",
+        "n_cols": 10
+      }
+    ]
+  },
+  "duplication_findings": {
+    "filename_collisions": [],
+    "infile_dupes_sample": [
+      {
+        "file": "sample_market_data.parquet",
+        "duplicate_on": "date",
+        "note": "duplicidade esperada por conter multiplos tickers; (ticker,date) unico"
+      }
+    ]
+  },
+  "provenance": {
+    "notebooks_writing_raw_prices": [
+      "notebooks/build_universe_candidates.ipynb (importa ingestao; sem escrita direta em raw)",
+      "notebooks/select_universe_supervised.ipynb (le universo; sem escrita em raw)"
+    ],
+    "scripts_writing_raw_prices": [
+      "scripts/fetch_market_data.py",
+      "scripts/generate_sample_market_data.py",
+      "modules/portfoliozero/core/data/market_data_ingestion.py"
+    ]
+  },
+  "recommendations_minimal": {
+    "idempotency_key": "(ticker, date)",
+    "dedup_key": "(ticker, date)",
+    "write_strategy": "merge incremental por ticker com dedup e overwrite completo do arquivo",
+    "manifest_strategy": "manifest.json com min/max date, row_count, hash, updated_at por ticker"
+  }
+}

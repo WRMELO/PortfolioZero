@@ -1,0 +1,13 @@
+DOC_AUDIT_MARKET_PRICES_V1 - S4_DUPLICATION_GLOBAL_CHECK
+
+MULTI_BY_NORMALIZED_NAME 0
+
+SCHEMA_HASH_CLUSTERS (amostra 80 arquivos)
+6625713d19 79
+84ac4969a7 1
+
+SCHEMA_CLUSTERS (todos os arquivos)
+6625713d19 121 ['date', 'ticker', 'open', 'high', 'low', 'close', 'adj_close', 'volume', 'tipo_instrumento', 'setor']
+84ac4969a7 1 ['date', 'ticker', 'close', 'volume', 'tipo_instrumento', 'setor']
+
+HAS_SAMPLE_MARKET_DATA True

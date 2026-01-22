@@ -1,0 +1,36 @@
+DOC_AUDIT_MARKET_PRICES_V1 - S5_NOTEBOOK_PROVENANCE
+
+NOTEBOOK_HITS 3
+
+HIT 1
+notebook: /home/wilson/PortfolioZero/notebooks/build_universe_candidates.ipynb
+cell_index: 4
+excerpt:
+  from portfoliozero.core.data.market_data_ingestion import (
+      fetch_and_store_universe_market_data,
+      validate_raw_market_data,
+      load_data_source_config,
+  )
+  from portfoliozero.core.data.universe_candidates_pipeline import (
+      build_universe_candidates,
+      load_universe_candidates,
+      validate_universe_candidates,
+      get_pipeline_metadata,
+  )
+
+HIT 2
+notebook: /home/wilson/PortfolioZero/notebooks/build_universe_candidates.ipynb
+cell_index: 11
+excerpt:
+  output_path = build_universe_candidates(force_refresh=True)
+
+HIT 3
+notebook: /home/wilson/PortfolioZero/notebooks/select_universe_supervised.ipynb
+cell_index: 5
+excerpt:
+  candidates_path = project_root / 'data' / 'universe' / 'UNIVERSE_CANDIDATES.parquet'
+  ... Execute primeiro: python scripts/build_universe_candidates.py --with-ingestion
+
+OBS:
+- Nenhuma chamada direta a data/raw/market/prices no notebook.
+- O notebook de build referencia o módulo de ingestao, mas nao executa fetch_and_store_universe_market_data diretamente no trecho inspecionado.

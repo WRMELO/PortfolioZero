@@ -1,0 +1,59 @@
+{
+    "task_id": "TASK_D_001",
+    "name": "INSPECT_MARKET_DATA_SOURCE_V1",
+    "title": "Inspecionar config e código para identificar a fonte (provider) da ingestão de market data",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "scripts/",
+        "modules/",
+        "config/",
+        "planning/runs/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_001/S1_GATE_ALLOWLIST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ]
+      },
+      {
+        "step_id": "S2_SHOW_DEFAULT_CONFIG_YAML",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_001/S2_SHOW_DEFAULT_CONFIG_YAML.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && echo 'FILE: config/experiments/universe_data_sources_v1.yaml' && sed -n '1,260p' config/experiments/universe_data_sources_v1.yaml"
+        ]
+      },
+      {
+        "step_id": "S3_GREP_FOR_PROVIDERS",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_001/S3_GREP_FOR_PROVIDERS.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && grep -RInE \"yfinance|yf\\b|alphavantage|alpha_vantage|polygon|stooq|brapi|investpy|tiingo|twelve|twelvedata|api_key|base_url|provider|source\" scripts modules config | head -n 260 || true"
+        ]
+      },
+      {
+        "step_id": "S4_SHOW_INGESTION_CODE_CONTEXT",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_001/S4_SHOW_INGESTION_CODE_CONTEXT.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && echo 'FILE: scripts/fetch_market_data.py' && sed -n '1,260p' scripts/fetch_market_data.py",
+          "cd /home/wilson/PortfolioZero && echo 'FILE: modules/portfoliozero/core/data/market_data_ingestion.py' && sed -n '1,380p' modules/portfoliozero/core/data/market_data_ingestion.py"
+        ]
+      }
+    ]
+  }
+  

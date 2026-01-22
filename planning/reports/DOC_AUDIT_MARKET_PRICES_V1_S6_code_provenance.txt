@@ -1,0 +1,46 @@
+DOC_AUDIT_MARKET_PRICES_V1 - S6_CODE_PROVENANCE_SCRIPTS_MODULES
+
+COMPONENTES QUE ESCREVEM EM data/raw/market/prices
+
+1) modules/portfoliozero/core/data/market_data_ingestion.py
+   - _persist_ticker_data(): escreve arquivo por ticker em data/raw/market/prices
+     -> output_dir = root / base_path / "prices"
+     -> filename = f"{ticker_clean}.{output_format}"
+     -> df.write_parquet(file_path)
+   - fetch_and_store_universe_market_data(overwrite=False, dry_run=False)
+     -> se arquivo existe e overwrite=False, pula (nao sobrescreve, nao faz merge)
+     -> nao ha dedup/append; grava arquivo inteiro por ticker
+   - validate_raw_market_data() le os parquets e valida colunas minimas
+
+2) scripts/fetch_market_data.py
+   - CLI para ingestao usando market_data_ingestion
+   - flags relevantes:
+     --config (yaml)
+     --overwrite (sobrescreve arquivos existentes)
+     --dry-run (nao grava arquivos)
+     --validate-only (apenas valida data/raw/market/)
+     -v/--verbose
+   - fluxo principal chama fetch_and_store_universe_market_data()
+
+3) scripts/generate_sample_market_data.py
+   - gera dados sinteticos e escreve:
+     data/raw/market/prices/sample_market_data.parquet
+   - nao usa o padrao por ticker; arquivo unico com varios tickers
+
+COMPONENTES QUE LEEM data/raw/market/
+
+1) modules/portfoliozero/core/data/universe_candidates_pipeline.py
+   - _read_raw_market_data() le todos os *.parquet em data/raw/market/**
+   - concatena sem deduplicacao; risco se houver arquivos duplicados
+   - exige colunas minimas: date, ticker, close, volume
+
+2) scripts/build_universe_candidates.py
+   - flag --with-ingestion chama fetch_and_store_universe_market_data()
+   - --validate-only usa validate_raw_market_data()
+   - output principal: data/universe/UNIVERSE_CANDIDATES.parquet
+
+OBSERVACOES SOBRE DEDUP/OVERWRITE
+- Nao ha logica de append ou deduplicacao intra/entre arquivos no ingestion.
+- Com overwrite=False (padrao), tickers existentes sao pulados.
+- Com overwrite=True, arquivo inteiro por ticker e regravado.
+- sample_market_data.parquet nao segue o padrao per_ticker.

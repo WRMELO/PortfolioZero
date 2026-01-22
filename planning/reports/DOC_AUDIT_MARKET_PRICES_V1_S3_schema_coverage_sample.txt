@@ -1,0 +1,58 @@
+DOC_AUDIT_MARKET_PRICES_V1 - S3_PARQUET_SCHEMA_AND_COVERAGE
+
+SAMPLE_SUMMARY
+FILE, NROWS, DATE_COL, MIN_DATE, MAX_DATE, HAS_DUPES, MONOTONIC, COLS_HASH, N_COLS
+('sample_market_data.parquet', 34032, 'date', '2023-05-22 00:00:00', '2024-11-29 00:00:00', True, False, '84ac4969a7', 6)
+('RENT3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('NFLX34_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('NVDC34_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('LREN3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('AAPL34_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('ABBV34_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('ABEV3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('ADBE34_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('ALPA4_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('ALUP11_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('AMER3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('AMZO34_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('ANIM3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('ASAI3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('AURE3_SA.parquet', 922, 'date', '2022-03-28 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('AZUL4_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('B3SA3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BABA34_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BBAS3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BBDC3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BBDC4_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BBSE3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BEEF3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BERK34_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BHIA3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BMOB3_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BOAC34_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BPAC11_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+('BRAP4_SA.parquet', 980, 'date', '2022-01-03 00:00:00', '2025-12-01 00:00:00', False, True, '6625713d19', 10)
+
+SCHEMA_EXAMPLE_AAPL34_SA
+date	Date
+ticker	String
+open	Float64
+high	Float64
+low	Float64
+close	Float64
+adj_close	Float64
+volume	Int64
+tipo_instrumento	String
+setor	String
+NROWS 980
+
+SCHEMA_SAMPLE_MARKET_DATA
+date	Date
+ticker	String
+close	Float64
+volume	Float64
+tipo_instrumento	String
+setor	String
+NROWS 34032
+
+SAMPLE_MARKET_DATA_DUPES_PER_TICKER_DATE 0
