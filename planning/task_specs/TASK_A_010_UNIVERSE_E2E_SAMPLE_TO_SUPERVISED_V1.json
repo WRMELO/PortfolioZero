@@ -1,0 +1,98 @@
+{
+    "task_id": "TASK_A_010",
+    "name": "UNIVERSE_E2E_SAMPLE_TO_SUPERVISED_V1",
+    "title": "E2E local: gerar sample market data -> UNIVERSE_CANDIDATES -> UNIVERSE_SUPERVISED",
+    "objective": "Executar o trilho A end-to-end de forma determinística e offline, gerando dados sample em data/raw/market/ e produzindo universe candidates + supervised com artifacts auditáveis.",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "scripts/",
+        "modules/portfoliozero/core/data/",
+        "docs/",
+        "docs/universe/",
+        "config/",
+        "config/agno/",
+        "planning/runs/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_010/S1_GATE_ALLOWLIST.txt"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_CONFIG_AND_DIRS",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && echo 'CONFIG default esperado (fetch_market_data):' && test -f config/experiments/universe_data_sources_v1.yaml && echo 'OK: config/experiments/universe_data_sources_v1.yaml' || echo 'WARN: config/experiments/universe_data_sources_v1.yaml NÃO encontrado'",
+          "cd /home/wilson/PortfolioZero && mkdir -p data/raw/market/prices data/universe",
+          "cd /home/wilson/PortfolioZero && echo 'DIRS:' && ls -la data/raw/market/prices data/universe || true"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_010/S2_CHECK_CONFIG_AND_DIRS.txt"
+        ]
+      },
+      {
+        "step_id": "S3_GENERATE_SAMPLE_MARKET_DATA_IF_MISSING",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && SAMPLE=data/raw/market/prices/sample_market_data.parquet && if [ -f \"$SAMPLE\" ]; then echo \"OK: sample já existe -> $SAMPLE\"; else echo \"GERANDO: $SAMPLE\"; python scripts/generate_sample_market_data.py; fi",
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nfrom pathlib import Path\np = Path('data/raw/market/prices/sample_market_data.parquet')\nprint('EXISTS:', p.exists())\nprint('PATH:', p.resolve())\nif p.exists():\n  print('SIZE_BYTES:', p.stat().st_size)\nelse:\n  raise SystemExit(2)\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_010/S3_GENERATE_SAMPLE_MARKET_DATA_IF_MISSING.txt"
+        ]
+      },
+      {
+        "step_id": "S4_RUN_UNIVERSE_CANDIDATES",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/build_universe_candidates.py --output-summary-path data/universe/run_summary_TASK_A_010.json -v; rc=$?; echo \"UNIVERSE_CANDIDATES_EXIT_CODE=$rc\"; if [ $rc -eq 0 ] || [ $rc -eq 1 ]; then exit 0; else exit $rc; fi"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_010/S4_RUN_UNIVERSE_CANDIDATES.txt"
+        ]
+      },
+      {
+        "step_id": "S5_DISCOVER_CANDIDATES_PARQUET",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nfrom pathlib import Path\n\ndef newest_parquet(root: Path) -> Path | None:\n    candidates = []\n    for p in root.rglob('*.parquet'):\n        try:\n            candidates.append((p.stat().st_mtime, p.stat().st_size, p))\n        except OSError:\n            pass\n    if not candidates:\n        return None\n    candidates.sort(key=lambda t: (t[0], t[1]))\n    return candidates[-1][2]\n\nroot = Path('data/universe')\nroot.mkdir(parents=True, exist_ok=True)\nlatest = newest_parquet(root)\n\nout = Path('planning/runs/TASK_A_010/candidates_path.txt')\nout.parent.mkdir(parents=True, exist_ok=True)\n\nif latest is None:\n    print('ERROR: nenhum .parquet encontrado em data/universe após candidates')\n    out.write_text('', encoding='utf-8')\n    raise SystemExit(2)\n\nout.write_text(str(latest), encoding='utf-8')\nprint('CANDIDATES_PARQUET:', latest)\nprint('WROTE:', out)\nPY",
+          "cd /home/wilson/PortfolioZero && echo 'CANDIDATES_PATH_FILE:' && cat planning/runs/TASK_A_010/candidates_path.txt && echo"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_010/S5_DISCOVER_CANDIDATES_PARQUET.txt"
+        ]
+      },
+      {
+        "step_id": "S6_RUN_UNIVERSE_SUPERVISED",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && CAND=$(cat planning/runs/TASK_A_010/candidates_path.txt) && test -n \"$CAND\" && echo \"USING CANDIDATES: $CAND\" && python scripts/build_universe_supervised.py --candidates \"$CAND\" --output-dir data/universe/supervised_TASK_A_010 --list -v"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_010/S6_RUN_UNIVERSE_SUPERVISED.txt"
+        ]
+      },
+      {
+        "step_id": "S7_SUMMARY_SNAPSHOT",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && echo 'RUN SUMMARY JSON:' && (test -f data/universe/run_summary_TASK_A_010.json && sed -n '1,260p' data/universe/run_summary_TASK_A_010.json || echo 'WARN: run_summary_TASK_A_010.json não encontrado')",
+          "cd /home/wilson/PortfolioZero && echo 'DATA UNIVERSE TREE (top 200):' && (find data/universe -maxdepth 4 -type f | sort | sed -n '1,200p')",
+          "cd /home/wilson/PortfolioZero && echo 'MARKET DATA TREE (top 200):' && (find data/raw/market -maxdepth 4 -type f | sort | sed -n '1,200p')"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_010/S7_SUMMARY_SNAPSHOT.txt"
+        ]
+      }
+    ]
+  }
+  

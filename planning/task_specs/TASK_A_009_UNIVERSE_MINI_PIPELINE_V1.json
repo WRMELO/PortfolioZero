@@ -1,0 +1,80 @@
+{
+    "task_id": "TASK_A_009",
+    "name": "UNIVERSE_MINI_PIPELINE_V1",
+    "title": "Universo/Dados — snapshot de runbooks + contrato + interfaces dos scripts + smoke de imports",
+    "objective": "Capturar evidência do trilho de universo/dados existente (docs + contract + CLI/args) e validar que o core importa sem erro. Preparar terreno para execução real (A_010) sem tentativa-e-erro.",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "scripts/",
+        "modules/portfoliozero/core/data/",
+        "docs/",
+        "docs/universe/",
+        "config/agno/",
+        "planning/runs/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_009/S1_GATE_ALLOWLIST.txt"
+        ]
+      },
+      {
+        "step_id": "S2_DOCS_AND_CONTRACT_SNAPSHOT",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && echo 'FILE: docs/universe/UNIVERSE_DATA_PIPELINE_V1.md' && sed -n '1,260p' docs/universe/UNIVERSE_DATA_PIPELINE_V1.md || true",
+          "cd /home/wilson/PortfolioZero && echo 'FILE: docs/universe/UNIVERSE_PRELIST_RUNBOOK_V1.md' && sed -n '1,260p' docs/universe/UNIVERSE_PRELIST_RUNBOOK_V1.md || true",
+          "cd /home/wilson/PortfolioZero && echo 'FILE: docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md' && sed -n '1,260p' docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md || true",
+          "cd /home/wilson/PortfolioZero && echo 'FILE: docs/universe/UNIVERSE_SUPERVISED_RUNBOOK_V1.md' && sed -n '1,260p' docs/universe/UNIVERSE_SUPERVISED_RUNBOOK_V1.md || true",
+          "cd /home/wilson/PortfolioZero && echo 'FILE: modules/portfoliozero/core/data/universe_candidates_pipeline_contract.md' && sed -n '1,260p' modules/portfoliozero/core/data/universe_candidates_pipeline_contract.md || true",
+          "cd /home/wilson/PortfolioZero && echo 'FILE: docs/DEVELOPMENT_STATUS.md' && sed -n '1,260p' docs/DEVELOPMENT_STATUS.md || true"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_009/S2_DOCS_AND_CONTRACT_SNAPSHOT.txt"
+        ]
+      },
+      {
+        "step_id": "S3_SCRIPT_INTERFACES_HELP",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && echo 'CMD: python scripts/fetch_market_data.py --help' && (python scripts/fetch_market_data.py --help || python scripts/fetch_market_data.py -h || true)",
+          "cd /home/wilson/PortfolioZero && echo 'CMD: python scripts/build_universe_candidates.py --help' && (python scripts/build_universe_candidates.py --help || python scripts/build_universe_candidates.py -h || true)",
+          "cd /home/wilson/PortfolioZero && echo 'CMD: python scripts/build_universe_supervised.py --help' && (python scripts/build_universe_supervised.py --help || python scripts/build_universe_supervised.py -h || true)",
+          "cd /home/wilson/PortfolioZero && echo 'CMD: python scripts/generate_sample_market_data.py --help' && (python scripts/generate_sample_market_data.py --help || python scripts/generate_sample_market_data.py -h || true)"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_009/S3_SCRIPT_INTERFACES_HELP.txt"
+        ]
+      },
+      {
+        "step_id": "S4_CORE_IMPORT_SMOKE",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nfrom pathlib import Path\nimport importlib\n\nrepo = Path('/home/wilson/PortfolioZero')\n\n# arquivos-chave (existência)\nrequired = [\n  repo/'scripts/fetch_market_data.py',\n  repo/'scripts/build_universe_candidates.py',\n  repo/'scripts/build_universe_supervised.py',\n  repo/'modules/portfoliozero/core/data/market_data_ingestion.py',\n  repo/'modules/portfoliozero/core/data/universe_candidates_pipeline.py',\n]\nmissing = [str(p) for p in required if not p.exists()]\nif missing:\n  print('MISSING_FILES:')\n  for m in missing:\n    print('-', m)\n  raise SystemExit(2)\n\n# imports (core)\nmods = [\n  'modules.portfoliozero.core.data.market_data_ingestion',\n  'modules.portfoliozero.core.data.universe_candidates_pipeline',\n]\n\nfor m in mods:\n  mod = importlib.import_module(m)\n  print('IMPORTED:', m)\n  print('FILE:', getattr(mod, '__file__', 'N/A'))\n\n  # lista curta de símbolos públicos (sinal de sanidade)\n  public = [x for x in dir(mod) if not x.startswith('_')]\n  print('PUBLIC_SYMBOLS_COUNT:', len(public))\n  print('PUBLIC_SYMBOLS_SAMPLE:', public[:25])\n  print('---')\n\nprint('OK_IMPORT_SMOKE=True')\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_009/S4_CORE_IMPORT_SMOKE.txt"
+        ]
+      },
+      {
+        "step_id": "S5_DATA_DIR_SNAPSHOT",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && echo 'LS data/ (if exists)' && (ls -la data || true)",
+          "cd /home/wilson/PortfolioZero && echo 'FIND data/ (top 200) (if exists)' && (find data -maxdepth 4 -type f 2>/dev/null | sort | sed -n '1,200p' || true)"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_009/S5_DATA_DIR_SNAPSHOT.txt"
+        ]
+      }
+    ]
+  }
+  
