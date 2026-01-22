@@ -1,0 +1,72 @@
+{
+  "version": "v0",
+  "generated_at_utc": "2026-01-22T19:33:15.297125+00:00",
+  "source_supervised_parquet": "data/universe/supervised_TASK_A_012/UNIVERSE_SUPERVISED.parquet",
+  "source_row_count": 30,
+  "source_columns": [
+    "ticker",
+    "tipo_instrumento",
+    "setor",
+    "date_first",
+    "date_last",
+    "history_days",
+    "trading_days_ratio_252d",
+    "avg_volume_21d_brl",
+    "avg_price_recent_brl",
+    "last_price",
+    "annualized_vol_60d",
+    "volatility_class",
+    "liquidity_class"
+  ],
+  "ticker_field_used": "ticker",
+  "universe": [
+    "BBAS3.SA",
+    "WEGE3.SA",
+    "ITUB4.SA",
+    "VALE3.SA",
+    "PETR4.SA",
+    "BBDC4.SA",
+    "ABEV3.SA",
+    "ITSA4.SA",
+    "CPLE6.SA",
+    "EQTL3.SA",
+    "ELET3.SA",
+    "TIMS3.SA",
+    "B3SA3.SA",
+    "LREN3.SA",
+    "RAIL3.SA",
+    "RADL3.SA",
+    "PETR3.SA",
+    "CMIG4.SA",
+    "USIM5.SA",
+    "VBBR3.SA",
+    "GGBR4.SA",
+    "BPAC11.SA",
+    "PRIO3.SA",
+    "RENT3.SA",
+    "UGPA3.SA",
+    "RDOR3.SA",
+    "AURE3.SA",
+    "COGN3.SA",
+    "BEEF3.SA",
+    "MGLU3.SA"
+  ],
+  "portfolio_constraints": {
+    "capital_brl": 200000,
+    "long_only": true,
+    "target_positions": 10,
+    "min_positions": 8,
+    "max_positions": 12
+  },
+  "risk_limits": {
+    "max_gross_exposure_pct": null,
+    "max_position_weight_pct": null,
+    "max_sector_weight_pct": null,
+    "max_drawdown_hard_stop_pct": null,
+    "cooldown_days_after_exit": null
+  },
+  "notes": [
+    "Risk Package v0 é declarativo e auditável; não impõe thresholds numéricos sem definição explícita no plano.",
+    "Os limits null devem ser preenchidos em versões futuras quando os critérios forem consolidados."
+  ]
+}

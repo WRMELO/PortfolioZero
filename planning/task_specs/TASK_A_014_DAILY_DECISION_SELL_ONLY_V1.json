@@ -1,0 +1,62 @@
+{
+    "task_id": "TASK_A_014",
+    "spec_name": "TASK_A_014_DAILY_DECISION_SELL_ONLY_V1",
+    "description": "Daily Decision SELL-ONLY (risk-first): gera decision_package.json com HOLD/REDUCE/EXIT, sem BUY. Consome Risk Package v0 e universo supervisionado.",
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_014/S1_GATE_ALLOWLIST.txt"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_COMPILE",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && PYTHONDONTWRITEBYTECODE=1 python -m compileall -q scripts modules"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_014/S2_CHECK_COMPILE.txt"
+        ]
+      },
+      {
+        "step_id": "S3_ENSURE_PORTFOLIO_SNAPSHOT_V0",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && mkdir -p data/portfolio",
+          "cd /home/wilson/PortfolioZero && SNAP=data/portfolio/PORTFOLIO_SNAPSHOT_V0.json && if [ -f \"$SNAP\" ]; then echo \"OK: snapshot já existe -> $SNAP\"; else echo \"CRIANDO snapshot v0\"; python scripts/generate_portfolio_snapshot_v0.py --out \"$SNAP\" --capital-brl 200000 --positions 10; fi",
+          "cd /home/wilson/PortfolioZero && sed -n '1,220p' data/portfolio/PORTFOLIO_SNAPSHOT_V0.json"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_014/S3_ENSURE_PORTFOLIO_SNAPSHOT_V0.txt"
+        ]
+      },
+      {
+        "step_id": "S4_GENERATE_DAILY_DECISION_SELL_ONLY",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && mkdir -p data/decisions",
+          "cd /home/wilson/PortfolioZero && PYTHONDONTWRITEBYTECODE=1 python scripts/generate_daily_decision_sell_only_v1.py --risk data/risk/RISK_PACKAGE_V0.json --supervised-dir data/universe/supervised_TASK_A_012 --portfolio data/portfolio/PORTFOLIO_SNAPSHOT_V0.json --out data/decisions/DECISION_PACKAGE_DAILY_V1.json"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_014/S4_GENERATE_DAILY_DECISION_SELL_ONLY.txt"
+        ]
+      },
+      {
+        "step_id": "S5_VERIFY_DECISION_JSON",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && PYTHONDONTWRITEBYTECODE=1 python scripts/validate_decision_package_daily_v1.py --in data/decisions/DECISION_PACKAGE_DAILY_V1.json",
+          "cd /home/wilson/PortfolioZero && echo 'DECISION_PACKAGE_DAILY_V1 (top 260):' && sed -n '1,260p' data/decisions/DECISION_PACKAGE_DAILY_V1.json"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_014/S5_VERIFY_DECISION_JSON.txt"
+        ]
+      }
+    ]
+  }
+  

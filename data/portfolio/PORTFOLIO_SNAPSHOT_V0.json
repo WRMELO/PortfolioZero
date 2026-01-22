@@ -1,0 +1,62 @@
+{
+  "version": "v0",
+  "generated_at_utc": "2026-01-22T19:36:51.096484+00:00",
+  "capital_brl": 200000,
+  "cash_brl": 0.0,
+  "positions": [
+    {
+      "ticker": "TICKER_01",
+      "quantity": 100,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_02",
+      "quantity": 100,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_03",
+      "quantity": 100,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_04",
+      "quantity": 100,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_05",
+      "quantity": 100,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_06",
+      "quantity": 100,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_07",
+      "quantity": 100,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_08",
+      "quantity": 100,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_09",
+      "quantity": 100,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_10",
+      "quantity": 100,
+      "avg_price": 10.0
+    }
+  ],
+  "notes": [
+    "Snapshot v0 sintético para destravar Decision Package sem integração real com corretora/extrato.",
+    "Será substituído por snapshot real quando a integração for implementada."
+  ]
+}
