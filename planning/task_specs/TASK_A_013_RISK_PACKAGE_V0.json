@@ -1,0 +1,50 @@
+{
+    "task_id": "TASK_A_013",
+    "spec_name": "TASK_A_013_RISK_PACKAGE_V0",
+    "description": "Gera Risk Package v0 (mínimo e auditável) a partir do universo supervisionado mais recente em data/universe/supervised_TASK_A_012.",
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_013/S1_GATE_ALLOWLIST.txt"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_COMPILE",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && PYTHONDONTWRITEBYTECODE=1 python -m compileall -q scripts modules"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_013/S2_CHECK_COMPILE.txt"
+        ]
+      },
+      {
+        "step_id": "S3_GENERATE_RISK_PACKAGE_V0",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && mkdir -p data/risk",
+          "cd /home/wilson/PortfolioZero && PYTHONDONTWRITEBYTECODE=1 python scripts/generate_risk_package_v0.py --supervised-dir data/universe/supervised_TASK_A_012 --out data/risk/RISK_PACKAGE_V0.json --capital-brl 200000 --target-positions 10 --min-positions 8 --max-positions 12"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_013/S3_GENERATE_RISK_PACKAGE_V0.txt"
+        ]
+      },
+      {
+        "step_id": "S4_VERIFY_RISK_JSON",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && PYTHONDONTWRITEBYTECODE=1 python scripts/validate_risk_package_v0.py --in data/risk/RISK_PACKAGE_V0.json",
+          "cd /home/wilson/PortfolioZero && echo 'RISK_PACKAGE_V0 (top 220):' && sed -n '1,220p' data/risk/RISK_PACKAGE_V0.json"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_013/S4_VERIFY_RISK_JSON.txt"
+        ]
+      }
+    ]
+  }
+  
