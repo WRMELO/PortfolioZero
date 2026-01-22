@@ -1,0 +1,61 @@
+{
+    "task_id": "TASK_A_005",
+    "name": "AGNO_RUNTIME_ENTRYPOINT_SELECT_V1",
+    "title": "Selecionar e versionar entrypoint do Agno para runtime (executor/orquestrador) baseado em evidência",
+    "objective": "Produzir config/agno/runtime_entrypoint.json com um entrypoint importável e pontuado para integração real do Agno no runtime.",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "scripts/agno_entrypoint_select.py",
+        "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
+        "config/agno/",
+        "config/agno/runtime_entrypoint.json",
+        "planning/runs/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200",
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport json, subprocess, sys\nfrom pathlib import Path\n\nspec_path = Path('planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json')\nspec = json.loads(spec_path.read_text(encoding='utf-8'))\nallow = spec.get('inputs', {}).get('gate_allowlist', [])\n\np = subprocess.run('git status --porcelain', shell=True, capture_output=True, text=True)\nporcelain = p.stdout\n\nchanged = []\nfor line in porcelain.splitlines():\n    if not line.strip():\n        continue\n    tail = line[3:].strip()\n    if ' -> ' in tail:\n        tail = tail.split(' -> ', 1)[1].strip()\n    changed.append(tail)\n\ndef allowed(path: str) -> bool:\n    for a in allow:\n        if a.endswith('/') and path.startswith(a):\n            return True\n        if path == a:\n            return True\n    return False\n\nbad = [c for c in changed if not allowed(c)]\nprint('ALLOWLIST=', allow)\nprint('CHANGED=', changed)\nprint('BAD=', bad)\n\nsys.exit(0 if len(bad) == 0 else 2)\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_005/S1_GATE_ALLOWLIST.txt"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_INPUTS",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && test -f scripts/agno_entrypoint_select.py && echo 'OK: scripts/agno_entrypoint_select.py' || (echo 'MISSING: scripts/agno_entrypoint_select.py' && exit 2)",
+          "cd /home/wilson/PortfolioZero && test -f planning/runs/TASK_A_004/agno_api_map.json && echo 'OK: planning/runs/TASK_A_004/agno_api_map.json' || (echo 'MISSING: planning/runs/TASK_A_004/agno_api_map.json' && exit 2)"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_005/S2_CHECK_INPUTS.txt"
+        ]
+      },
+      {
+        "step_id": "S3_SELECT_ENTRYPOINT",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_entrypoint_select.py --map planning/runs/TASK_A_004/agno_api_map.json --out config/agno/runtime_entrypoint.json --max-modules 200 --max-considered 60"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_005/S3_SELECT_ENTRYPOINT.txt"
+        ]
+      },
+      {
+        "step_id": "S4_VALIDATE_SELECTED_IMPORT",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport importlib, json, sys\nfrom pathlib import Path\n\np = Path('config/agno/runtime_entrypoint.json')\nif not p.exists():\n    print('MISSING:', p)\n    sys.exit(2)\n\nd = json.loads(p.read_text(encoding='utf-8'))\nprint('status=', d.get('status'))\nsel = (d.get('selected') or {})\nfqn = sel.get('fqn')\nprint('selected_fqn=', fqn)\n\nif d.get('status') != 'selected' or not fqn or '.' not in fqn:\n    print('INVALID_SELECTION')\n    sys.exit(2)\n\nmod, attr = fqn.rsplit('.', 1)\nm = importlib.import_module(mod)\nobj = getattr(m, attr)\nprint('import_ok=TRUE')\nprint('obj_type=', type(obj))\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_005/S4_VALIDATE_SELECTED_IMPORT.txt"
+        ]
+      }
+    ]
+  }
+  

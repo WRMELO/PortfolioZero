@@ -1,0 +1,261 @@
+{
+  "status": "selected",
+  "generated_at": "2026-01-22T12:10:25.635489+00:00",
+  "source_map": "planning/runs/TASK_A_004/agno_api_map.json",
+  "python": "3.12.12 (main, Jan 14 2026, 19:35:58) [Clang 21.1.4 ]",
+  "agno_version": "2.4.1",
+  "selected": {
+    "fqn": "agno.agent.Agent",
+    "module": "agno.agent",
+    "attr": "Agent",
+    "kind": "class",
+    "preferred": true,
+    "score": 1095
+  },
+  "considered": [
+    {
+      "fqn": "agno.agent.Agent",
+      "module": "agno.agent",
+      "attr": "Agent",
+      "kind": "class",
+      "import_ok": true,
+      "preferred": true,
+      "score": 1095,
+      "error": null
+    },
+    {
+      "fqn": "agno.agent.ToolCallCompletedEvent",
+      "module": "agno.agent",
+      "attr": "ToolCallCompletedEvent",
+      "kind": "class",
+      "import_ok": true,
+      "preferred": false,
+      "score": 135,
+      "error": null
+    },
+    {
+      "fqn": "agno.agent.ToolCallStartedEvent",
+      "module": "agno.agent",
+      "attr": "ToolCallStartedEvent",
+      "kind": "class",
+      "import_ok": true,
+      "preferred": false,
+      "score": 135,
+      "error": null
+    },
+    {
+      "fqn": "agno.agent.Toolkit",
+      "module": "agno.agent",
+      "attr": "Toolkit",
+      "kind": "class",
+      "import_ok": true,
+      "preferred": false,
+      "score": 135,
+      "error": null
+    },
+    {
+      "fqn": "agno.agent.AgentSession",
+      "module": "agno.agent",
+      "attr": "AgentSession",
+      "kind": "class",
+      "import_ok": true,
+      "preferred": false,
+      "score": 130,
+      "error": null
+    },
+    {
+      "fqn": "agno.agent.RemoteAgent",
+      "module": "agno.agent",
+      "attr": "RemoteAgent",
+      "kind": "class",
+      "import_ok": true,
+      "preferred": false,
+      "score": 95,
+      "error": null
+    },
+    {
+      "fqn": "os.Mapping",
+      "module": "os",
+      "attr": "Mapping",
+      "kind": "class",
+      "import_ok": true,
+      "preferred": false,
+      "score": 90,
+      "error": null
+    },
+    {
+      "fqn": "os.MutableMapping",
+      "module": "os",
+      "attr": "MutableMapping",
+      "kind": "class",
+      "import_ok": true,
+      "preferred": false,
+      "score": 90,
+      "error": null
+    },
+    {
+      "fqn": "agno.agent.get_agent_by_id",
+      "module": "agno.agent",
+      "attr": "get_agent_by_id",
+      "kind": "function",
+      "import_ok": true,
+      "preferred": false,
+      "score": 80,
+      "error": null
+    },
+    {
+      "fqn": "agno.agent.get_agents",
+      "module": "agno.agent",
+      "attr": "get_agents",
+      "kind": "function",
+      "import_ok": true,
+      "preferred": false,
+      "score": 80,
+      "error": null
+    },
+    {
+      "fqn": "agno.tools.Toolkit",
+      "module": "agno.tools",
+      "attr": "Toolkit",
+      "kind": "class",
+      "import_ok": true,
+      "preferred": false,
+      "score": 75,
+      "error": null
+    },
+    {
+      "fqn": "agno.agent",
+      "module": "agno",
+      "attr": "agent",
+      "kind": "other",
+      "import_ok": true,
+      "preferred": false,
+      "score": 60,
+      "error": null
+    },
+    {
+      "fqn": "agno.tools.tool",
+      "module": "agno.tools",
+      "attr": "tool",
+      "kind": "function",
+      "import_ok": true,
+      "preferred": false,
+      "score": 60,
+      "error": null
+    },
+    {
+      "fqn": "agno.tools",
+      "module": "agno",
+      "attr": "tools",
+      "kind": "other",
+      "import_ok": true,
+      "preferred": false,
+      "score": 40,
+      "error": null
+    },
+    {
+      "fqn": "agno.session",
+      "module": "agno",
+      "attr": "session",
+      "kind": "other",
+      "import_ok": true,
+      "preferred": false,
+      "score": 35,
+      "error": null
+    },
+    {
+      "fqn": "agno.exceptions",
+      "module": "agno",
+      "attr": "exceptions",
+      "kind": "other",
+      "import_ok": true,
+      "preferred": false,
+      "score": 0,
+      "error": null
+    },
+    {
+      "fqn": "agno.run",
+      "module": "agno",
+      "attr": "run",
+      "kind": "other",
+      "import_ok": true,
+      "preferred": false,
+      "score": 0,
+      "error": null
+    },
+    {
+      "fqn": "agno.skills",
+      "module": "agno",
+      "attr": "skills",
+      "kind": "other",
+      "import_ok": true,
+      "preferred": false,
+      "score": 0,
+      "error": null
+    },
+    {
+      "fqn": "agno.utils",
+      "module": "agno",
+      "attr": "utils",
+      "kind": "other",
+      "import_ok": true,
+      "preferred": false,
+      "score": 0,
+      "error": null
+    },
+    {
+      "fqn": "agno.team",
+      "module": "agno",
+      "attr": "team",
+      "kind": "other",
+      "import_ok": true,
+      "preferred": false,
+      "score": 0,
+      "error": null
+    }
+  ],
+  "module_import_errors": {
+    "agent": "ModuleNotFoundError(\"No module named 'agent'\")",
+    "api": "ModuleNotFoundError(\"No module named 'api'\")",
+    "client": "ModuleNotFoundError(\"No module named 'client'\")",
+    "compression": "ModuleNotFoundError(\"No module named 'compression'\")",
+    "culture": "ModuleNotFoundError(\"No module named 'culture'\")",
+    "db": "ModuleNotFoundError(\"No module named 'db'\")",
+    "debug": "ModuleNotFoundError(\"No module named 'debug'\")",
+    "eval": "ModuleNotFoundError(\"No module named 'eval'\")",
+    "exceptions": "ModuleNotFoundError(\"No module named 'exceptions'\")",
+    "filters": "ModuleNotFoundError(\"No module named 'filters'\")",
+    "guardrails": "ModuleNotFoundError(\"No module named 'guardrails'\")",
+    "hooks": "ModuleNotFoundError(\"No module named 'hooks'\")",
+    "integrations": "ModuleNotFoundError(\"No module named 'integrations'\")",
+    "knowledge": "ModuleNotFoundError(\"No module named 'knowledge'\")",
+    "learn": "ModuleNotFoundError(\"No module named 'learn'\")",
+    "media": "ModuleNotFoundError(\"No module named 'media'\")",
+    "memory": "ModuleNotFoundError(\"No module named 'memory'\")",
+    "models": "ModuleNotFoundError(\"No module named 'models'\")",
+    "reasoning": "ModuleNotFoundError(\"No module named 'reasoning'\")",
+    "registry": "ModuleNotFoundError(\"No module named 'registry'\")",
+    "remote": "ModuleNotFoundError(\"No module named 'remote'\")",
+    "run": "ModuleNotFoundError(\"No module named 'run'\")",
+    "session": "ModuleNotFoundError(\"No module named 'session'\")",
+    "skills": "ModuleNotFoundError(\"No module named 'skills'\")",
+    "table": "ModuleNotFoundError(\"No module named 'table'\")",
+    "team": "ModuleNotFoundError(\"No module named 'team'\")",
+    "tools": "ModuleNotFoundError(\"No module named 'tools'\")",
+    "tracing": "ModuleNotFoundError(\"No module named 'tracing'\")",
+    "utils": "ModuleNotFoundError(\"No module named 'utils'\")",
+    "vectordb": "ModuleNotFoundError(\"No module named 'vectordb'\")",
+    "workflow": "ModuleNotFoundError(\"No module named 'workflow'\")",
+    "agno.core": "ModuleNotFoundError(\"No module named 'agno.core'\")",
+    "agno.runtime": "ModuleNotFoundError(\"No module named 'agno.runtime'\")",
+    "agno.workflow": "ModuleNotFoundError(\"No module named 'fastapi'\")",
+    "agno.workflows": "ModuleNotFoundError(\"No module named 'agno.workflows'\")",
+    "agno.agents": "ModuleNotFoundError(\"No module named 'agno.agents'\")",
+    "agno.tool": "ModuleNotFoundError(\"No module named 'agno.tool'\")"
+  },
+  "notes": [
+    "modules_considered=41",
+    "candidates_total=42",
+    "candidates_importable=20"
+  ]
+}

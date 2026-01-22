@@ -4,10 +4,18 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+try:
+    import agno  # type: ignore
+
+    AGNO_VERSION = getattr(agno, "__version__", "?")
+except Exception:
+    AGNO_VERSION = "IMPORT_FAIL"
 
 
 def utc_now() -> str:
@@ -24,13 +32,28 @@ def write_text(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8")
 
 
-def agno_version() -> str:
-    try:
-        import agno  # type: ignore
+def parse_porcelain_paths(porcelain_text: str) -> list[str]:
+    paths: list[str] = []
+    for line in porcelain_text.splitlines():
+        if not line.strip():
+            continue
+        tail = line[3:].strip()
+        if " -> " in tail:
+            tail = tail.split(" -> ", 1)[1].strip()
+        paths.append(tail)
+    return paths
 
-        return getattr(agno, "__version__", "?")
-    except Exception:
-        return "IMPORT_FAIL"
+
+def allowlist_ok(changed: list[str], allowlist: list[str]) -> bool:
+    def allowed(path: str) -> bool:
+        for a in allowlist:
+            if a.endswith("/") and path.startswith(a):
+                return True
+            if path == a:
+                return True
+        return False
+
+    return all(allowed(p) for p in changed)
 
 
 @dataclass
@@ -42,25 +65,29 @@ class StepResult:
     commands_count: int
 
 
+def write_shell_artifact(path: Path, step_id: str, step_type: str, logs: list[dict[str, Any]]) -> None:
+    with path.open("w", encoding="utf-8") as f:
+        f.write(f"STEP: {step_id}\nTYPE: {step_type}\nUTC:  {utc_now()}\n\n")
+        for i, e in enumerate(logs, start=1):
+            f.write(f"[{i}] CMD: {e['cmd']}\nRC: {e['rc']}\n")
+            if e["stdout"]:
+                f.write("STDOUT:\n" + e["stdout"] + ("" if e["stdout"].endswith("\n") else "\n"))
+            if e["stderr"]:
+                f.write("STDERR:\n" + e["stderr"] + ("" if e["stderr"].endswith("\n") else "\n"))
+            f.write("\n" + ("-" * 80) + "\n\n")
+
+
 def main() -> int:
-    ap = argparse.ArgumentParser(
-        prog="agno_runner",
-        description="Runner padrão (PORTIFOLIOZERO) para executar TASK specs (JSON).",
-    )
-    ap.add_argument("--task", required=False, help="Caminho do JSON da task (planning/task_specs/...).")
+    ap = argparse.ArgumentParser(prog="agno_runner", description="Runner padrão (PORTIFOLIOZERO) para TASK specs.")
+    ap.add_argument("--task", required=True, help="Caminho do JSON da task (planning/task_specs/...).")
     ap.add_argument("--run-dir", default=None, help="Diretório de saída (default: planning/runs/<task_id>/).")
     ap.add_argument("--version", action="store_true", help="Mostra versões (python + agno) e sai.")
     args = ap.parse_args()
 
     if args.version:
-        import sys
-
         print(f"python={sys.version}")
-        print(f"agno_version={agno_version()}")
+        print(f"agno_version={AGNO_VERSION}")
         return 0
-
-    if not args.task:
-        ap.error("--task é obrigatório (use --version para apenas ver versões).")
 
     spec_path = Path(args.task)
     spec = json.loads(spec_path.read_text(encoding="utf-8"))
@@ -76,12 +103,14 @@ def main() -> int:
         "spec_path": str(spec_path),
         "run_dir": str(run_dir),
         "started_at": utc_now(),
-        "runner": {"agno_version": agno_version()},
+        "runner": {"agno_version": AGNO_VERSION},
         "steps": [],
     }
 
     overall_pass = True
     step_results: list[StepResult] = []
+
+    allowlist = spec.get("inputs", {}).get("gate_allowlist", []) or spec.get("inputs", {}).get("gate_s1_allowlist", [])
 
     for step in spec.get("workflow", []):
         step_id = step.get("step_id", "NO_STEP_ID")
@@ -94,13 +123,7 @@ def main() -> int:
         step_pass = True
         commands_count = 0
 
-        if step_type != "shell":
-            step_pass = False
-            write_text(
-                artifact_path,
-                f"STEP: {step_id}\nTYPE: {step_type}\nUTC:  {utc_now()}\nERROR: unsupported step_type\n",
-            )
-        else:
+        if step_type == "shell":
             logs: list[dict[str, Any]] = []
             for cmd in step.get("commands", []):
                 commands_count += 1
@@ -109,15 +132,54 @@ def main() -> int:
                 if entry["rc"] != 0:
                     step_pass = False
 
-            with artifact_path.open("w", encoding="utf-8") as f:
-                f.write(f"STEP: {step_id}\nTYPE: {step_type}\nUTC:  {utc_now()}\n\n")
-                for i, e in enumerate(logs, start=1):
-                    f.write(f"[{i}] CMD: {e['cmd']}\nRC: {e['rc']}\n")
-                    if e["stdout"]:
-                        f.write("STDOUT:\n" + e["stdout"] + ("" if e["stdout"].endswith("\n") else "\n"))
-                    if e["stderr"]:
-                        f.write("STDERR:\n" + e["stderr"] + ("" if e["stderr"].endswith("\n") else "\n"))
-                    f.write("\n" + ("-" * 80) + "\n\n")
+            # Gate allowlist: aplica se houver allowlist e o step executar git status --porcelain
+            if allowlist:
+                status_out = ""
+                for e in logs:
+                    if "git status --porcelain" in e["cmd"]:
+                        status_out = e["stdout"]
+                        break
+                if status_out.strip() or any("git status --porcelain" in e["cmd"] for e in logs):
+                    changed = parse_porcelain_paths(status_out)
+                    if not allowlist_ok(changed, list(allowlist)):
+                        step_pass = False
+
+            write_shell_artifact(artifact_path, step_id, step_type, logs)
+
+        elif step_type == "agno":
+            # Delegação ao entrypoint selecionado, via script dedicado
+            payload = step.get("payload", {})
+            mode = step.get("mode", "probe")
+            payload_json = json.dumps(payload, ensure_ascii=False)
+
+            cmd = (
+                f"{sys.executable} scripts/agno_entrypoint_exec.py "
+                f"--mode {mode} "
+                f"--task-id {task_id} "
+                f"--step-id {step_id} "
+                f"--payload-json {json.dumps(payload_json)} "
+                f"--out {artifact_path}"
+            )
+            # json.dumps(payload_json) garante escaping seguro como string literal (com aspas)
+            logs = [run_cmd(cmd, cwd=repo_path)]
+            commands_count = 1
+            step_pass = logs[0]["rc"] == 0
+
+            # Complementa artifact com stdout/stderr do exec (sem sobrescrever a parte principal)
+            with artifact_path.open("a", encoding="utf-8") as f:
+                f.write("\n")
+                f.write("-" * 80 + "\n")
+                f.write("RUNNER_EXEC_STDOUT/STDERR\n\n")
+                e = logs[0]
+                f.write(f"CMD: {e['cmd']}\nRC: {e['rc']}\n")
+                if e["stdout"]:
+                    f.write("STDOUT:\n" + e["stdout"] + ("" if e["stdout"].endswith("\n") else "\n"))
+                if e["stderr"]:
+                    f.write("STDERR:\n" + e["stderr"] + ("" if e["stderr"].endswith("\n") else "\n"))
+
+        else:
+            step_pass = False
+            write_text(artifact_path, f"STEP: {step_id}\nTYPE: {step_type}\nUTC: {utc_now()}\nERROR: unsupported step_type\n")
 
         overall_pass = overall_pass and step_pass
         sr = StepResult(
