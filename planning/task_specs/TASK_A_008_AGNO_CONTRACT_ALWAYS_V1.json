@@ -1,0 +1,61 @@
+{
+    "task_id": "TASK_A_008",
+    "name": "AGNO_CONTRACT_ALWAYS_V1",
+    "title": "Provar step_type=agno com contrato (payload) e artifact estruturado",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": []
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_CLEAN",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && test -z \"$(git status --porcelain)\""
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_008/S1_GATE_CLEAN.txt"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_COMPILE",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m py_compile scripts/agno_runner.py scripts/agno_entrypoint_exec.py"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_008/S2_CHECK_COMPILE.txt"
+        ]
+      },
+      {
+        "step_id": "S3_AGNO_STEP_CONTRACT",
+        "type": "agno",
+        "mode": "step",
+        "config": "config/agno/runtime_entrypoint.json",
+        "payload": {
+          "operation": "describe_entrypoint",
+          "contract": "agno_step_contract_v1",
+          "note": "deterministic"
+        },
+        "artifacts": [
+          "planning/runs/TASK_A_008/S3_AGNO_STEP_CONTRACT.txt"
+        ]
+      },
+      {
+        "step_id": "S4_VERIFY_ARTIFACT",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && test -f planning/runs/TASK_A_008/S3_AGNO_STEP_CONTRACT.txt",
+          "cd /home/wilson/PortfolioZero && grep -q '^SELECTED_FQN:' planning/runs/TASK_A_008/S3_AGNO_STEP_CONTRACT.txt",
+          "cd /home/wilson/PortfolioZero && grep -q '^OPERATION: describe_entrypoint' planning/runs/TASK_A_008/S3_AGNO_STEP_CONTRACT.txt",
+          "cd /home/wilson/PortfolioZero && grep -q '^CALL_OK: True' planning/runs/TASK_A_008/S3_AGNO_STEP_CONTRACT.txt",
+          "cd /home/wilson/PortfolioZero && grep -q 'RESULT_JSON_BEGIN' planning/runs/TASK_A_008/S3_AGNO_STEP_CONTRACT.txt",
+          "cd /home/wilson/PortfolioZero && grep -q 'RESULT_JSON_END' planning/runs/TASK_A_008/S3_AGNO_STEP_CONTRACT.txt"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_008/S4_VERIFY_ARTIFACT.txt"
+        ]
+      }
+    ]
+  }
+  

@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import shlex
 import subprocess
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,6 +26,12 @@ def utc_now() -> str:
 def run_cmd(cmd: str, cwd: str | None = None) -> dict[str, Any]:
     p = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=cwd)
     return {"cmd": cmd, "rc": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
+
+
+def run_cmd_args(args: list[str], cwd: str | None = None) -> dict[str, Any]:
+    p = subprocess.run(args, shell=False, capture_output=True, text=True, cwd=cwd)
+    shown = " ".join(shlex.quote(a) for a in args)
+    return {"cmd": shown, "rc": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
 
 
 def parse_porcelain_paths(porcelain_text: str) -> list[str]:
@@ -84,33 +92,16 @@ def main() -> int:
         description="Runner padrão (PORTIFOLIOZERO) para TASK specs.",
     )
 
-    # IMPORTANTE: --task NÃO é obrigatório para permitir --version sozinho
-    ap.add_argument(
-        "--task",
-        required=False,
-        help="Caminho do JSON da task (planning/task_specs/...).",
-    )
-    ap.add_argument(
-        "--run-dir",
-        default=None,
-        help="Diretório de saída (default: planning/runs/<task_id>/).",
-    )
-    ap.add_argument(
-        "--version",
-        action="store_true",
-        help="Mostra versões (python + agno) e sai.",
-    )
+    ap.add_argument("--task", required=False, help="Caminho do JSON da task (planning/task_specs/...).")
+    ap.add_argument("--run-dir", default=None, help="Diretório de saída (default: planning/runs/<task_id>/).")
+    ap.add_argument("--version", action="store_true", help="Mostra versões (python + agno) e sai.")
     args = ap.parse_args()
 
-    # Se for --version, não exige --task
     if args.version:
-        import sys
-
         print(f"python={sys.version}")
         print(f"agno_version={AGNO_VERSION}")
         return 0
 
-    # Caso não seja --version, então --task é obrigatório
     if not args.task:
         ap.error("the following arguments are required: --task")
 
@@ -120,7 +111,7 @@ def main() -> int:
     task_id = spec.get("task_id", "UNKNOWN_TASK")
     repo_path = spec.get("inputs", {}).get("repo_path", None)
 
-    run_dir = Path(args.run_dir) if args.run_dir else Path("planning/runs") / task_id
+    run_dir = Path(args.run_dir) if args.run_dir else Path("planning/runs") / str(task_id)
     run_dir.mkdir(parents=True, exist_ok=True)
 
     report: dict[str, Any] = {
@@ -164,7 +155,7 @@ def main() -> int:
             )
             write_text(artifact_path, log)
 
-        elif step_type in ("shell", "agno"):
+        elif step_type == "shell":
             logs: list[dict[str, Any]] = []
             for cmd in step.get("commands", []):
                 commands_count += 1
@@ -173,7 +164,6 @@ def main() -> int:
                 if entry["rc"] != 0:
                     step_pass = False
 
-            # Gate allowlist (quando o step é S1_* e existe allowlist)
             if step_id in ("S1_PROVE_REPO", "S1_GATE_ALLOWLIST") and allowlist:
                 try:
                     porcelain = ""
@@ -188,6 +178,60 @@ def main() -> int:
                     step_pass = False
 
             write_step_artifact(artifact_path, step_id, step_type, logs)
+
+        elif step_type == "agno":
+            # CONTRATO ÚNICO: agno = payload/exec (NUNCA commands)
+            if step.get("commands"):
+                step_pass = False
+                msg = (
+                    f"STEP: {step_id}\nTYPE: agno\nUTC:  {utc_now()}\n"
+                    "ERROR: step_type=agno não aceita 'commands'.\n"
+                    "MIGRATION: troque para type='shell' (commands) OU use payload/mode/config.\n\n"
+                    f"STEP_KEYS: {sorted(list(step.keys()))}\n"
+                )
+                write_text(artifact_path, msg)
+            else:
+                mode = str(step.get("mode", "probe"))
+                payload = step.get("payload", {})
+                if not isinstance(payload, dict):
+                    payload = {"payload": payload}
+                payload_json = json.dumps(payload, ensure_ascii=False)
+
+                exec_script = str(step.get("executor", "scripts/agno_entrypoint_exec.py"))
+                exec_args = [
+                    sys.executable,
+                    exec_script,
+                    "--mode",
+                    mode,
+                    "--payload-json",
+                    payload_json,
+                    "--task-id",
+                    str(task_id),
+                    "--step-id",
+                    str(step_id),
+                    "--out",
+                    str(artifact_path),
+                ]
+
+                cfg = step.get("config", None)
+                if cfg:
+                    exec_args.extend(["--config", str(cfg)])
+
+                entry = run_cmd_args(exec_args, cwd=repo_path)
+                commands_count = 1
+                step_pass = entry["rc"] == 0
+
+                # executor escreve o artifact; anexamos stdout/stderr do runner
+                with artifact_path.open("a", encoding="utf-8") as f:
+                    f.write("\n" + ("-" * 80) + "\n")
+                    f.write("RUNNER_EXEC_STDOUT/STDERR\n\n")
+                    f.write(f"CMD: {entry['cmd']}\nRC: {entry['rc']}\n")
+                    if entry.get("stdout"):
+                        out = entry["stdout"]
+                        f.write("STDOUT:\n" + out + ("" if out.endswith("\n") else "\n"))
+                    if entry.get("stderr"):
+                        err = entry["stderr"]
+                        f.write("STDERR:\n" + err + ("" if err.endswith("\n") else "\n"))
 
         else:
             step_pass = False

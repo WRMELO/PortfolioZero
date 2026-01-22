@@ -1,54 +1,55 @@
 {
-    "task_id": "TASK_A_007",
-    "name": "AGNO_RUNTIME_SMOKE_V1",
-    "title": "Smoke: executar step_type=agno usando o entrypoint selecionado (probe)",
-    "inputs": {
-      "repo_path": "/home/wilson/PortfolioZero",
-      "gate_allowlist": [
-        "scripts/agno_runner.py",
-        "scripts/agno_entrypoint_exec.py",
-        "scripts/agno_entrypoint_select.py",
-        "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
-        "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
-        "planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json",
-        "config/agno/",
-        "config/agno/runtime_entrypoint.json",
-        "planning/runs/"
+  "task_id": "TASK_A_007",
+  "name": "AGNO_RUNTIME_SMOKE_V1",
+  "title": "Smoke: executar step_type=agno usando o entrypoint selecionado (probe)",
+  "inputs": {
+    "repo_path": "/home/wilson/PortfolioZero",
+    "gate_allowlist": [
+      "scripts/agno_runner.py",
+      "scripts/agno_entrypoint_exec.py",
+      "scripts/agno_entrypoint_select.py",
+      "planning/task_specs/",
+      "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
+      "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
+      "planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json",
+      "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json",
+      "config/agno/",
+      "config/agno/runtime_entrypoint.json",
+      "planning/runs/"
+    ]
+  },
+  "workflow": [
+    {
+      "step_id": "S1_GATE_ALLOWLIST",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_A_007/S1_GATE_ALLOWLIST.txt"
       ]
     },
-    "workflow": [
-      {
-        "step_id": "S1_GATE_ALLOWLIST",
-        "type": "shell",
-        "commands": [
-          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
-        ],
-        "artifacts": [
-          "planning/runs/TASK_A_007/S1_GATE_ALLOWLIST.txt"
-        ]
+    {
+      "step_id": "S2_RUNNER_VERSION",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_A_007/S2_RUNNER_VERSION.txt"
+      ]
+    },
+    {
+      "step_id": "S3_AGNO_PROBE",
+      "type": "agno",
+      "mode": "probe",
+      "payload": {
+        "op": "probe",
+        "note": "TASK_A_007 smoke"
       },
-      {
-        "step_id": "S2_RUNNER_VERSION",
-        "type": "shell",
-        "commands": [
-          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
-        ],
-        "artifacts": [
-          "planning/runs/TASK_A_007/S2_RUNNER_VERSION.txt"
-        ]
-      },
-      {
-        "step_id": "S3_AGNO_PROBE",
-        "type": "agno",
-        "mode": "probe",
-        "payload": {
-          "op": "probe",
-          "note": "TASK_A_007 smoke"
-        },
-        "artifacts": [
-          "planning/runs/TASK_A_007/S3_AGNO_PROBE.txt"
-        ]
-      }
-    ]
-  }
-  
+      "artifacts": [
+        "planning/runs/TASK_A_007/S3_AGNO_PROBE.txt"
+      ]
+    }
+  ]
+}

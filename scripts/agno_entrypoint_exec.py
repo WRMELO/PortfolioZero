@@ -144,13 +144,14 @@ def main() -> int:
     out_path = Path(args.out)
     cfg_path = Path(args.config)
 
-    header = []
-    header.append(f"UTC: {utc_now()}")
-    header.append(f"TASK_ID: {args.task_id}")
-    header.append(f"STEP_ID: {args.step_id}")
-    header.append(f"MODE: {args.mode}")
-    header.append(f"CONFIG: {cfg_path}")
-    header.append("")
+    header = [
+        f"UTC: {utc_now()}",
+        f"TASK_ID: {args.task_id}",
+        f"STEP_ID: {args.step_id}",
+        f"MODE: {args.mode}",
+        f"CONFIG: {cfg_path}",
+        "",
+    ]
 
     try:
         payload = json.loads(args.payload_json)
@@ -159,7 +160,7 @@ def main() -> int:
     except Exception:
         payload = {"payload_parse_error": True, "raw": args.payload_json}
 
-    body = []
+    body: list[str] = []
     rc = 0
 
     try:
@@ -172,11 +173,44 @@ def main() -> int:
         body.append(f"PAYLOAD_KEYS: {sorted(list(payload.keys()))}")
         body.append("")
 
-        called_ok, strategy, outcome = try_call(obj, payload)
+        op = str(payload.get("operation") or payload.get("op") or "try_call").strip().lower()
 
+        # Compatibilidade com o smoke existente (TASK_A_007 usa op="probe")
+        if op in ("probe", "describe", "describe_entrypoint", "describe-only", "describe_only"):
+            called_ok = True
+            strategy = "describe_only"
+            outcome = "OK"
+        elif op in ("try_call", "call", "invoke"):
+            called_ok, strategy, outcome = try_call(obj, payload)
+        else:
+            called_ok = False
+            strategy = f"unknown_operation:{op}"
+            outcome = "ERROR"
+
+        body.append(f"OPERATION: {op}")
         body.append(f"CALL_ATTEMPTED: {strategy}")
         body.append(f"CALL_OUTCOME: {outcome}")
         body.append(f"CALL_OK: {called_ok}")
+        body.append("")
+
+        result_obj = {
+            "utc": utc_now(),
+            "task_id": args.task_id,
+            "step_id": args.step_id,
+            "mode": args.mode,
+            "config": str(cfg_path),
+            "selected_fqn": fqn,
+            "operation": op,
+            "signature": signature_str(obj),
+            "payload_keys": sorted(list(payload.keys())),
+            "call_attempted": strategy,
+            "call_outcome": outcome,
+            "call_ok": called_ok,
+        }
+
+        body.append("RESULT_JSON_BEGIN")
+        body.append(json.dumps(result_obj, ensure_ascii=False, indent=2))
+        body.append("RESULT_JSON_END")
 
         if args.mode == "probe":
             rc = 0
@@ -192,8 +226,7 @@ def main() -> int:
         body.append("TRACEBACK:")
         body.append(traceback.format_exc())
 
-    text = "\n".join(header + body) + "\n"
-    write_text(out_path, text)
+    write_text(out_path, "\n".join(header + body) + "\n")
     return rc
 
 

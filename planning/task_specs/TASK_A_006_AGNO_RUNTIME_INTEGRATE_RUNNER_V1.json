@@ -1,64 +1,65 @@
 {
-    "task_id": "TASK_A_006",
-    "name": "AGNO_RUNTIME_INTEGRATE_RUNNER_V1",
-    "title": "Integrar step_type=agno no runner e provar execução via TASK_A_007 (PASS)",
-    "objective": "Transformar scripts/agno_runner.py em runner capaz de delegar steps ao entrypoint selecionado do Agno, e provar com smoke.",
-    "inputs": {
-      "repo_path": "/home/wilson/PortfolioZero",
-      "gate_allowlist": [
-        "scripts/agno_runner.py",
-        "scripts/agno_entrypoint_exec.py",
-        "scripts/agno_entrypoint_select.py",
-        "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
-        "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
-        "planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json",
-        "config/agno/",
-        "config/agno/runtime_entrypoint.json",
-        "planning/runs/"
+  "task_id": "TASK_A_006",
+  "name": "AGNO_RUNTIME_INTEGRATE_RUNNER_V1",
+  "title": "Integrar step_type=agno no runner e provar execução via TASK_A_007 (PASS)",
+  "objective": "Transformar scripts/agno_runner.py em runner capaz de delegar steps ao entrypoint selecionado do Agno, e provar com smoke.",
+  "inputs": {
+    "repo_path": "/home/wilson/PortfolioZero",
+    "gate_allowlist": [
+      "scripts/agno_runner.py",
+      "scripts/agno_entrypoint_exec.py",
+      "scripts/agno_entrypoint_select.py",
+      "planning/task_specs/",
+      "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
+      "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
+      "planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json",
+      "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json",
+      "config/agno/",
+      "config/agno/runtime_entrypoint.json",
+      "planning/runs/"
+    ]
+  },
+  "workflow": [
+    {
+      "step_id": "S1_GATE_ALLOWLIST",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_A_006/S1_GATE_ALLOWLIST.txt"
       ]
     },
-    "workflow": [
-      {
-        "step_id": "S1_GATE_ALLOWLIST",
-        "type": "shell",
-        "commands": [
-          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
-        ],
-        "artifacts": [
-          "planning/runs/TASK_A_006/S1_GATE_ALLOWLIST.txt"
-        ]
-      },
-      {
-        "step_id": "S2_CHECK_COMPILE",
-        "type": "shell",
-        "commands": [
-          "cd /home/wilson/PortfolioZero && python -m py_compile scripts/agno_runner.py scripts/agno_entrypoint_exec.py",
-          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
-        ],
-        "artifacts": [
-          "planning/runs/TASK_A_006/S2_CHECK_COMPILE.txt"
-        ]
-      },
-      {
-        "step_id": "S3_RUN_SMOKE_TASK_A_007",
-        "type": "shell",
-        "commands": [
-          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --task planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json"
-        ],
-        "artifacts": [
-          "planning/runs/TASK_A_006/S3_RUN_SMOKE_TASK_A_007.txt"
-        ]
-      },
-      {
-        "step_id": "S4_VERIFY_SMOKE_PASS",
-        "type": "shell",
-        "commands": [
-          "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport json\nfrom pathlib import Path\np = Path('planning/runs/TASK_A_007/report.json')\nd = json.loads(p.read_text(encoding='utf-8'))\nprint('TASK_A_007 overall_pass =', d.get('overall_pass'))\nraise SystemExit(0 if d.get('overall_pass') else 2)\nPY"
-        ],
-        "artifacts": [
-          "planning/runs/TASK_A_006/S4_VERIFY_SMOKE_PASS.txt"
-        ]
-      }
-    ]
-  }
-  
+    {
+      "step_id": "S2_CHECK_COMPILE",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python -m py_compile scripts/agno_runner.py scripts/agno_entrypoint_exec.py",
+        "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_A_006/S2_CHECK_COMPILE.txt"
+      ]
+    },
+    {
+      "step_id": "S3_RUN_SMOKE_TASK_A_007",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --task planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_A_006/S3_RUN_SMOKE_TASK_A_007.txt"
+      ]
+    },
+    {
+      "step_id": "S4_VERIFY_SMOKE_PASS",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport json\nfrom pathlib import Path\np = Path('planning/runs/TASK_A_007/report.json')\nd = json.loads(p.read_text(encoding='utf-8'))\nprint('TASK_A_007 overall_pass =', d.get('overall_pass'))\nraise SystemExit(0 if d.get('overall_pass') else 2)\nPY"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_A_006/S4_VERIFY_SMOKE_PASS.txt"
+      ]
+    }
+  ]
+}
