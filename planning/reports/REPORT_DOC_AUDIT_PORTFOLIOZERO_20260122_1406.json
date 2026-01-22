@@ -1,0 +1,533 @@
+ {
+   "repo_commit": "cb294bd feat: Update selection log and tickers for supervised task A",
+   "files_read": [
+     "README.md",
+     "docs/PORTFOLIOZERO_PLAN_V1.md",
+     "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md",
+     "docs/PORTFOLIOZERO — Plano V2.md",
+     "docs/DEVELOPMENT_STATUS.md",
+     "docs/TPM_BRIEFING_PORTFOLIOZERO.md",
+     "docs/TASK_008_COMPLETION_REPORT.md",
+     "docs/TASK_010_COMPLETION_REPORT.md",
+     "docs/TASK_011_COMPLETION_REPORT.md",
+     "docs/universe/UNIVERSE_DATA_PIPELINE_V1.md",
+     "docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md",
+     "docs/universe/UNIVERSE_PRELIST_RUNBOOK_V1.md",
+     "docs/universe/UNIVERSE_SUPERVISED_RUNBOOK_V1.md",
+     "docs/universe/UNIVERSE_DECISION_LOG_TEMPLATE.md",
+     "docs/universe/UNIVERSE_TRILHO_A_OVERVIEW.md",
+     "scripts/agno_runner.py",
+     "scripts/agno_entrypoint_exec.py",
+     "scripts/agno_entrypoint_select.py",
+     "scripts/fetch_market_data.py",
+     "scripts/build_universe_candidates.py",
+     "scripts/build_universe_supervised.py",
+     "scripts/generate_sample_market_data.py",
+     "scripts/generate_decision_package_v1.py",
+     "modules/portfoliozero/core/data/market_data_ingestion.py",
+     "modules/portfoliozero/core/data/universe_candidates_pipeline.py",
+     "modules/portfoliozero/core/data/universe_candidates_pipeline_contract.md",
+     "modules/portfoliozero/core/universe/universe_supervised_selector.py",
+     "config/agno/runtime_entrypoint.json",
+     "config/experiments/universe_selection_rules_v1.yaml",
+     "config/experiments/universe_supervised_selection_rules_v1.yaml",
+     "config/experiments/universe_data_sources_v1.yaml",
+     "config/experiments/universe_pipeline_topology_v1.yaml",
+     "planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json",
+     "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json",
+     "planning/task_specs/TASK_A_009_UNIVERSE_MINI_PIPELINE_V1.json",
+     "planning/task_specs/TASK_A_010_UNIVERSE_E2E_SAMPLE_TO_SUPERVISED_V1.json",
+     "planning/task_specs/TASK_A_011_DECISION_PACKAGE_V1.json",
+     "planning/runs/TASK_A_004/S1_GIT_CLEAN_REQUIRED.txt",
+     "planning/runs/TASK_A_007/report.json",
+     "planning/runs/TASK_A_007/S3_AGNO_PROBE.txt",
+     "planning/runs/TASK_A_008/S1_GATE_CLEAN.txt",
+     "planning/runs/TASK_A_008/S3_AGNO_STEP_CONTRACT.txt",
+     "planning/runs/TASK_A_010/S4_RUN_UNIVERSE_CANDIDATES.txt",
+     "planning/runs/TASK_A_010/S6_RUN_UNIVERSE_SUPERVISED.txt",
+     "planning/runs/TASK_A_011/S3_GENERATE_DECISION_PACKAGE.txt",
+     "planning/runs/TASK_A_011/S4_VERIFY_DECISION_JSON.txt",
+     "planning/runs/TASK_A_011/report.json",
+     "planning/runs/TASK_A_010/report.json",
+     "planning/runs/TASK_A_009/report.json",
+     "data/universe/UNIVERSE_CANDIDATES.schema.md",
+     "data/decisions/decision_TASK_A_011.json"
+   ],
+   "evidence_items": [
+     {
+       "id": "E01",
+       "path": "docs/PORTFOLIOZERO_PLAN_V1.md",
+       "line_range": "L24-L33",
+       "excerpt_sha1": "7621b34c5c23924eb4b570a004b91972f847a443",
+       "note": "Contexto e objetivos do projeto (V1)"
+     },
+     {
+       "id": "E02",
+       "path": "docs/PORTFOLIOZERO_PLAN_V1.md",
+       "line_range": "L41-L56",
+       "excerpt_sha1": "de3357eee20e3ffc3cd950b688f0c4ce006644d6",
+       "note": "Capital inicial e circuito fechado (V1)"
+     },
+     {
+       "id": "E03",
+       "path": "docs/PORTFOLIOZERO_PLAN_V1.md",
+       "line_range": "L148-L168",
+       "excerpt_sha1": "12c03e3ec7075cd1f82603ba4e56717019618b3a",
+       "note": "Universo ~30 e carteira ~10 (V1)"
+     },
+     {
+       "id": "E04",
+       "path": "docs/PORTFOLIOZERO_PLAN_V1.md",
+       "line_range": "L231-L248",
+       "excerpt_sha1": "94d013fa30149547255a025af68a8b0a3b06e2db",
+       "note": "Cadência de venda diária e compra semanal (V1)"
+     },
+     {
+       "id": "E05",
+       "path": "docs/PORTFOLIOZERO_PLAN_V1.md",
+       "line_range": "L290-L305",
+       "excerpt_sha1": "275b89fd664e81ba5889392eeb15ee80a73aa247",
+       "note": "Roadmap por fases e Trilho A (V1)"
+     },
+     {
+       "id": "E06",
+       "path": "docs/PORTFOLIOZERO_PLAN_V1.md",
+       "line_range": "L469-L475",
+       "excerpt_sha1": "303671ca42bc882b489ecd8febf218a60367c6f4",
+       "note": "Decisão GO/NO-GO é do Owner (V1)"
+     },
+     {
+       "id": "E07",
+       "path": "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md",
+       "line_range": "L1-L35",
+       "excerpt_sha1": "6f78f121e57a7be3efedffb8e355aeef6c70d79b",
+       "note": "Parâmetros travados no V2"
+     },
+     {
+       "id": "E08",
+       "path": "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md",
+       "line_range": "L17-L21",
+       "excerpt_sha1": "2b2dbee1bc0f76cfc0291c21c5b799d436815b6a",
+       "note": "Tese V2: execução por TASKs e evidências"
+     },
+     {
+       "id": "E09",
+       "path": "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md",
+       "line_range": "L38-L58",
+       "excerpt_sha1": "0d4d52b0e7b721da1622cddda55b33c5b8776d57",
+       "note": "Quatro produtos do sistema (V2)"
+     },
+     {
+       "id": "E10",
+       "path": "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md",
+       "line_range": "L61-L71",
+       "excerpt_sha1": "e860eaa832bf263ba0fee84f79f4c3c6d12d2fa0",
+       "note": "Papel de Agno vs shell (V2)"
+     },
+     {
+       "id": "E11",
+       "path": "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md",
+       "line_range": "L73-L118",
+       "excerpt_sha1": "9cc2cb036a498790d9d092da0374ec3fd2ddf5f8",
+       "note": "Roadmap V2 por fases"
+     },
+     {
+       "id": "E12",
+       "path": "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md",
+       "line_range": "L139-L149",
+       "excerpt_sha1": "7efb79dc51efa653ca9873069125790271555b56",
+       "note": "Critério de pronto do V2"
+     },
+     {
+       "id": "E13",
+       "path": "scripts/agno_runner.py",
+       "line_range": "L182-L214",
+       "excerpt_sha1": "038a13fb305da0f455a9ae55671b024f13996a30",
+       "note": "Contrato do step type=agno (payload/exec)"
+     },
+     {
+       "id": "E14",
+       "path": "planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json",
+       "line_range": "L1-L53",
+       "excerpt_sha1": "00718674ab30751ca986d7b9931098a479b97c75",
+       "note": "TASK_A_007 com gate allowlist e step agno"
+     },
+     {
+       "id": "E15",
+       "path": "planning/runs/TASK_A_007/report.json",
+       "line_range": "L1-L33",
+       "excerpt_sha1": "4b273b8e9e913c680ab6de025ecaa7bead16ba42",
+       "note": "Run A_007 com overall_pass true"
+     },
+     {
+       "id": "E16",
+       "path": "planning/runs/TASK_A_007/S3_AGNO_PROBE.txt",
+       "line_range": "L1-L15",
+       "excerpt_sha1": "6336548df5165db08a0ac14e86de991e84cf9d00",
+       "note": "Agno probe com selected_fqn e CALL_OK"
+     },
+     {
+       "id": "E17",
+       "path": "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json",
+       "line_range": "L1-L43",
+       "excerpt_sha1": "385c041993a1429143eb1c4204b85812a629b732",
+       "note": "TASK_A_008 com gate clean e step agno"
+     },
+     {
+       "id": "E18",
+       "path": "planning/runs/TASK_A_008/S1_GATE_CLEAN.txt",
+       "line_range": "L1-L6",
+       "excerpt_sha1": "8042dfb441c2f9247a79b5991cedeb86897811f6",
+       "note": "Gate clean passando (repo clean)"
+     },
+     {
+       "id": "E19",
+       "path": "planning/runs/TASK_A_008/S3_AGNO_STEP_CONTRACT.txt",
+       "line_range": "L1-L15",
+       "excerpt_sha1": "463e7921baa74068191b76772ca12e646f170188",
+       "note": "Agno step contract com CALL_OK"
+     },
+     {
+       "id": "E20",
+       "path": "planning/runs/TASK_A_004/S1_GIT_CLEAN_REQUIRED.txt",
+       "line_range": "L1-L6",
+       "excerpt_sha1": "c3fb6cb67666501ffd2e4173f1fa3ec392f8a479",
+       "note": "Gate clean falhando quando repo sujo"
+     },
+     {
+       "id": "E21",
+       "path": "config/agno/runtime_entrypoint.json",
+       "line_range": "L1-L13",
+       "excerpt_sha1": "7bcade92fa9d13fe561e6011111df456c15459ab",
+       "note": "Runtime entrypoint selecionado"
+     },
+     {
+       "id": "E22",
+       "path": "planning/task_specs/TASK_A_011_DECISION_PACKAGE_V1.json",
+       "line_range": "L1-L55",
+       "excerpt_sha1": "19917e26f03b758fedb7770fdeeae997528502a6",
+       "note": "TASK_A_011 gera Decision Package v1"
+     },
+     {
+       "id": "E23",
+       "path": "planning/runs/TASK_A_011/S3_GENERATE_DECISION_PACKAGE.txt",
+       "line_range": "L1-L15",
+       "excerpt_sha1": "edf4229019e40cad445760d0d81f42e98e9d69e7",
+       "note": "Execução de geração do Decision Package v1"
+     },
+     {
+       "id": "E24",
+       "path": "planning/runs/TASK_A_011/S4_VERIFY_DECISION_JSON.txt",
+       "line_range": "L10-L18",
+       "excerpt_sha1": "b89f3f707e33efc2f79b6e579fed8c04c17453be",
+       "note": "Verificações de contrato/estrutura do Decision Package"
+     },
+     {
+       "id": "E25",
+       "path": "scripts/generate_decision_package_v1.py",
+       "line_range": "L76-L105",
+       "excerpt_sha1": "dc003ac0f394add5b4f45d76c9253d2c1daba408",
+       "note": "Decision Package baseline HOLD (sem estratégia)"
+     },
+     {
+       "id": "E26",
+       "path": "data/decisions/decision_TASK_A_011.json",
+       "line_range": "L1-L46",
+       "excerpt_sha1": "68534eb42863b7725fea1c0c2c7a817aeb840e94",
+       "note": "Artefato de Decision Package gerado"
+     },
+     {
+       "id": "E27",
+       "path": "planning/runs/TASK_A_010/S4_RUN_UNIVERSE_CANDIDATES.txt",
+       "line_range": "L146-L163",
+       "excerpt_sha1": "66d32b63e2b4fbc0b3e2f942ba624b656e6fc0a2",
+       "note": "Erro de schema na execução do candidates"
+     },
+     {
+       "id": "E28",
+       "path": "planning/runs/TASK_A_010/S6_RUN_UNIVERSE_SUPERVISED.txt",
+       "line_range": "L5-L9",
+       "excerpt_sha1": "6493cd574fedc2cae0d149d40df73a88967aa669",
+       "note": "Uso de supervised parquet como candidates"
+     },
+     {
+       "id": "E29",
+       "path": "config/experiments/universe_selection_rules_v1.yaml",
+       "line_range": "L18-L45",
+       "excerpt_sha1": "e95e05ba090243ad35ce34938ea783fd0a3eb5b8",
+       "note": "Parâmetros de pré-lista (candidates)"
+     },
+     {
+       "id": "E30",
+       "path": "config/experiments/universe_supervised_selection_rules_v1.yaml",
+       "line_range": "L20-L65",
+       "excerpt_sha1": "f5d62804c27eb544764b451b0128b4ea0fc9a0a6",
+       "note": "Parâmetros de seleção do universo supervisionado"
+     },
+     {
+       "id": "E31",
+       "path": "modules/portfoliozero/core/data/market_data_ingestion.py",
+       "line_range": "L1-L35",
+       "excerpt_sha1": "39a04b4add28409658480a042a98b806c8dcbc73",
+       "note": "Ingestão de dados (yfinance)"
+     },
+     {
+       "id": "E32",
+       "path": "modules/portfoliozero/core/data/universe_candidates_pipeline.py",
+       "line_range": "L475-L563",
+       "excerpt_sha1": "daeb31df9c405ad2d490f3dc91f28181243a7b33",
+       "note": "Pipeline UNIVERSE_CANDIDATES"
+     },
+     {
+       "id": "E33",
+       "path": "modules/portfoliozero/core/universe/universe_supervised_selector.py",
+       "line_range": "L197-L209",
+       "excerpt_sha1": "b51b97d127d108e277b0f568cfe1afa0cdf181da",
+       "note": "Seleção do universo supervisionado"
+     },
+     {
+       "id": "E34",
+       "path": "data/universe/UNIVERSE_CANDIDATES.schema.md",
+       "line_range": "L18-L55",
+       "excerpt_sha1": "fa7ca2aa8185977671802498e8735871542e519a",
+       "note": "Schema do UNIVERSE_CANDIDATES"
+     },
+     {
+       "id": "E35",
+       "path": "docs/DEVELOPMENT_STATUS.md",
+       "line_range": "L1-L18",
+       "excerpt_sha1": "007977e206438b34f10861f75ed0268d455ee0ae",
+       "note": "Status geral de desenvolvimento"
+     },
+     {
+       "id": "E36",
+       "path": "docs/TPM_BRIEFING_PORTFOLIOZERO.md",
+       "line_range": "L1-L20",
+       "excerpt_sha1": "58e203bcc6362c2f675af2033e7bf9d37fd66f49",
+       "note": "Briefing para TPM"
+     },
+     {
+       "id": "E37",
+       "path": "docs/TASK_008_COMPLETION_REPORT.md",
+       "line_range": "L1-L15",
+       "excerpt_sha1": "fd0a267a72d170f872f791bb668da9fa6e5ad634",
+       "note": "Relatório de conclusão TASK_008"
+     },
+     {
+       "id": "E38",
+       "path": "docs/TASK_010_COMPLETION_REPORT.md",
+       "line_range": "L1-L15",
+       "excerpt_sha1": "99dd2a6eae224c2497ca1b6601416255e5bffe5e",
+       "note": "Relatório de conclusão TASK_010"
+     },
+     {
+       "id": "E39",
+       "path": "docs/TASK_011_COMPLETION_REPORT.md",
+       "line_range": "L1-L15",
+       "excerpt_sha1": "26fb3f861a88c50961a3a871003b24471067e5c8",
+       "note": "Relatório de conclusão TASK_011"
+     },
+     {
+       "id": "E40",
+       "path": "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md",
+       "line_range": "L154-L156",
+       "excerpt_sha1": "bace8e32203c2530193f6d6bde446d855ef76548",
+       "note": "Pergunta de próximo passo (BUY/SELL vs HOLD/SELL)"
+     },
+     {
+       "id": "E41",
+       "path": "docs/universe/UNIVERSE_DATA_PIPELINE_V1.md",
+       "line_range": "L1-L19",
+       "excerpt_sha1": "726b1595818668aa30cf1f5f4d7e6c67f1820e9c",
+       "note": "Documento do pipeline de dados do universo"
+     },
+     {
+       "id": "E42",
+       "path": "docs/universe/UNIVERSE_SELECTION_CRITERIA_V1.md",
+       "line_range": "L1-L19",
+       "excerpt_sha1": "1065952364464e787e70fea8b2ce8fb4a90f56ad",
+       "note": "Critérios de seleção do universo"
+     },
+     {
+       "id": "E43",
+       "path": "docs/universe/UNIVERSE_PRELIST_RUNBOOK_V1.md",
+       "line_range": "L1-L21",
+       "excerpt_sha1": "68d2c03749ef0e043ff8d8173b768d1930e8cda0",
+       "note": "Runbook do UNIVERSE_CANDIDATES"
+     },
+     {
+       "id": "E44",
+       "path": "docs/universe/UNIVERSE_SUPERVISED_RUNBOOK_V1.md",
+       "line_range": "L1-L22",
+       "excerpt_sha1": "24962fe69afcfb286bcc6acd113e07cf16e4bd6d",
+       "note": "Runbook do UNIVERSE_SUPERVISED"
+     },
+     {
+       "id": "E45",
+       "path": "docs/universe/UNIVERSE_DECISION_LOG_TEMPLATE.md",
+       "line_range": "L1-L14",
+       "excerpt_sha1": "a0aec0439242733be6afbc1b09a95a93a7f6d310",
+       "note": "Template de log de decisão do universo"
+     },
+     {
+       "id": "E46",
+       "path": "docs/universe/UNIVERSE_TRILHO_A_OVERVIEW.md",
+       "line_range": "L1-L11",
+       "excerpt_sha1": "a368ec2306ddb4cacabc5dfe7aa430941aa50f55",
+       "note": "Visão geral do Trilho A"
+     }
+   ],
+   "claims_validation": [
+     {
+       "claim": "Step type=agno exige payload/exec e bloqueia commands",
+       "verdict": "SIM",
+       "evidence_ids": [
+         "E13"
+       ]
+     },
+     {
+       "claim": "TASK_A_007 smoke de agno executa e passa",
+       "verdict": "SIM",
+       "evidence_ids": [
+         "E14",
+         "E15",
+         "E16"
+       ]
+     },
+     {
+       "claim": "TASK_A_008 valida contrato agno com gate clean",
+       "verdict": "SIM",
+       "evidence_ids": [
+         "E17",
+         "E18",
+         "E19"
+       ]
+     },
+     {
+       "claim": "Gate clean pode falhar em repo sujo",
+       "verdict": "SIM",
+       "evidence_ids": [
+         "E20"
+       ]
+     },
+     {
+       "claim": "Decision Package v1 é baseline HOLD (sem estratégia)",
+       "verdict": "SIM",
+       "evidence_ids": [
+         "E25",
+         "E26"
+       ]
+     },
+     {
+       "claim": "Pipeline de candidates falhou em A_010 por erro de schema",
+       "verdict": "SIM",
+       "evidence_ids": [
+         "E27"
+       ]
+     },
+     {
+       "claim": "Execução A_010 usou supervised parquet como candidates",
+       "verdict": "SIM",
+       "evidence_ids": [
+         "E28"
+       ]
+     },
+     {
+       "claim": "Runtime Agno selecionado é agno.agent.Agent",
+       "verdict": "SIM",
+       "evidence_ids": [
+         "E21",
+         "E16",
+         "E19"
+       ]
+     }
+   ],
+   "plan_to_impl_map": [
+     {
+       "plan_item_id": "P1_MARKET_DATA_PACKAGE",
+       "described_in": [
+         "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md"
+       ],
+       "implemented_in": [
+         "modules/portfoliozero/core/data/market_data_ingestion.py",
+         "scripts/fetch_market_data.py",
+         "config/experiments/universe_data_sources_v1.yaml"
+       ],
+       "status": "partial",
+       "evidence_ids": [
+         "E09",
+         "E31",
+         "E29"
+       ]
+     },
+     {
+       "plan_item_id": "P2_UNIVERSE_PACKAGE",
+       "described_in": [
+         "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md"
+       ],
+       "implemented_in": [
+         "modules/portfoliozero/core/data/universe_candidates_pipeline.py",
+         "modules/portfoliozero/core/universe/universe_supervised_selector.py",
+         "scripts/build_universe_candidates.py",
+         "scripts/build_universe_supervised.py"
+       ],
+       "status": "partial",
+       "evidence_ids": [
+         "E09",
+         "E32",
+         "E33",
+         "E27"
+       ]
+     },
+     {
+       "plan_item_id": "P3_RISK_PACKAGE",
+       "described_in": [
+         "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md"
+       ],
+       "implemented_in": [],
+       "status": "absent",
+       "evidence_ids": [
+         "E09",
+         "E11"
+       ]
+     },
+     {
+       "plan_item_id": "P4_DECISION_PACKAGE",
+       "described_in": [
+         "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md"
+       ],
+       "implemented_in": [
+         "scripts/generate_decision_package_v1.py",
+         "planning/task_specs/TASK_A_011_DECISION_PACKAGE_V1.json",
+         "data/decisions/decision_TASK_A_011.json"
+       ],
+       "status": "exists_baseline_hold",
+       "evidence_ids": [
+         "E09",
+         "E22",
+         "E25",
+         "E26"
+       ]
+     },
+     {
+       "plan_item_id": "P5_RUNNER_AGNO_GOVERNANCE",
+       "described_in": [
+         "docs/PORTFOLIOZERO — PLAN_V2 (consolidado).md"
+       ],
+       "implemented_in": [
+         "scripts/agno_runner.py",
+         "config/agno/runtime_entrypoint.json",
+         "planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json",
+         "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json"
+       ],
+       "status": "exists",
+       "evidence_ids": [
+         "E10",
+         "E13",
+         "E14",
+         "E17",
+         "E21"
+       ]
+     }
+   ]
+ }
