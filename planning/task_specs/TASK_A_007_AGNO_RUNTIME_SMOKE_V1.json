@@ -7,6 +7,8 @@
       "gate_allowlist": [
         "scripts/agno_runner.py",
         "scripts/agno_entrypoint_exec.py",
+        "scripts/agno_entrypoint_select.py",
+        "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
         "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
         "planning/task_specs/TASK_A_007_AGNO_RUNTIME_SMOKE_V1.json",
         "config/agno/",

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shlex
 import subprocess
 import sys
 from dataclasses import dataclass
@@ -25,6 +26,12 @@ def utc_now() -> str:
 def run_cmd(cmd: str, cwd: str | None = None) -> dict[str, Any]:
     p = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=cwd)
     return {"cmd": cmd, "rc": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
+
+
+def run_cmd_args(args: list[str], cwd: str | None = None) -> dict[str, Any]:
+    p = subprocess.run(args, shell=False, capture_output=True, text=True, cwd=cwd)
+    shown = " ".join(shlex.quote(a) for a in args)
+    return {"cmd": shown, "rc": p.returncode, "stdout": p.stdout, "stderr": p.stderr}
 
 
 def write_text(path: Path, text: str) -> None:
@@ -139,7 +146,7 @@ def main() -> int:
                     if "git status --porcelain" in e["cmd"]:
                         status_out = e["stdout"]
                         break
-                if status_out.strip() or any("git status --porcelain" in e["cmd"] for e in logs):
+                if any("git status --porcelain" in e["cmd"] for e in logs):
                     changed = parse_porcelain_paths(status_out)
                     if not allowlist_ok(changed, list(allowlist)):
                         step_pass = False
@@ -147,28 +154,34 @@ def main() -> int:
             write_shell_artifact(artifact_path, step_id, step_type, logs)
 
         elif step_type == "agno":
-            # Delegação ao entrypoint selecionado, via script dedicado
+            # Delegação ao entrypoint selecionado, via executor dedicado, sem shell quoting
             payload = step.get("payload", {})
             mode = step.get("mode", "probe")
+
             payload_json = json.dumps(payload, ensure_ascii=False)
 
-            cmd = (
-                f"{sys.executable} scripts/agno_entrypoint_exec.py "
-                f"--mode {mode} "
-                f"--task-id {task_id} "
-                f"--step-id {step_id} "
-                f"--payload-json {json.dumps(payload_json)} "
-                f"--out {artifact_path}"
-            )
-            # json.dumps(payload_json) garante escaping seguro como string literal (com aspas)
-            logs = [run_cmd(cmd, cwd=repo_path)]
+            args_exec = [
+                sys.executable,
+                "scripts/agno_entrypoint_exec.py",
+                "--mode",
+                str(mode),
+                "--task-id",
+                str(task_id),
+                "--step-id",
+                str(step_id),
+                "--payload-json",
+                payload_json,
+                "--out",
+                str(artifact_path),
+            ]
+
+            logs = [run_cmd_args(args_exec, cwd=repo_path)]
             commands_count = 1
             step_pass = logs[0]["rc"] == 0
 
-            # Complementa artifact com stdout/stderr do exec (sem sobrescrever a parte principal)
+            # Complementa artifact com stdout/stderr do exec
             with artifact_path.open("a", encoding="utf-8") as f:
-                f.write("\n")
-                f.write("-" * 80 + "\n")
+                f.write("\n" + ("-" * 80) + "\n")
                 f.write("RUNNER_EXEC_STDOUT/STDERR\n\n")
                 e = logs[0]
                 f.write(f"CMD: {e['cmd']}\nRC: {e['rc']}\n")

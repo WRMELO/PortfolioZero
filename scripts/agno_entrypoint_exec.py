@@ -5,7 +5,6 @@ import argparse
 import importlib
 import inspect
 import json
-import sys
 import traceback
 from datetime import datetime, timezone
 from pathlib import Path
@@ -44,10 +43,7 @@ def signature_str(obj: Any) -> str:
 
 
 def try_call(obj: Any, payload: dict[str, Any]) -> tuple[bool, str, str]:
-    """
-    Return: (called_ok, call_strategy, call_outcome_text)
-    """
-    # 1) Se parece CLI-style (args/argv), tentar help
+    # 1) tentar padrão argv/args
     try:
         sig = inspect.signature(obj)
         params = list(sig.parameters.values())
@@ -64,10 +60,9 @@ def try_call(obj: Any, payload: dict[str, Any]) -> tuple[bool, str, str]:
         ok = code == 0
         return ok, "SystemExit(help-ish)", f"SystemExit(code={code})"
     except Exception:
-        # segue para próximas tentativas
         pass
 
-    # 2) Se é classe, tentar instanciar e chamar .run() ou __call__()
+    # 2) classe: instanciar e tentar .run(payload) / __call__(payload)
     try:
         if inspect.isclass(obj):
             inst = obj()  # type: ignore[call-arg]
@@ -87,14 +82,13 @@ def try_call(obj: Any, payload: dict[str, Any]) -> tuple[bool, str, str]:
     except Exception as ex:
         return False, "class() exception", f"{type(ex).__name__}: {ex}"
 
-    # 3) Se é função/callable, tentar chamar com payload se aceita, senão sem args
+    # 3) callable: tentar kwargs conhecidos, senão call() se possível
     try:
         if callable(obj):
             sig = inspect.signature(obj)
             params = list(sig.parameters.values())
             names = {p.name for p in params}
 
-            # montar kwargs apenas com chaves que existam
             kwargs: dict[str, Any] = {}
             if "payload" in names:
                 kwargs["payload"] = payload
@@ -103,17 +97,14 @@ def try_call(obj: Any, payload: dict[str, Any]) -> tuple[bool, str, str]:
             if "data" in names:
                 kwargs["data"] = payload
 
-            # se tem kwargs opcionais, chamar com kwargs
             if kwargs:
                 obj(**kwargs)  # type: ignore[misc]
                 return True, f"call({', '.join(kwargs.keys())})", "OK"
 
-            # se não tem parâmetros obrigatórios: call()
             if len(params) == 0:
                 obj()  # type: ignore[misc]
                 return True, "call()", "OK"
 
-            # se tem params, mas todos têm default ou são VAR_POSITIONAL/VAR_KEYWORD
             all_optional = True
             for p in params:
                 if p.kind in (p.VAR_POSITIONAL, p.VAR_KEYWORD):
@@ -181,16 +172,12 @@ def main() -> int:
         body.append(f"PAYLOAD_KEYS: {sorted(list(payload.keys()))}")
         body.append("")
 
-        # No modo "probe", a prova mínima é: import + introspecção.
-        # Também tentamos uma chamada "safe" quando possível, sem assumir contrato.
-        called_ok, strategy, outcome = try_call(obj, payload if args.mode == "probe" else payload)
+        called_ok, strategy, outcome = try_call(obj, payload)
 
         body.append(f"CALL_ATTEMPTED: {strategy}")
         body.append(f"CALL_OUTCOME: {outcome}")
         body.append(f"CALL_OK: {called_ok}")
 
-        # Se não chamou, mas importou e introspectou, consideramos PASS em probe.
-        # No futuro, no modo "step", vamos exigir chamada efetiva com contrato fechado.
         if args.mode == "probe":
             rc = 0
         else:
