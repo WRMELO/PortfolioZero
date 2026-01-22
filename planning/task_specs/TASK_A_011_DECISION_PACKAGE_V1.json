@@ -1,0 +1,59 @@
+{
+    "task_id": "TASK_A_011",
+    "name": "DECISION_PACKAGE_V1",
+    "title": "Gerar Decision Package v1 (offline, determinístico) a partir do UNIVERSE_SUPERVISED",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "scripts/",
+        "data/",
+        "planning/runs/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_011/S1_GATE_ALLOWLIST.txt"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_COMPILE",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m py_compile scripts/generate_decision_package_v1.py"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_011/S2_CHECK_COMPILE.txt"
+        ]
+      },
+      {
+        "step_id": "S3_GENERATE_DECISION_PACKAGE",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && mkdir -p data/decisions",
+          "cd /home/wilson/PortfolioZero && python scripts/generate_decision_package_v1.py --supervised-dir data/universe/supervised_TASK_A_010 --candidates-path-file planning/runs/TASK_A_010/candidates_path.txt --out data/decisions/decision_TASK_A_011.json"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_011/S3_GENERATE_DECISION_PACKAGE.txt"
+        ]
+      },
+      {
+        "step_id": "S4_VERIFY_DECISION_JSON",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && test -f data/decisions/decision_TASK_A_011.json",
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport json\nfrom pathlib import Path\np = Path('data/decisions/decision_TASK_A_011.json')\nd = json.loads(p.read_text(encoding='utf-8'))\nassert d.get('contract') == 'decision_package_v1'\nassert isinstance(d.get('universe'), list) and len(d['universe']) > 0\nassert isinstance(d.get('actions'), list) and len(d['actions']) == len(d['universe'])\nprint('OK contract=', d['contract'])\nprint('universe_size=', len(d['universe']))\nprint('first_action=', d['actions'][0])\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_011/S4_VERIFY_DECISION_JSON.txt"
+        ]
+      }
+    ]
+  }
+  

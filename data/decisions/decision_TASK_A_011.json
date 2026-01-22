@@ -1,0 +1,227 @@
+{
+  "contract": "decision_package_v1",
+  "generated_at_utc": "2026-01-22T14:34:54.696396+00:00",
+  "source_candidates_path": "data/universe/supervised_TASK_A_010/UNIVERSE_SUPERVISED.parquet",
+  "source_supervised_dir": "data/universe/supervised_TASK_A_010",
+  "supervised_file": "data/universe/supervised_TASK_A_010/UNIVERSE_SUPERVISED.parquet",
+  "universe_size": 30,
+  "universe": [
+    "ABEV3.SA",
+    "AURE3.SA",
+    "B3SA3.SA",
+    "BBAS3.SA",
+    "BBDC4.SA",
+    "BEEF3.SA",
+    "BPAC11.SA",
+    "CMIG4.SA",
+    "COGN3.SA",
+    "CPLE6.SA",
+    "ELET3.SA",
+    "EQTL3.SA",
+    "GGBR4.SA",
+    "ITSA4.SA",
+    "ITUB4.SA",
+    "LREN3.SA",
+    "MGLU3.SA",
+    "PETR3.SA",
+    "PETR4.SA",
+    "PRIO3.SA",
+    "RADL3.SA",
+    "RAIL3.SA",
+    "RDOR3.SA",
+    "RENT3.SA",
+    "TIMS3.SA",
+    "UGPA3.SA",
+    "USIM5.SA",
+    "VALE3.SA",
+    "VBBR3.SA",
+    "WEGE3.SA"
+  ],
+  "actions": [
+    {
+      "ticker": "ABEV3.SA",
+      "action": "HOLD",
+      "score": 30.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "AURE3.SA",
+      "action": "HOLD",
+      "score": 29.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "B3SA3.SA",
+      "action": "HOLD",
+      "score": 28.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "BBAS3.SA",
+      "action": "HOLD",
+      "score": 27.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "BBDC4.SA",
+      "action": "HOLD",
+      "score": 26.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "BEEF3.SA",
+      "action": "HOLD",
+      "score": 25.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "BPAC11.SA",
+      "action": "HOLD",
+      "score": 24.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "CMIG4.SA",
+      "action": "HOLD",
+      "score": 23.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "COGN3.SA",
+      "action": "HOLD",
+      "score": 22.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "CPLE6.SA",
+      "action": "HOLD",
+      "score": 21.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "ELET3.SA",
+      "action": "HOLD",
+      "score": 20.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "EQTL3.SA",
+      "action": "HOLD",
+      "score": 19.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "GGBR4.SA",
+      "action": "HOLD",
+      "score": 18.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "ITSA4.SA",
+      "action": "HOLD",
+      "score": 17.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "ITUB4.SA",
+      "action": "HOLD",
+      "score": 16.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "LREN3.SA",
+      "action": "HOLD",
+      "score": 15.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "MGLU3.SA",
+      "action": "HOLD",
+      "score": 14.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "PETR3.SA",
+      "action": "HOLD",
+      "score": 13.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "PETR4.SA",
+      "action": "HOLD",
+      "score": 12.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "PRIO3.SA",
+      "action": "HOLD",
+      "score": 11.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "RADL3.SA",
+      "action": "HOLD",
+      "score": 10.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "RAIL3.SA",
+      "action": "HOLD",
+      "score": 9.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "RDOR3.SA",
+      "action": "HOLD",
+      "score": 8.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "RENT3.SA",
+      "action": "HOLD",
+      "score": 7.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "TIMS3.SA",
+      "action": "HOLD",
+      "score": 6.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "UGPA3.SA",
+      "action": "HOLD",
+      "score": 5.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "USIM5.SA",
+      "action": "HOLD",
+      "score": 4.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "VALE3.SA",
+      "action": "HOLD",
+      "score": 3.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "VBBR3.SA",
+      "action": "HOLD",
+      "score": 2.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    },
+    {
+      "ticker": "WEGE3.SA",
+      "action": "HOLD",
+      "score": 1.0,
+      "rationale": "decision_package_v1: baseline HOLD (no strategy yet)"
+    }
+  ],
+  "notes": [
+    "offline_deterministic",
+    "no_trading_strategy_applied",
+    "actions_are_baseline_hold"
+  ]
+}
