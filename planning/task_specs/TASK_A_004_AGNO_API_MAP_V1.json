@@ -1,0 +1,48 @@
+{
+    "task_id": "TASK_A_004",
+    "name": "AGNO_API_MAP_V1",
+    "title": "Gerar mapa auditável da API Python do agno com gate allowlist (sem CLI)",
+    "objective": "Como não há console_scripts e o CLI não existe, mapear por evidência a API Python disponível no agno==instalado e falhar apenas se houver sujeira fora do allowlist previsto (ex.: notebooks).",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "scripts/agno_api_map.py",
+        "planning/task_specs/TASK_A_004_AGNO_API_MAP_V1.json",
+        "planning/runs/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200",
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport json, subprocess, sys\nfrom pathlib import Path\n\nspec_path = Path('planning/task_specs/TASK_A_004_AGNO_API_MAP_V1.json')\nspec = json.loads(spec_path.read_text(encoding='utf-8'))\nallow = spec.get('inputs', {}).get('gate_allowlist', [])\n\np = subprocess.run('git status --porcelain', shell=True, capture_output=True, text=True)\nporcelain = p.stdout\n\nchanged = []\nfor line in porcelain.splitlines():\n    if not line.strip():\n        continue\n    tail = line[3:].strip()\n    if ' -> ' in tail:\n        tail = tail.split(' -> ', 1)[1].strip()\n    changed.append(tail)\n\ndef allowed(path: str) -> bool:\n    for a in allow:\n        if a.endswith('/') and path.startswith(a):\n            return True\n        if path == a:\n            return True\n    return False\n\nbad = [c for c in changed if not allowed(c)]\nprint('ALLOWLIST=', allow)\nprint('CHANGED=', changed)\nprint('BAD=', bad)\n\nsys.exit(0 if len(bad) == 0 else 2)\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_004/S1_GATE_ALLOWLIST.txt"
+        ]
+      },
+      {
+        "step_id": "S2_RUN_API_MAP",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_api_map.py --out planning/runs/TASK_A_004/agno_api_map.json"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_004/S2_RUN_API_MAP.txt"
+        ]
+      },
+      {
+        "step_id": "S3_SUMMARY",
+        "type": "shell",
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nimport json\np='planning/runs/TASK_A_004/agno_api_map.json'\nd=json.load(open(p,'r',encoding='utf-8'))\nprint('agno_version=', d.get('agno_version'))\nprint('modules_mapped=', len(d.get('modules',[])))\nprint('submodules=', len(d.get('submodules',[])))\nprint('candidates_counts=')\nfor k,v in (d.get('candidates') or {}).items():\n    print(' -', k, len(v))\nPY"
+        ],
+        "artifacts": [
+          "planning/runs/TASK_A_004/S3_SUMMARY.txt"
+        ]
+      }
+    ]
+  }
+  
