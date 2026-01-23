@@ -1,0 +1,68 @@
+{
+    "task_id": "TASK_D_005",
+    "name": "DAILY_E2E_SELL_ONLY_SNAPSHOT_V1",
+    "title": "Daily E2E sell-only v1 + rebuild decision package using PORTFOLIO_SNAPSHOT_V1",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "planning/runs/",
+        "planning/reports/",
+        "data/",
+        "scripts/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_005/S1_GATE_ALLOWLIST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain=v1"
+        ]
+      },
+      {
+        "step_id": "S2_RUN_TASK_D_004_DAILY_E2E_BASELINE",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_005/S2_RUN_TASK_D_004_DAILY_E2E_BASELINE.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --task planning/task_specs/TASK_D_004_DAILY_E2E_SELL_ONLY_V1.json"
+        ]
+      },
+      {
+        "step_id": "S3_RUN_TASK_A_017_BUILD_PORTFOLIO_SNAPSHOT_V1",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_005/S3_RUN_TASK_A_017_BUILD_PORTFOLIO_SNAPSHOT_V1.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --task planning/task_specs/TASK_A_017_BUILD_PORTFOLIO_SNAPSHOT_V1_FROM_PARQUET.json"
+        ]
+      },
+      {
+        "step_id": "S4_REGENERATE_DECISION_PACKAGE_USING_SNAPSHOT_V1",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_005/S4_REGENERATE_DECISION_PACKAGE_USING_SNAPSHOT_V1.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/generate_daily_decision_sell_only_v1.py --risk data/risk/RISK_PACKAGE_V0.json --supervised-dir data/universe/supervised_TASK_A_012 --portfolio data/portfolio/PORTFOLIO_SNAPSHOT_V1.json --out data/decisions/DECISION_PACKAGE_DAILY_V1.json"
+        ]
+      },
+      {
+        "step_id": "S5_VERIFY_DECISION_PACKAGE_POINTS_TO_SNAPSHOT_V1",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_005/S5_VERIFY_DECISION_PACKAGE_POINTS_TO_SNAPSHOT_V1.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -c \"import json; p='data/decisions/DECISION_PACKAGE_DAILY_V1.json'; d=json.load(open(p)); ps=d.get('inputs',{}).get('portfolio_snapshot',''); assert ps.endswith('data/portfolio/PORTFOLIO_SNAPSHOT_V1.json') or ps.endswith('PORTFOLIO_SNAPSHOT_V1.json'); print('OK: decision package uses snapshot:', ps)\""
+        ]
+      }
+    ]
+  }
+  
