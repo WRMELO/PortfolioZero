@@ -1,0 +1,70 @@
+{
+    "task_id": "TASK_D_002",
+    "name": "MARKET_DATA_DAILY_IDEMPOTENT_V1",
+    "title": "Rotina diária idempotente de atualização de market prices (Yahoo/yfinance) com refresh window 60 dias e manifesto",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "scripts/",
+        "modules/",
+        "config/",
+        "planning/runs/",
+        "planning/reports/",
+        "data/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_002/S1_GATE_ALLOWLIST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_COMPILE",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_002/S2_CHECK_COMPILE.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m py_compile scripts/update_market_data_daily.py"
+        ]
+      },
+      {
+        "step_id": "S3_ENSURE_NO_SYNTHETIC_FILE",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_002/S3_ENSURE_NO_SYNTHETIC_FILE.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && test ! -f data/raw/market/prices/sample_market_data.parquet || (echo 'ERROR: sample_market_data.parquet existe em data/raw/market/prices (remova antes de rodar)' && exit 2)"
+        ]
+      },
+      {
+        "step_id": "S4_RUN_DAILY_UPDATE_REFRESH_60D",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_002/S4_RUN_DAILY_UPDATE_REFRESH_60D.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/update_market_data_daily.py --config config/experiments/universe_data_sources_v1.yaml --refresh-days 60 --manifest data/raw/market/prices/manifest_prices.json -v"
+        ]
+      },
+      {
+        "step_id": "S5_VALIDATE_PRICES_AND_MANIFEST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_002/S5_VALIDATE_PRICES_AND_MANIFEST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nfrom pathlib import Path\nimport json\nimport polars as pl\n\nprices_dir = Path('data/raw/market/prices')\nmanifest_path = prices_dir / 'manifest_prices.json'\n\n# 1) sample não pode existir\nsample = prices_dir / 'sample_market_data.parquet'\nif sample.exists():\n    raise SystemExit(f'ERROR: sample ainda existe: {sample}')\n\n# 2) manifesto deve existir\nif not manifest_path.exists():\n    raise SystemExit(f'ERROR: manifesto não encontrado: {manifest_path}')\n\nmanifest = json.loads(manifest_path.read_text(encoding='utf-8'))\nentries = manifest.get('entries', {}) or {}\n\n# 3) validar parquets (schema mínimo + unicidade por date)\nparquets = sorted(prices_dir.glob('*.parquet'))\nif not parquets:\n    raise SystemExit('ERROR: nenhum parquet encontrado em data/raw/market/prices')\n\nrequired = {'date','ticker','open','high','low','close','adj_close','volume','tipo_instrumento','setor'}\n\nbad = []\nfor p in parquets:\n    df = pl.read_parquet(p)\n    cols = set(df.columns)\n    missing = sorted(list(required - cols))\n    if missing:\n        bad.append((p.name, f'missing_cols={missing}'))\n        continue\n\n    # unicidade e ordenação por date por arquivo\n    n_unique = df.select(pl.col('date').n_unique()).item()\n    if n_unique != df.height:\n        bad.append((p.name, f'duplicate_dates: n_unique={n_unique} height={df.height}'))\n        continue\n\n    if not df.get_column('date').is_sorted():\n        bad.append((p.name, 'date_not_sorted'))\n        continue\n\n# 4) coerência do manifesto: deve ter ao menos os tickers presentes nos arquivos\n# (pode haver ticker sem arquivo em casos raros; aqui fazemos check mínimo)\nfiles_tickers = set()\nfor p in parquets:\n    # infer ticker pelo conteúdo\n    df = pl.read_parquet(p, columns=['ticker']).head(1)\n    if df.height == 1:\n        files_tickers.add(df.item(0,0))\n\nmanifest_tickers = set(entries.keys())\nmissing_in_manifest = sorted(list(files_tickers - manifest_tickers))\n\nprint('n_parquets=', len(parquets))\nprint('n_files_tickers=', len(files_tickers))\nprint('n_manifest_entries=', len(manifest_tickers))\nprint('missing_in_manifest=', missing_in_manifest[:20])\nprint('bad_files_count=', len(bad))\n\nif missing_in_manifest:\n    raise SystemExit(f'ERROR: tickers presentes em arquivos mas ausentes no manifesto (amostra): {missing_in_manifest[:20]}')\n\nif bad:\n    print('BAD FILES (amostra):')\n    for x in bad[:20]:\n        print('-', x)\n    raise SystemExit('ERROR: validação falhou para um ou mais parquets')\n\nprint('OK: validação concluída')\nPY"
+        ]
+      }
+    ]
+  }
+  
