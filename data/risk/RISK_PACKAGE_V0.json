@@ -1,6 +1,6 @@
 {
   "version": "v0",
-  "generated_at_utc": "2026-01-23T09:29:48.494750+00:00",
+  "generated_at_utc": "2026-01-23T09:32:44.146789+00:00",
   "source_supervised_parquet": "data/universe/supervised_TASK_A_012/UNIVERSE_SUPERVISED.parquet",
   "source_row_count": 30,
   "source_columns": [
@@ -20,12 +20,12 @@
   ],
   "ticker_field_used": "ticker",
   "universe": [
-    "WEGE3.SA",
-    "PETR4.SA",
-    "BBDC4.SA",
-    "BBAS3.SA",
     "VALE3.SA",
+    "BBAS3.SA",
     "ITUB4.SA",
+    "WEGE3.SA",
+    "BBDC4.SA",
+    "PETR4.SA",
     "ABEV3.SA",
     "ITSA4.SA",
     "CPLE6.SA",

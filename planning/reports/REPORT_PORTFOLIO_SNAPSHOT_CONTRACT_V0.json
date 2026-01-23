@@ -1,0 +1,74 @@
+{
+  "repo": "/home/wilson/PortfolioZero",
+  "head": "c2342edd1f549f3b2e736bc58d68f54747ee2d00",
+  "head_meta": {
+    "git_branch": "main",
+    "created_at_utc": "2026-01-23T09:36:29Z",
+    "task_id": "TASK_A_015"
+  },
+  "snapshot_path": "data/portfolio/PORTFOLIO_SNAPSHOT_V0.json",
+  "snapshot_contract_v0": {
+    "top_level_keys": [
+      "capital_brl",
+      "cash_brl",
+      "generated_at_utc",
+      "notes",
+      "positions",
+      "version"
+    ],
+    "positions_type": "list",
+    "positions_len": 10,
+    "positions_keys_union": [
+      "avg_price",
+      "quantity",
+      "ticker"
+    ],
+    "positions_keys_sample_first_5": [
+      [
+        "avg_price",
+        "quantity",
+        "ticker"
+      ],
+      [
+        "avg_price",
+        "quantity",
+        "ticker"
+      ],
+      [
+        "avg_price",
+        "quantity",
+        "ticker"
+      ],
+      [
+        "avg_price",
+        "quantity",
+        "ticker"
+      ],
+      [
+        "avg_price",
+        "quantity",
+        "ticker"
+      ]
+    ],
+    "positions_first_item_sample": {
+      "ticker": "TICKER_01",
+      "quantity": 100,
+      "avg_price": 10.0
+    }
+  },
+  "consumers_scan": {
+    "patterns": [
+      "PORTFOLIO_SNAPSHOT_V0.json",
+      "PORTFOLIO_SNAPSHOT",
+      "portfolio_snapshot",
+      "data/portfolio/"
+    ],
+    "files": [
+      "scripts/generate_daily_decision_sell_only_v1.py",
+      "scripts/inspect_portfolio_snapshot_contract_v0.py"
+    ]
+  },
+  "warnings": [],
+  "errors": [],
+  "status": "PASS"
+}

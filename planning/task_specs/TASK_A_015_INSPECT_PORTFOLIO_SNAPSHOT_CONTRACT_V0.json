@@ -1,0 +1,52 @@
+{
+    "task_id": "TASK_A_015",
+    "name": "INSPECT_PORTFOLIO_SNAPSHOT_CONTRACT_V0",
+    "title": "Inspeciona o contrato do PORTFOLIO_SNAPSHOT_V0 e mapeia consumidores no repo (base para snapshot real)",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "planning/runs/",
+        "planning/reports/",
+        "scripts/",
+        "modules/",
+        "config/",
+        "data/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_015/S1_GATE_ALLOWLIST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_COMPILE_INSPECTOR",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_015/S2_CHECK_COMPILE_INSPECTOR.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m py_compile scripts/inspect_portfolio_snapshot_contract_v0.py"
+        ]
+      },
+      {
+        "step_id": "S3_RUN_INSPECTOR_WRITE_REPORT",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_015/S3_RUN_INSPECTOR_WRITE_REPORT.txt",
+          "planning/runs/TASK_A_015/REPORT_PORTFOLIO_SNAPSHOT_CONTRACT_V0.json",
+          "planning/reports/REPORT_PORTFOLIO_SNAPSHOT_CONTRACT_V0.json"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/inspect_portfolio_snapshot_contract_v0.py --snapshot data/portfolio/PORTFOLIO_SNAPSHOT_V0.json --run-dir planning/runs/TASK_A_015 --report-dir planning/reports"
+        ]
+      }
+    ]
+  }
+  
