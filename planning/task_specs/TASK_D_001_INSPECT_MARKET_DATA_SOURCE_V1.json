@@ -9,7 +9,9 @@
         "scripts/",
         "modules/",
         "config/",
-        "planning/runs/"
+        "planning/runs/",
+        "planning/reports/",
+        "data/"
       ]
     },
     "workflow": [
@@ -30,7 +32,7 @@
           "planning/runs/TASK_D_001/S2_SHOW_DEFAULT_CONFIG_YAML.txt"
         ],
         "commands": [
-          "cd /home/wilson/PortfolioZero && echo 'FILE: config/experiments/universe_data_sources_v1.yaml' && sed -n '1,260p' config/experiments/universe_data_sources_v1.yaml"
+          "cd /home/wilson/PortfolioZero && echo 'FILE: config/experiments/universe_data_sources_v1.yaml' && sed -n '1,320p' config/experiments/universe_data_sources_v1.yaml"
         ]
       },
       {
@@ -40,7 +42,7 @@
           "planning/runs/TASK_D_001/S3_GREP_FOR_PROVIDERS.txt"
         ],
         "commands": [
-          "cd /home/wilson/PortfolioZero && grep -RInE \"yfinance|yf\\b|alphavantage|alpha_vantage|polygon|stooq|brapi|investpy|tiingo|twelve|twelvedata|api_key|base_url|provider|source\" scripts modules config | head -n 260 || true"
+          "cd /home/wilson/PortfolioZero && grep -RInE \"yfinance|yf\\\\b|alphavantage|alpha_vantage|polygon|stooq|brapi|investpy|tiingo|twelve|twelvedata|api_key|base_url|provider|source\" scripts modules config | head -n 300 || true"
         ]
       },
       {
@@ -50,10 +52,11 @@
           "planning/runs/TASK_D_001/S4_SHOW_INGESTION_CODE_CONTEXT.txt"
         ],
         "commands": [
-          "cd /home/wilson/PortfolioZero && echo 'FILE: scripts/fetch_market_data.py' && sed -n '1,260p' scripts/fetch_market_data.py",
-          "cd /home/wilson/PortfolioZero && echo 'FILE: modules/portfoliozero/core/data/market_data_ingestion.py' && sed -n '1,380p' modules/portfoliozero/core/data/market_data_ingestion.py"
+          "cd /home/wilson/PortfolioZero && echo 'FILE: scripts/fetch_market_data.py' && sed -n '1,320p' scripts/fetch_market_data.py",
+          "cd /home/wilson/PortfolioZero && echo 'FILE: modules/portfoliozero/core/data/market_data_ingestion.py' && sed -n '1,520p' modules/portfoliozero/core/data/market_data_ingestion.py"
         ]
       }
     ]
   }
+
   
