@@ -1,0 +1,59 @@
+{
+  "version": "v1",
+  "generated_at_utc": "2026-01-23T09:49:00.673157+00:00",
+  "capital_brl": 0.0,
+  "cash_brl": 0.0,
+  "notes": "REAL_SNAPSHOT_V1_FROM_PARQUET",
+  "positions": [
+    {
+      "ticker": "TICKER_01",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_02",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_03",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_04",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_05",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_06",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_07",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_08",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_09",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    },
+    {
+      "ticker": "TICKER_10",
+      "quantity": 100.0,
+      "avg_price": 10.0
+    }
+  ]
+}

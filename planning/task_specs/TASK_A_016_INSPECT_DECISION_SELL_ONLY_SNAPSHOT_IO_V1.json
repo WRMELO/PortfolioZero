@@ -1,0 +1,45 @@
+{
+    "task_id": "TASK_A_016",
+    "name": "INSPECT_DECISION_SELL_ONLY_SNAPSHOT_IO_V1",
+    "title": "Inspeciona como o generate_daily_decision_sell_only_v1 consome o PORTFOLIO_SNAPSHOT (path, schema e validacoes)",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "planning/runs/",
+        "planning/reports/",
+        "scripts/",
+        "modules/",
+        "config/",
+        "data/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_016/S1_GATE_ALLOWLIST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ]
+      },
+      {
+        "step_id": "S2_INSPECT_SELL_ONLY_SCRIPT_FOR_SNAPSHOT_IO",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_016/S2_INSPECT_SELL_ONLY_SCRIPT_FOR_SNAPSHOT_IO.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && echo '--- FILE META ---' && ls -la scripts/generate_daily_decision_sell_only_v1.py",
+          "cd /home/wilson/PortfolioZero && echo '--- GREP: SNAPSHOT TOKENS ---' && (grep -n \"PORTFOLIO_SNAPSHOT\" scripts/generate_daily_decision_sell_only_v1.py || true)",
+          "cd /home/wilson/PortfolioZero && echo '--- GREP: data/portfolio ---' && (grep -n \"data/portfolio\" scripts/generate_daily_decision_sell_only_v1.py || true)",
+          "cd /home/wilson/PortfolioZero && echo '--- GREP: snapshot keywords ---' && (grep -n \"snapshot\\|positions\\|cash_brl\\|capital_brl\" scripts/generate_daily_decision_sell_only_v1.py || true)",
+          "cd /home/wilson/PortfolioZero && echo '--- HEAD (1..240) ---' && sed -n '1,240p' scripts/generate_daily_decision_sell_only_v1.py",
+          "cd /home/wilson/PortfolioZero && echo '--- TAIL (last 240) ---' && tail -n 240 scripts/generate_daily_decision_sell_only_v1.py"
+        ]
+      }
+    ]
+  }
+  

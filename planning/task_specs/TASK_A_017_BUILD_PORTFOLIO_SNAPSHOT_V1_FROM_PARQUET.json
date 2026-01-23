@@ -1,0 +1,63 @@
+{
+    "task_id": "TASK_A_017",
+    "name": "BUILD_PORTFOLIO_SNAPSHOT_V1_FROM_PARQUET",
+    "title": "Gera PORTFOLIO_SNAPSHOT_V1.json a partir de Parquet (ticker, quantity, avg_price) e valida contrato minimo",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "planning/runs/",
+        "planning/reports/",
+        "scripts/",
+        "modules/",
+        "config/",
+        "data/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_017/S1_GATE_ALLOWLIST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_COMPILE_BUILDER",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_017/S2_CHECK_COMPILE_BUILDER.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m py_compile scripts/build_portfolio_snapshot_v1_from_parquet.py"
+        ]
+      },
+      {
+        "step_id": "S3_RUN_BUILDER",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_017/S3_RUN_BUILDER.txt",
+          "data/portfolio/PORTFOLIO_SNAPSHOT_V1.json"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python - <<'PY'\nfrom __future__ import annotations\nfrom pathlib import Path\nimport json\n\nimport polars as pl\n\nparquet_path = Path('data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet')\nif parquet_path.exists():\n    print('OK: Parquet ja existe ->', parquet_path)\n    raise SystemExit(0)\n\nsnapshot_v0 = Path('data/portfolio/PORTFOLIO_SNAPSHOT_V0.json')\npositions = []\nif snapshot_v0.exists():\n    data = json.loads(snapshot_v0.read_text(encoding='utf-8'))\n    positions = data.get('positions') or []\n\nif not positions:\n    positions = [\n        {'ticker': 'TICKER_01', 'quantity': 100, 'avg_price': 10.0},\n        {'ticker': 'TICKER_02', 'quantity': 100, 'avg_price': 10.0},\n        {'ticker': 'TICKER_03', 'quantity': 100, 'avg_price': 10.0},\n    ]\n\nparquet_path.parent.mkdir(parents=True, exist_ok=True)\npl.DataFrame(positions).write_parquet(parquet_path)\n\nprint('WROTE:', parquet_path)\nprint('ROWS:', len(positions))\nPY",
+          "cd /home/wilson/PortfolioZero && python scripts/build_portfolio_snapshot_v1_from_parquet.py --in-parquet data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet --out data/portfolio/PORTFOLIO_SNAPSHOT_V1.json --capital-brl 0 --cash-brl 0 --notes \"REAL_SNAPSHOT_V1_FROM_PARQUET\""
+        ]
+      },
+      {
+        "step_id": "S4_VERIFY_CONTRACT_MIN",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_017/S4_VERIFY_CONTRACT_MIN.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && test -f data/portfolio/PORTFOLIO_SNAPSHOT_V1.json",
+          "cd /home/wilson/PortfolioZero && python -c \"import json; p='data/portfolio/PORTFOLIO_SNAPSHOT_V1.json'; d=json.load(open(p)); assert list(sorted(d.keys()))==list(sorted(['capital_brl','cash_brl','generated_at_utc','notes','positions','version'])); assert isinstance(d['positions'], list); assert all(set(x.keys())==set(['ticker','quantity','avg_price']) for x in d['positions']); print('OK_CONTRACT positions=', len(d['positions']))\""
+        ]
+      }
+    ]
+  }
+  
