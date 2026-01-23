@@ -1,0 +1,98 @@
+{
+    "task_id": "TASK_D_004",
+    "name": "DAILY_E2E_SELL_ONLY_V1",
+    "title": "Execucao diaria E2E (prices -> audit -> universe -> risk -> decision) sell-only v1",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "planning/runs/",
+        "planning/reports/",
+        "scripts/",
+        "modules/",
+        "config/",
+        "data/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_004/S1_GATE_ALLOWLIST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ]
+      },
+      {
+        "step_id": "S2_RUN_TASK_D_002_MARKET_DATA_DAILY",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_004/S2_RUN_TASK_D_002_MARKET_DATA_DAILY.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && rm -f data/raw/market/prices/sample_market_data.parquet",
+          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --task planning/task_specs/TASK_D_002_MARKET_DATA_DAILY_IDEMPOTENT_V1.json"
+        ]
+      },
+      {
+        "step_id": "S3_RUN_TASK_D_003_AUDIT_POST_DAILY",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_004/S3_RUN_TASK_D_003_AUDIT_POST_DAILY.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --task planning/task_specs/TASK_D_003_AUDIT_MARKET_PRICES_POST_DAILY_V1.json"
+        ]
+      },
+      {
+        "step_id": "S4_RUN_TASK_A_012_UNIVERSE_E2E_STRICT",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_004/S4_RUN_TASK_A_012_UNIVERSE_E2E_STRICT.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --task planning/task_specs/TASK_A_012_UNIVERSE_E2E_STRICT_V1.json"
+        ]
+      },
+      {
+        "step_id": "S5_RUN_TASK_A_013_RISK_PACKAGE_V0",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_004/S5_RUN_TASK_A_013_RISK_PACKAGE_V0.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --task planning/task_specs/TASK_A_013_RISK_PACKAGE_V0.json"
+        ]
+      },
+      {
+        "step_id": "S6_RUN_TASK_A_014_DAILY_DECISION_SELL_ONLY",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_004/S6_RUN_TASK_A_014_DAILY_DECISION_SELL_ONLY.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --task planning/task_specs/TASK_A_014_DAILY_DECISION_SELL_ONLY_V1.json"
+        ]
+      },
+      {
+        "step_id": "S7_VERIFY_EXPECTED_OUTPUTS",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_004/S7_VERIFY_EXPECTED_OUTPUTS.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && rm -f data/raw/market/prices/sample_market_data.parquet",
+          "cd /home/wilson/PortfolioZero && test ! -f data/raw/market/prices/sample_market_data.parquet",
+          "cd /home/wilson/PortfolioZero && test -f data/raw/market/prices/manifest_prices.json",
+          "cd /home/wilson/PortfolioZero && test -f data/universe/UNIVERSE_CANDIDATES.parquet",
+          "cd /home/wilson/PortfolioZero && test -d data/universe/supervised_TASK_A_012",
+          "cd /home/wilson/PortfolioZero && test -f data/risk/RISK_PACKAGE_V0.json",
+          "cd /home/wilson/PortfolioZero && test -f data/decisions/DECISION_PACKAGE_DAILY_V1.json",
+          "cd /home/wilson/PortfolioZero && ls -la data/decisions | head -n 80"
+        ]
+      }
+    ]
+  }
+  

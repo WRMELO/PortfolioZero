@@ -9,7 +9,8 @@
         "planning/task_specs/",
         "scripts/",
         "data/",
-        "planning/runs/"
+        "planning/runs/",
+        "planning/reports/"
       ]
     },
     "workflow": [
