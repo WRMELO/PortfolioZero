@@ -1,0 +1,311 @@
+{
+  "repo": "/home/wilson/PortfolioZero",
+  "head": "699c896363097546e50ea51ec1a0f9c5244e35d2",
+  "head_meta": {
+    "created_at_utc": "2026-01-23T09:19:27Z",
+    "git_branch": "main",
+    "task_id": "TASK_D_003"
+  },
+  "data_inventory": {
+    "prices_dir": "data/raw/market/prices",
+    "manifest_path": "data/raw/market/prices/manifest_prices.json",
+    "n_files": 121,
+    "files_sample": [
+      "AAPL34_SA.parquet",
+      "ABBV34_SA.parquet",
+      "ABEV3_SA.parquet",
+      "ADBE34_SA.parquet",
+      "ALPA4_SA.parquet",
+      "ALUP11_SA.parquet",
+      "AMER3_SA.parquet",
+      "AMZO34_SA.parquet",
+      "ANIM3_SA.parquet",
+      "ASAI3_SA.parquet",
+      "AURE3_SA.parquet",
+      "AZUL4_SA.parquet",
+      "B3SA3_SA.parquet",
+      "BABA34_SA.parquet",
+      "BBAS3_SA.parquet",
+      "BBDC3_SA.parquet",
+      "BBDC4_SA.parquet",
+      "BBSE3_SA.parquet",
+      "BEEF3_SA.parquet",
+      "BERK34_SA.parquet",
+      "BHIA3_SA.parquet",
+      "BMOB3_SA.parquet",
+      "BOAC34_SA.parquet",
+      "BPAC11_SA.parquet",
+      "BRAP4_SA.parquet",
+      "CASH3_SA.parquet",
+      "CMIG4_SA.parquet",
+      "CMIN3_SA.parquet",
+      "COCA34_SA.parquet",
+      "COGN3_SA.parquet"
+    ],
+    "n_schema_clusters": 1,
+    "schema_clusters": [
+      {
+        "schema_signature": "date:Date,ticker:String,open:Float64,high:Float64,low:Float64,close:Float64,adj_close:Float64,volume:Int64,tipo_instrumento:String,setor:String",
+        "n_files": 121,
+        "files_sample": [
+          "AAPL34_SA.parquet",
+          "ABBV34_SA.parquet",
+          "ABEV3_SA.parquet",
+          "ADBE34_SA.parquet",
+          "ALPA4_SA.parquet",
+          "ALUP11_SA.parquet",
+          "AMER3_SA.parquet",
+          "AMZO34_SA.parquet",
+          "ANIM3_SA.parquet",
+          "ASAI3_SA.parquet"
+        ]
+      }
+    ],
+    "overall_min_date": "2022-01-03",
+    "overall_max_date": "2026-01-22"
+  },
+  "coverage_summary": {
+    "date_col_candidates_seen": [
+      "date"
+    ],
+    "per_ticker_summary_sample": [
+      {
+        "ticker": "AAPL34.SA",
+        "file": "AAPL34_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "ABBV34.SA",
+        "file": "ABBV34_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "ABEV3.SA",
+        "file": "ABEV3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "ADBE34.SA",
+        "file": "ADBE34_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "ALPA4.SA",
+        "file": "ALPA4_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "ALUP11.SA",
+        "file": "ALUP11_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "AMER3.SA",
+        "file": "AMER3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "AMZO34.SA",
+        "file": "AMZO34_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "ANIM3.SA",
+        "file": "ANIM3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "ASAI3.SA",
+        "file": "ASAI3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "AURE3.SA",
+        "file": "AURE3_SA.parquet",
+        "rows": 956,
+        "min_date": "2022-03-28",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "AZUL4.SA",
+        "file": "AZUL4_SA.parquet",
+        "rows": 999,
+        "min_date": "2022-01-03",
+        "max_date": "2025-12-30"
+      },
+      {
+        "ticker": "B3SA3.SA",
+        "file": "B3SA3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BABA34.SA",
+        "file": "BABA34_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BBAS3.SA",
+        "file": "BBAS3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BBDC3.SA",
+        "file": "BBDC3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BBDC4.SA",
+        "file": "BBDC4_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BBSE3.SA",
+        "file": "BBSE3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BEEF3.SA",
+        "file": "BEEF3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BERK34.SA",
+        "file": "BERK34_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BHIA3.SA",
+        "file": "BHIA3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BMOB3.SA",
+        "file": "BMOB3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BOAC34.SA",
+        "file": "BOAC34_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BPAC11.SA",
+        "file": "BPAC11_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "BRAP4.SA",
+        "file": "BRAP4_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "CASH3.SA",
+        "file": "CASH3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "CMIG4.SA",
+        "file": "CMIG4_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "CMIN3.SA",
+        "file": "CMIN3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "COCA34.SA",
+        "file": "COCA34_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      },
+      {
+        "ticker": "COGN3.SA",
+        "file": "COGN3_SA.parquet",
+        "rows": 1014,
+        "min_date": "2022-01-03",
+        "max_date": "2026-01-22"
+      }
+    ],
+    "n_unique_tickers_in_files": 121,
+    "missing_in_manifest_sample": [],
+    "manifest_without_file_sample": []
+  },
+  "duplication_findings": {
+    "filename_collisions": [],
+    "infile_dupes_sample": []
+  },
+  "provenance": {
+    "notebooks_writing_raw_prices": [
+      "./notebooks/build_universe_candidates.ipynb"
+    ],
+    "scripts_writing_raw_prices": [
+      "modules/portfoliozero/core/data/market_data_ingestion.py",
+      "scripts/audit_market_prices_post_daily.py",
+      "scripts/fetch_market_data.py",
+      "scripts/update_market_data_daily.py"
+    ]
+  },
+  "recommendations_minimal": [
+    "Manter 1 schema unico para todos os parquets de prices (colunas e tipos).",
+    "Garantir unicidade por date dentro de cada arquivo (implica (ticker,date) pois ticker deve ser unico por arquivo).",
+    "Garantir date ordenado (crescente) dentro de cada arquivo.",
+    "Manifesto deve cobrir todos os tickers que existirem em arquivo (tickers_in_files subset de manifest.entries)."
+  ],
+  "warnings": [],
+  "errors": [],
+  "status": "PASS"
+}

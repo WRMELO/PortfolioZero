@@ -1,0 +1,52 @@
+{
+    "task_id": "TASK_D_003",
+    "name": "AUDIT_MARKET_PRICES_POST_DAILY_V1",
+    "title": "Auditoria formal do pacote de precos (pos rotina diaria): contrato de schema, unicidade, ordenacao e manifesto",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "planning/runs/",
+        "planning/reports/",
+        "scripts/",
+        "modules/",
+        "config/",
+        "data/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_003/S1_GATE_ALLOWLIST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_COMPILE_AUDIT_SCRIPT",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_003/S2_CHECK_COMPILE_AUDIT_SCRIPT.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m py_compile scripts/audit_market_prices_post_daily.py"
+        ]
+      },
+      {
+        "step_id": "S3_RUN_AUDIT_WRITE_REPORT_V2",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_D_003/S3_RUN_AUDIT_WRITE_REPORT_V2.txt",
+          "planning/runs/TASK_D_003/REPORT_DATA_AUDIT_MARKET_PRICES_V2.json",
+          "planning/reports/REPORT_DATA_AUDIT_MARKET_PRICES_V2.json"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/audit_market_prices_post_daily.py --prices-dir data/raw/market/prices --manifest data/raw/market/prices/manifest_prices.json --run-dir planning/runs/TASK_D_003 --report-dir planning/reports"
+        ]
+      }
+    ]
+  }
+  
