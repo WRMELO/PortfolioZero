@@ -1,9 +1,9 @@
 {
   "version": "v1",
-  "generated_at_utc": "2026-01-23T09:32:44.576834+00:00",
+  "generated_at_utc": "2026-01-23T09:57:02.189030+00:00",
   "inputs": {
     "risk_package": "data/risk/RISK_PACKAGE_V0.json",
-    "portfolio_snapshot": "data/portfolio/PORTFOLIO_SNAPSHOT_V0.json",
+    "portfolio_snapshot": "data/portfolio/PORTFOLIO_SNAPSHOT_V1.json",
     "supervised_parquet": "data/universe/supervised_TASK_A_012/UNIVERSE_SUPERVISED.parquet",
     "universe_ticker_field": "ticker"
   },

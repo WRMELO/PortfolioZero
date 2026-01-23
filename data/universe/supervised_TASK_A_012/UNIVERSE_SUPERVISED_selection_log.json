@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-01-23T06:32:43.677259",
+  "timestamp": "2026-01-23T06:57:01.342544",
   "candidates_count": 30,
   "selected_count": 30,
   "is_valid": true,
   "by_sector": {
-    "Commodities": 6,
-    "Financeiro": 6,
     "Indústria": 3,
+    "Financeiro": 6,
+    "Commodities": 6,
     "Consumo": 4,
     "Energia": 6,
     "Tecnologia": 1,
@@ -25,52 +25,16 @@
     "ALTA": 30
   },
   "forced_includes_applied": [
-    "VALE3.SA",
-    "BBAS3.SA",
-    "ITUB4.SA",
     "WEGE3.SA",
     "BBDC4.SA",
-    "PETR4.SA"
+    "ITUB4.SA",
+    "VALE3.SA",
+    "PETR4.SA",
+    "BBAS3.SA"
   ],
   "forced_excludes_applied": [],
   "warnings": [],
   "selection_log": [
-    {
-      "ticker": "VALE3.SA",
-      "action": "included",
-      "reason": "forced_include pelo Owner",
-      "sector": "Commodities",
-      "volatility_class": "BAIXA",
-      "liquidity_class": "ALTA",
-      "avg_volume_21d_brl": 21924247.61904762,
-      "is_forced_include": true,
-      "is_forced_exclude": false,
-      "priority_score": 3003000219.242476
-    },
-    {
-      "ticker": "BBAS3.SA",
-      "action": "included",
-      "reason": "forced_include pelo Owner",
-      "sector": "Financeiro",
-      "volatility_class": "MEDIA",
-      "liquidity_class": "ALTA",
-      "avg_volume_21d_brl": 25516185.714285713,
-      "is_forced_include": true,
-      "is_forced_exclude": false,
-      "priority_score": 3002000255.161857
-    },
-    {
-      "ticker": "ITUB4.SA",
-      "action": "included",
-      "reason": "forced_include pelo Owner",
-      "sector": "Financeiro",
-      "volatility_class": "BAIXA",
-      "liquidity_class": "ALTA",
-      "avg_volume_21d_brl": 24229419.04761905,
-      "is_forced_include": true,
-      "is_forced_exclude": false,
-      "priority_score": 3003000242.2941904
-    },
     {
       "ticker": "WEGE3.SA",
       "action": "included",
@@ -96,6 +60,30 @@
       "priority_score": 3002000284.6831903
     },
     {
+      "ticker": "ITUB4.SA",
+      "action": "included",
+      "reason": "forced_include pelo Owner",
+      "sector": "Financeiro",
+      "volatility_class": "BAIXA",
+      "liquidity_class": "ALTA",
+      "avg_volume_21d_brl": 24229419.04761905,
+      "is_forced_include": true,
+      "is_forced_exclude": false,
+      "priority_score": 3003000242.2941904
+    },
+    {
+      "ticker": "VALE3.SA",
+      "action": "included",
+      "reason": "forced_include pelo Owner",
+      "sector": "Commodities",
+      "volatility_class": "BAIXA",
+      "liquidity_class": "ALTA",
+      "avg_volume_21d_brl": 21924247.61904762,
+      "is_forced_include": true,
+      "is_forced_exclude": false,
+      "priority_score": 3003000219.242476
+    },
+    {
       "ticker": "PETR4.SA",
       "action": "included",
       "reason": "forced_include pelo Owner",
@@ -106,6 +94,18 @@
       "is_forced_include": true,
       "is_forced_exclude": false,
       "priority_score": 3003000438.7759523
+    },
+    {
+      "ticker": "BBAS3.SA",
+      "action": "included",
+      "reason": "forced_include pelo Owner",
+      "sector": "Financeiro",
+      "volatility_class": "MEDIA",
+      "liquidity_class": "ALTA",
+      "avg_volume_21d_brl": 25516185.714285713,
+      "is_forced_include": true,
+      "is_forced_exclude": false,
+      "priority_score": 3002000255.161857
     },
     {
       "ticker": "ABEV3.SA",

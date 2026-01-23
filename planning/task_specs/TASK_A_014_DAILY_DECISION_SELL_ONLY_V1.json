@@ -40,7 +40,7 @@
         "type": "shell",
         "commands": [
           "cd /home/wilson/PortfolioZero && mkdir -p data/decisions",
-          "cd /home/wilson/PortfolioZero && PYTHONDONTWRITEBYTECODE=1 python scripts/generate_daily_decision_sell_only_v1.py --risk data/risk/RISK_PACKAGE_V0.json --supervised-dir data/universe/supervised_TASK_A_012 --portfolio data/portfolio/PORTFOLIO_SNAPSHOT_V0.json --out data/decisions/DECISION_PACKAGE_DAILY_V1.json"
+          "cd /home/wilson/PortfolioZero && PYTHONDONTWRITEBYTECODE=1 python scripts/generate_daily_decision_sell_only_v1.py --risk data/risk/RISK_PACKAGE_V0.json --supervised-dir data/universe/supervised_TASK_A_012 --portfolio data/portfolio/PORTFOLIO_SNAPSHOT_V1.json --out data/decisions/DECISION_PACKAGE_DAILY_V1.json"
         ],
         "artifacts": [
           "planning/runs/TASK_A_014/S4_GENERATE_DAILY_DECISION_SELL_ONLY.txt"
