@@ -1,0 +1,65 @@
+{
+    "task_id": "TASK_A_018",
+    "name": "INGEST_PORTFOLIO_POSITIONS_REAL_PARQUET_V1",
+    "title": "Ingestao oficial do PORTFOLIO_POSITIONS_REAL.parquet com canonicalizacao, versionamento, manifest e auditoria",
+    "inputs": {
+      "repo_path": "/home/wilson/PortfolioZero",
+      "gate_allowlist": [
+        "planning/task_specs/",
+        "planning/runs/",
+        "planning/reports/",
+        "data/",
+        "scripts/"
+      ]
+    },
+    "workflow": [
+      {
+        "step_id": "S1_GATE_ALLOWLIST",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_018/S1_GATE_ALLOWLIST.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+        ]
+      },
+      {
+        "step_id": "S2_CHECK_COMPILE_INGESTOR",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_018/S2_CHECK_COMPILE_INGESTOR.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python -m py_compile scripts/ingest_portfolio_positions_real_parquet_v1.py"
+        ]
+      },
+      {
+        "step_id": "S3_RUN_INGESTOR",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_018/S3_RUN_INGESTOR.txt",
+          "planning/reports/REPORT_PORTFOLIO_POSITIONS_INGEST_V1.json",
+          "data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet",
+          "data/portfolio/manifest_positions_real.json"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && python scripts/ingest_portfolio_positions_real_parquet_v1.py --in-parquet data/portfolio/incoming/PORTFOLIO_POSITIONS_SOURCE.parquet --out-current data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet --archive-dir data/portfolio/positions_archive --manifest data/portfolio/manifest_positions_real.json --run-dir planning/runs/TASK_A_018 --report-dir planning/reports"
+        ]
+      },
+      {
+        "step_id": "S4_VERIFY_OUTPUTS",
+        "type": "shell",
+        "artifacts": [
+          "planning/runs/TASK_A_018/S4_VERIFY_OUTPUTS.txt"
+        ],
+        "commands": [
+          "cd /home/wilson/PortfolioZero && test -f data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet",
+          "cd /home/wilson/PortfolioZero && test -f data/portfolio/manifest_positions_real.json",
+          "cd /home/wilson/PortfolioZero && test -f planning/reports/REPORT_PORTFOLIO_POSITIONS_INGEST_V1.json",
+          "cd /home/wilson/PortfolioZero && ls -la data/portfolio | head -n 80",
+          "cd /home/wilson/PortfolioZero && ls -la data/portfolio/positions_archive | tail -n 40"
+        ]
+      }
+    ]
+  }
+  
