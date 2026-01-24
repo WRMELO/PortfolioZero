@@ -1,0 +1,21 @@
+{
+  "task_id": "TASK_A_018",
+  "generated_at_utc": "2026-01-24T16:08:24Z",
+  "inputs": {
+    "in_parquet": "data/portfolio/incoming/PORTFOLIO_POSITIONS_SOURCE.parquet",
+    "out_current": "data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet",
+    "archive_dir": "data/portfolio/positions_archive",
+    "manifest": "data/portfolio/manifest_positions_real.json"
+  },
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "result": {
+    "idempotent": false,
+    "previous_current_sha256": "9b36a72574326b2efe3683a8af046d602283291f185f234e4863df3a710545f2",
+    "new_current_sha256": "02ca8f2da02aa381a6e0186a593800d38ef21b7df88a05d0a67dd1960cf5f5e7",
+    "rows": 10,
+    "tickers": 10,
+    "archive_path": "data/portfolio/positions_archive/20260124T160824Z_PORTFOLIO_POSITIONS_REAL_02ca8f2da0.parquet"
+  }
+}

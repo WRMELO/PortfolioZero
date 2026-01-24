@@ -1,0 +1,44 @@
+{
+  "version": "v1",
+  "generated_at_utc": "2026-01-24T16:08:24Z",
+  "current": {
+    "ingested_at_utc": "2026-01-24T16:08:24Z",
+    "source_in_parquet": "data/portfolio/incoming/PORTFOLIO_POSITIONS_SOURCE.parquet",
+    "current_path": "data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet",
+    "archive_path": "data/portfolio/positions_archive/20260124T160824Z_PORTFOLIO_POSITIONS_REAL_02ca8f2da0.parquet",
+    "sha256": "02ca8f2da02aa381a6e0186a593800d38ef21b7df88a05d0a67dd1960cf5f5e7",
+    "rows": 10,
+    "tickers": 10,
+    "schema": {
+      "ticker": "String",
+      "quantity": "Float64",
+      "avg_price": "Float64"
+    },
+    "columns_used_norm": {
+      "ticker": "ticker",
+      "quantity": "quantity",
+      "avg_price": "avg_price"
+    }
+  },
+  "history": [
+    {
+      "ingested_at_utc": "2026-01-24T16:08:24Z",
+      "source_in_parquet": "data/portfolio/incoming/PORTFOLIO_POSITIONS_SOURCE.parquet",
+      "current_path": "data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet",
+      "archive_path": "data/portfolio/positions_archive/20260124T160824Z_PORTFOLIO_POSITIONS_REAL_02ca8f2da0.parquet",
+      "sha256": "02ca8f2da02aa381a6e0186a593800d38ef21b7df88a05d0a67dd1960cf5f5e7",
+      "rows": 10,
+      "tickers": 10,
+      "schema": {
+        "ticker": "String",
+        "quantity": "Float64",
+        "avg_price": "Float64"
+      },
+      "columns_used_norm": {
+        "ticker": "ticker",
+        "quantity": "quantity",
+        "avg_price": "avg_price"
+      }
+    }
+  ]
+}
