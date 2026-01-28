@@ -1,4 +1,3 @@
-# PORTIFOLIOZERO — Acordo Operacional Definitivo (Dry-Run)
 
 Data: 24/01/2026 (sábado)
 Partes: Owner (Wilson) e Planejador (GPT-5.2 Thinking)
