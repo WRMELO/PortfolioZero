@@ -1,0 +1,69 @@
+{
+  "task_id": "TASK_LV_F1_011",
+  "name": "FIX_NO_SHORT_AND_GATES_V1",
+  "title": "Lab: corrigir sem short e aplicar gates economicos",
+  "inputs": {
+    "repo_path": "/home/wilson/PortfolioZero",
+    "gate_allowlist": [
+      "scripts/agno_runner.py",
+      "scripts/agno_entrypoint_exec.py",
+      "scripts/agno_entrypoint_select.py",
+      "planning/task_specs/",
+      "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
+      "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
+      "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json",
+      "config/agno/",
+      "config/agno/runtime_entrypoint.json",
+      "planning/runs/",
+      "0_desenvolvimentos/lab_experimentos/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/TASK_LV_F1_011_FIX_NO_SHORT_AND_GATES_V1.json"
+    ]
+  },
+  "workflow": [
+    {
+      "step_id": "S1_GATE_ALLOWLIST",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_011/S1_GATE_ALLOWLIST.txt"
+      ]
+    },
+    {
+      "step_id": "S2_RUNNER_VERSION",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_011/S2_RUNNER_VERSION.txt"
+      ]
+    },
+    {
+      "step_id": "S3_SWEEP_RULESETS_V2",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python 0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/sweep_rulesets_lv_f1_005.py --spec 0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/SPEC_FROZEN_MIRROR_V1.json --runner 0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/run_fase1_vendas_full_v1.py --rulesets-dir 0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/rulesets --out-root 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets_v2"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_011/S3_SWEEP_RULESETS_V2.txt"
+      ]
+    },
+    {
+      "step_id": "S4_RUN_ECON_GATES",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python 0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/econ_gates_lv_f1_011.py --sweep-root 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets_v2"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_011/S4_RUN_ECON_GATES.txt"
+      ]
+    }
+  ]
+}

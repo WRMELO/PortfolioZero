@@ -1,0 +1,12 @@
+{
+  "gate1_negative_positions": false,
+  "gate2_sell_gt_position": false,
+  "gate3_cash_negative": false,
+  "gate4_buy_over_cash": false,
+  "gate5_final_multiple": false,
+  "first_excess_date": "",
+  "neg_pos_samples": [],
+  "sell_gt_samples": [],
+  "cash_neg_samples": [],
+  "buy_over_samples": []
+}

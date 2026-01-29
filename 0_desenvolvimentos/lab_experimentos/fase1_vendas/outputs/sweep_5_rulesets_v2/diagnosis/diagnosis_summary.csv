@@ -1,0 +1,6 @@
+ruleset_id,passed,gate1_negative_positions,gate2_sell_gt_position,gate3_cash_negative,gate4_buy_over_cash,gate5_final_multiple,first_excess_date
+SELL_RULESET_01,True,False,False,False,False,False,
+SELL_RULESET_02,True,False,False,False,False,False,
+SELL_RULESET_03,True,False,False,False,False,False,
+SELL_RULESET_04,True,False,False,False,False,False,
+SELL_RULESET_05,True,False,False,False,False,False,

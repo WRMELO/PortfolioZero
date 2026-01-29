@@ -1,0 +1,9 @@
+{
+  "final_value": 399432.72700846754,
+  "max_drawdown": 0.25503652986529657,
+  "n_orders": 924,
+  "n_reduce": 1833,
+  "n_zero": 252,
+  "n_quarantine_events": 252,
+  "n_skip_sell_no_position": 1421
+}

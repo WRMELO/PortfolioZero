@@ -255,6 +255,8 @@ def main() -> int:
     orders_path = out_dir / "orders" / "orders.csv"
     plot_path = out_dir / "plots" / "portfolio_equity.png"
     ticker_metrics_path = out_dir / "metrics" / "ticker_metrics_sample.csv"
+    positions_path = out_dir / "timeseries" / "positions_eod.csv"
+    cash_path = out_dir / "timeseries" / "cash_eod.csv"
 
     horizon = spec.get("experiment_horizon", {})
     warmup_start = parse_date(horizon.get("history_warmup_start", "2022-01-01"))
@@ -370,8 +372,12 @@ def main() -> int:
 
     orders: list[list[str]] = []
     ticker_metrics_rows: list[list[str]] = []
+    positions_rows: list[list[str]] = []
+    cash_rows: list[list[str]] = []
     action_counts = {"HOLD": 0, "REDUCE": 0, "ZERO": 0}
     n_quarantine_events = 0
+    skipped_sell_no_position = 0
+    skipped_sell_samples: list[dict[str, str]] = []
 
     def get_price(asof: date, ticker: str) -> float | None:
         if asof not in prices_df.index or ticker not in prices_df.columns:
@@ -440,17 +446,18 @@ def main() -> int:
         qty: int,
         price: float,
         reason: str,
-    ) -> None:
+    ) -> float:
         nonlocal cash
         if qty <= 0:
-            return
+            return 0.0
         notional = qty * price
         fee_total = notional * fee_percent + fee_fixed
         total_cost = notional + fee_total
         if total_cost > cash:
-            return
+            return 0.0
         cash -= total_cost
         log_order(date_value, "BUY", ticker, qty, price, fee_total, date_value, date_value, reason)
+        return total_cost
 
     def evaluate_action(
         ticker: str,
@@ -508,6 +515,7 @@ def main() -> int:
         if idx == 0:
             continue
         asof_date = trading_dates[idx - 1]
+        acted_today: set[str] = set()
 
         for ticker in list(quarantine.keys()):
             quarantine[ticker] -= 1
@@ -536,23 +544,46 @@ def main() -> int:
             action_counts[action] += 1
 
         for ticker, (action, rule_id) in decisions.items():
+            if ticker in acted_today:
+                continue
             price = get_price(asof_date, ticker)
             if price is None:
                 continue
-            qty = positions.get(ticker, 0)
-            if action == "ZERO" and qty > 0:
-                apply_sell(current_date, ticker, qty, price, rule_id)
-                positions[ticker] = 0
-                quarantine[ticker] = quarantine_sessions
-                n_quarantine_events += 1
-            elif action == "REDUCE" and qty > 0:
+            pos_qty = positions.get(ticker, 0)
+            if action == "ZERO":
+                desired_qty = pos_qty
+            elif action == "REDUCE":
                 fraction = ruleset.get("actions", {}).get("reduce", {}).get("fraction_of_position_to_sell", 0.5)
                 if rule_id.startswith("PORTFOLIO_"):
                     fraction = ruleset.get("actions", {}).get("portfolio_reduce", {}).get("fraction_each_position", fraction)
-                sell_qty = int(np.floor(qty * float(fraction)))
-                if sell_qty > 0:
-                    apply_sell(current_date, ticker, sell_qty, price, rule_id)
-                    positions[ticker] = qty - sell_qty
+                desired_qty = int(np.floor(pos_qty * float(fraction)))
+            else:
+                desired_qty = 0
+
+            qty_exec = int(min(desired_qty, pos_qty))
+            if qty_exec <= 0 and action in ("ZERO", "REDUCE"):
+                skipped_sell_no_position += 1
+                if len(skipped_sell_samples) < 20:
+                    skipped_sell_samples.append(
+                        {
+                            "date": current_date.isoformat(),
+                            "ticker": ticker,
+                            "action": action,
+                            "rule_id": rule_id,
+                        }
+                    )
+                continue
+
+            if action == "ZERO" and qty_exec > 0:
+                apply_sell(current_date, ticker, qty_exec, price, rule_id)
+                positions[ticker] = pos_qty - qty_exec
+                quarantine[ticker] = quarantine_sessions
+                n_quarantine_events += 1
+                acted_today.add(ticker)
+            elif action == "REDUCE" and qty_exec > 0:
+                apply_sell(current_date, ticker, qty_exec, price, rule_id)
+                positions[ticker] = pos_qty - qty_exec
+                acted_today.add(ticker)
 
         positions = {t: q for t, q in positions.items() if q > 0}
 
@@ -563,23 +594,31 @@ def main() -> int:
         if do_weekly_buy:
             missing = max(target_positions - len(positions), 0)
             if missing > 0 and cash > 0:
-                eligible = [t for t in supervised_tickers if t not in positions and t not in quarantine]
+                eligible = [t for t in supervised_tickers if t not in positions and t not in quarantine and t not in acted_today]
                 selected = eligible[:missing]
                 if selected:
-                    alloc = cash / len(selected)
-                    for ticker in selected:
+                    spendable_cash = min(cash, initial_capital)
+                    for idx_sel, ticker in enumerate(selected):
+                        remaining = len(selected) - idx_sel
+                        if remaining <= 0 or spendable_cash <= 0:
+                            break
+                        alloc = spendable_cash / remaining
                         price = get_price(asof_date, ticker)
                         if price is None or price <= 0:
                             continue
                         qty = int(np.floor(max((alloc - fee_fixed), 0.0) / price))
                         if qty <= 0:
                             continue
-                        if qty * price + fee_fixed + qty * price * fee_percent > cash:
-                            qty = int(np.floor(max((cash - fee_fixed), 0.0) / price))
+                        if qty * price + fee_fixed + qty * price * fee_percent > spendable_cash:
+                            qty = int(np.floor(max((spendable_cash - fee_fixed), 0.0) / price))
                         if qty <= 0:
                             continue
-                        apply_buy(current_date, ticker, qty, price, "WEEKLY_BUY")
+                        spent = apply_buy(current_date, ticker, qty, price, "WEEKLY_BUY")
+                        if spent <= 0:
+                            continue
+                        spendable_cash -= spent
                         positions[ticker] = positions.get(ticker, 0) + qty
+                        acted_today.add(ticker)
 
         sample_tickers = supervised_tickers[: min(10, len(supervised_tickers))]
         for ticker in sample_tickers:
@@ -621,6 +660,9 @@ def main() -> int:
         pending_total = sum(float(item["amount"]) for item in pending_cash)
         equity_value = cash + positions_value + pending_total
         equity_history[current_date] = equity_value
+        cash_rows.append([current_date.isoformat(), f"{cash:.2f}"])
+        for ticker, qty in positions.items():
+            positions_rows.append([current_date.isoformat(), ticker, str(qty)])
 
     equity_rows = [["date", "equity"]]
     for d in simulation_dates:
@@ -667,6 +709,15 @@ def main() -> int:
         + ticker_metrics_rows,
     )
 
+    write_csv_rows(
+        cash_path,
+        [["date", "cash"]] + cash_rows,
+    )
+    write_csv_rows(
+        positions_path,
+        [["date", "ticker", "qty"]] + positions_rows,
+    )
+
     ensure_parent(plot_path)
     plot_path.write_bytes(PNG_1X1)
 
@@ -682,6 +733,7 @@ def main() -> int:
         "n_reduce": action_counts.get("REDUCE", 0),
         "n_zero": action_counts.get("ZERO", 0),
         "n_quarantine_events": n_quarantine_events,
+        "n_skip_sell_no_position": skipped_sell_no_position,
     }
     ensure_parent(metrics_path)
     metrics_path.write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -714,7 +766,9 @@ def main() -> int:
             "reduce": action_counts.get("REDUCE", 0),
             "zero": action_counts.get("ZERO", 0),
             "quarantine_events": n_quarantine_events,
+            "skip_sell_no_position": skipped_sell_no_position,
         },
+        "skip_sell_no_position_samples": skipped_sell_samples,
         "ruleset_info": {
             "ruleset_id": ruleset.get("ruleset_id") if ruleset else None,
             "ruleset_path": str(ruleset_path) if ruleset_path else None,

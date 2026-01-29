@@ -1,0 +1,161 @@
+{
+  "overall_pass": true,
+  "run_id": "SELL_RULESET_04",
+  "started_at": "2026-01-29T19:08:36.625762+00:00",
+  "finished_at": "2026-01-29T19:08:38.643202+00:00",
+  "inputs": {
+    "spec": "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/SPEC_FROZEN_MIRROR_V1.json",
+    "active": "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets_v2/SELL_RULESET_04/active_tmp.json"
+  },
+  "outputs": [
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets_v2/SELL_RULESET_04/metrics/portfolio_summary.json",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets_v2/SELL_RULESET_04/timeseries/portfolio_equity.csv",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets_v2/SELL_RULESET_04/orders/orders.csv",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets_v2/SELL_RULESET_04/metrics/ticker_metrics_sample.csv",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets_v2/SELL_RULESET_04/plots/portfolio_equity.png"
+  ],
+  "errors": [],
+  "warnings": [
+    "ibov_not_found:_BVSP"
+  ],
+  "decision_metrics_asof": "D-1",
+  "warmup_range_used": {
+    "start": "2022-01-03",
+    "end": "2022-12-29",
+    "count": 250
+  },
+  "counts": {
+    "hold": 5544,
+    "reduce": 492,
+    "zero": 205,
+    "quarantine_events": 205,
+    "skip_sell_no_position": 106
+  },
+  "skip_sell_no_position_samples": [
+    {
+      "date": "2023-03-01",
+      "ticker": "GGBR4.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-03-02",
+      "ticker": "CMIG4.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-03-03",
+      "ticker": "CMIG4.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-03-07",
+      "ticker": "GGBR4.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-03-08",
+      "ticker": "GGBR4.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-03-09",
+      "ticker": "GGBR4.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-03-10",
+      "ticker": "GGBR4.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-03-21",
+      "ticker": "EQTL3.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-03-22",
+      "ticker": "EQTL3.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-03-23",
+      "ticker": "EQTL3.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-10-26",
+      "ticker": "RADL3.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-10-27",
+      "ticker": "RADL3.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-10-30",
+      "ticker": "RADL3.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-10-31",
+      "ticker": "RADL3.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-10-31",
+      "ticker": "BPAC11.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-11-01",
+      "ticker": "CMIG4.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-11-01",
+      "ticker": "RADL3.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-11-01",
+      "ticker": "BPAC11.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-11-03",
+      "ticker": "RADL3.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    },
+    {
+      "date": "2023-11-03",
+      "ticker": "BPAC11.SA",
+      "action": "REDUCE",
+      "rule_id": "SOFT_STOP"
+    }
+  ],
+  "ruleset_info": {
+    "ruleset_id": "SELL_RULESET_04",
+    "ruleset_path": "/home/wilson/PortfolioZero/0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/rulesets/SELL_RULESET_04.json",
+    "ruleset_sha256": "4afd429d2e47521b83d32798437dff16f38fde151bd0d13f4a2fa2fb39c71b43"
+  }
+}
