@@ -1,0 +1,84 @@
+{
+  "overall_pass": true,
+  "run_id": "run_current_full",
+  "started_at": "2026-01-29T17:47:51.991772+00:00",
+  "finished_at": "2026-01-29T17:47:52.002516+00:00",
+  "inputs": {
+    "spec": "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/SPEC_FROZEN_MIRROR_V1.json",
+    "active": "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/ACTIVE_RULESET.json"
+  },
+  "outputs": [
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_current_full/metrics/portfolio_summary.json",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_current_full/timeseries/portfolio_equity.csv",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_current_full/orders/orders.csv",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_current_full/plots/portfolio_equity.png"
+  ],
+  "errors": [],
+  "active_ruleset": {
+    "use_ruleset_file": "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/rulesets/SELL_RULESET_01.json"
+  },
+  "ruleset": {
+    "ruleset_id": "SELL_RULESET_01",
+    "intent": "Conservador: combina drawdown + VaR/CVaR com política clara de REDUCE vs ZERO e prioridades.",
+    "windows": {
+      "returns_days": [
+        1,
+        5,
+        21
+      ],
+      "drawdown_days": [
+        20,
+        60,
+        252
+      ],
+      "var_cvar_window_days": 252
+    },
+    "priority_order": [
+      "EXIT_IF_NOT_IN_SUPERVISED",
+      "HARD_STOP",
+      "SOFT_STOP"
+    ],
+    "actions": {
+      "reduce": {
+        "fraction_of_position_to_sell": 0.5,
+        "min_notional_brl_to_trade": 1000.0
+      },
+      "zero": {
+        "sell_all": true
+      }
+    },
+    "hard_stop": {
+      "any_of": [
+        {
+          "metric": "drawdown_60d",
+          "op": ">=",
+          "value": 0.15
+        },
+        {
+          "metric": "cvar_95_1d_252d",
+          "op": ">=",
+          "value": 0.04
+        }
+      ],
+      "action": "ZERO"
+    },
+    "soft_stop": {
+      "any_of": [
+        {
+          "metric": "drawdown_20d",
+          "op": ">=",
+          "value": 0.08
+        },
+        {
+          "metric": "var_95_1d_252d",
+          "op": ">=",
+          "value": 0.025
+        }
+      ],
+      "action": "REDUCE"
+    },
+    "reentry": {
+      "quarantine_sessions_after_zero": 10
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "task_id": "TASK_LV_F1_009",
+  "name": "ECONOMIC_GATES_AND_ROOT_CAUSE_V1",
+  "title": "Lab: gates economicos + causa-raiz para explosoes de equity",
+  "inputs": {
+    "repo_path": "/home/wilson/PortfolioZero",
+    "gate_allowlist": [
+      "scripts/agno_runner.py",
+      "scripts/agno_entrypoint_exec.py",
+      "scripts/agno_entrypoint_select.py",
+      "planning/task_specs/",
+      "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
+      "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
+      "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json",
+      "config/agno/",
+      "config/agno/runtime_entrypoint.json",
+      "planning/runs/",
+      "0_desenvolvimentos/lab_experimentos/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/TASK_LV_F1_009_ECONOMIC_GATES_AND_ROOT_CAUSE_V1.json"
+    ]
+  },
+  "workflow": [
+    {
+      "step_id": "S1_GATE_ALLOWLIST",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_009/S1_GATE_ALLOWLIST.txt"
+      ]
+    },
+    {
+      "step_id": "S2_RUNNER_VERSION",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_009/S2_RUNNER_VERSION.txt"
+      ]
+    },
+    {
+      "step_id": "S3_RUN_ECONOMIC_GATES",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python 0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/diagnose_economic_failures_lv_f1_009.py"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_009/S3_RUN_ECONOMIC_GATES.txt"
+      ]
+    },
+    {
+      "step_id": "S4_VERIFY_DIAGNOSIS_OUTPUTS",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/diagnosis/DIAGNOSIS_REPORT.md",
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/diagnosis/diagnosis_summary.csv"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_009/S4_VERIFY_DIAGNOSIS_OUTPUTS.txt"
+      ]
+    }
+  ]
+}

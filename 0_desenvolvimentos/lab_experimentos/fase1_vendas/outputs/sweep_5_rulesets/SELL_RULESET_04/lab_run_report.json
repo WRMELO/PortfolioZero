@@ -1,0 +1,38 @@
+{
+  "overall_pass": true,
+  "run_id": "SELL_RULESET_04",
+  "started_at": "2026-01-29T18:06:27.150435+00:00",
+  "finished_at": "2026-01-29T18:06:29.175740+00:00",
+  "inputs": {
+    "spec": "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/SPEC_FROZEN_MIRROR_V1.json",
+    "active": "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/SELL_RULESET_04/active_tmp.json"
+  },
+  "outputs": [
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/SELL_RULESET_04/metrics/portfolio_summary.json",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/SELL_RULESET_04/timeseries/portfolio_equity.csv",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/SELL_RULESET_04/orders/orders.csv",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/SELL_RULESET_04/metrics/ticker_metrics_sample.csv",
+    "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/SELL_RULESET_04/plots/portfolio_equity.png"
+  ],
+  "errors": [],
+  "warnings": [
+    "ibov_not_found:_BVSP"
+  ],
+  "decision_metrics_asof": "D-1",
+  "warmup_range_used": {
+    "start": "2022-01-03",
+    "end": "2022-12-29",
+    "count": 250
+  },
+  "counts": {
+    "hold": 6125,
+    "reduce": 572,
+    "zero": 230,
+    "quarantine_events": 230
+  },
+  "ruleset_info": {
+    "ruleset_id": "SELL_RULESET_04",
+    "ruleset_path": "/home/wilson/PortfolioZero/0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/rulesets/SELL_RULESET_04.json",
+    "ruleset_sha256": "4afd429d2e47521b83d32798437dff16f38fde151bd0d13f4a2fa2fb39c71b43"
+  }
+}

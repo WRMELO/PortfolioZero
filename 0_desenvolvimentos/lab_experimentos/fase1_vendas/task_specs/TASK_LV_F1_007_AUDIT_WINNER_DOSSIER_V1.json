@@ -1,0 +1,72 @@
+{
+  "task_id": "TASK_LV_F1_007",
+  "name": "AUDIT_WINNER_DOSSIER_V1",
+  "title": "Lab: auditoria do run vencedor (trades + razoes + performance por ticker)",
+  "inputs": {
+    "repo_path": "/home/wilson/PortfolioZero",
+    "gate_allowlist": [
+      "scripts/agno_runner.py",
+      "scripts/agno_entrypoint_exec.py",
+      "scripts/agno_entrypoint_select.py",
+      "planning/task_specs/",
+      "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
+      "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
+      "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json",
+      "config/agno/",
+      "config/agno/runtime_entrypoint.json",
+      "planning/runs/",
+      "0_desenvolvimentos/lab_experimentos/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/TASK_LV_F1_007_AUDIT_WINNER_DOSSIER_V1.json"
+    ]
+  },
+  "workflow": [
+    {
+      "step_id": "S1_GATE_ALLOWLIST",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_007/S1_GATE_ALLOWLIST.txt"
+      ]
+    },
+    {
+      "step_id": "S2_RUNNER_VERSION",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_007/S2_RUNNER_VERSION.txt"
+      ]
+    },
+    {
+      "step_id": "S3_RUN_AUDIT_DOSSIER",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python 0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/audit_winner_lv_f1_007.py --run-dir 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final --out 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_007/S3_RUN_AUDIT_DOSSIER.txt"
+      ]
+    },
+    {
+      "step_id": "S4_VERIFY_AUDIT_OUTPUTS",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit/md/README_AUDIT.md",
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit/tables/orders_enriched.csv",
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit/tables/reasons_counts.csv",
+        "cd /home/wilson/PortfolioZero && ls -1 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit/plots | head -n 50"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_007/S4_VERIFY_AUDIT_OUTPUTS.txt"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "task_id": "TASK_LV_F1_008",
+  "name": "AUDIT_IMPACT_AND_SANITY_V1",
+  "title": "Lab: complementar auditoria com impacto por trade e sanity checks contábeis",
+  "inputs": {
+    "repo_path": "/home/wilson/PortfolioZero",
+    "gate_allowlist": [
+      "scripts/agno_runner.py",
+      "scripts/agno_entrypoint_exec.py",
+      "scripts/agno_entrypoint_select.py",
+      "planning/task_specs/",
+      "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
+      "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
+      "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json",
+      "config/agno/",
+      "config/agno/runtime_entrypoint.json",
+      "planning/runs/",
+      "0_desenvolvimentos/lab_experimentos/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/TASK_LV_F1_008_AUDIT_IMPACT_AND_SANITY_V1.json"
+    ]
+  },
+  "workflow": [
+    {
+      "step_id": "S1_GATE_ALLOWLIST",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_008/S1_GATE_ALLOWLIST.txt"
+      ]
+    },
+    {
+      "step_id": "S2_RUNNER_VERSION",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_008/S2_RUNNER_VERSION.txt"
+      ]
+    },
+    {
+      "step_id": "S3_RUN_AUDIT_IMPACT_SANITY",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python 0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/audit_impact_lv_f1_008.py --run-root 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final --audit-root 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit && python 0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/sanity_check_run_lv_f1_008.py --run-root 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final --audit-root 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_008/S3_RUN_AUDIT_IMPACT_SANITY.txt"
+      ]
+    },
+    {
+      "step_id": "S4_VERIFY_IMPACT_SANITY_OUTPUTS",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit/tables/orders_enriched_with_impact.csv",
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit/tables/sanity_report.json",
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/audit/md/SANITY_NOTES.md"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_008/S4_VERIFY_IMPACT_SANITY_OUTPUTS.txt"
+      ]
+    }
+  ]
+}

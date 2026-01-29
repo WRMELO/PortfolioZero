@@ -1,0 +1,2 @@
+date,action,ticker,qty,price,fee_total,cash_delta_date,settlement_date,rule_id_or_reason,notional
+2023-11-24,SELL,CMIG4.SA,3734,8.4538,57.35,2023-11-28,2023-11-28,TICKER_HARD_STOP,31566.489199999996

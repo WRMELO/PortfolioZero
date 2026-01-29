@@ -1,0 +1,6 @@
+ruleset_id,first_explosion_date,max_jump_date,probable_cause,confidence,root_cause_md
+SELL_RULESET_01,2023-07-10,2025-08-11,NEGATIVE_POS,0.7,0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/diagnosis/root_cause_SELL_RULESET_01.md
+SELL_RULESET_03,2023-10-16,2023-10-16,NEGATIVE_POS,0.7,0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/diagnosis/root_cause_SELL_RULESET_03.md
+SELL_RULESET_04,2023-09-25,2024-10-28,NEGATIVE_POS,0.7,0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/diagnosis/root_cause_SELL_RULESET_04.md
+SELL_RULESET_05,2023-10-16,2024-12-16,NEGATIVE_POS,0.7,0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/diagnosis/root_cause_SELL_RULESET_05.md
+SELL_RULESET_02,,2025-08-27,BUY_CASHFLOW_MISMATCH,0.7,0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/sweep_5_rulesets/diagnosis/root_cause_SELL_RULESET_02.md

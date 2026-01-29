@@ -1,0 +1,17 @@
+{
+  "equity_stats": {
+    "min": 527447.07,
+    "max": 7.865959177206563e+21,
+    "median": 38959893127378.18
+  },
+  "equity_exploded": true,
+  "equity_explosion_threshold": 5e+17,
+  "price_alerts": [],
+  "leverage_flags": [],
+  "turnover": {
+    "total_notional_buy": 2.4146072088342328e+20,
+    "total_notional_sell": 8.064758181506546e+21,
+    "avg_equity": 1.153775959789019e+20,
+    "turnover_ratio": 71.9916100861458
+  }
+}

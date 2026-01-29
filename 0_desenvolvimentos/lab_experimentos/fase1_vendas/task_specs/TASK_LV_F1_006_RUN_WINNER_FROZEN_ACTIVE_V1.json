@@ -1,0 +1,74 @@
+{
+  "task_id": "TASK_LV_F1_006",
+  "name": "RUN_WINNER_FROZEN_ACTIVE_V1",
+  "title": "Lab: executar 1 run final com ACTIVE_RULESET congelado no vencedor",
+  "inputs": {
+    "repo_path": "/home/wilson/PortfolioZero",
+    "gate_allowlist": [
+      "scripts/agno_runner.py",
+      "scripts/agno_entrypoint_exec.py",
+      "scripts/agno_entrypoint_select.py",
+      "planning/task_specs/",
+      "planning/task_specs/TASK_A_005_AGNO_RUNTIME_ENTRYPOINT_SELECT_V1.json",
+      "planning/task_specs/TASK_A_006_AGNO_RUNTIME_INTEGRATE_RUNNER_V1.json",
+      "planning/task_specs/TASK_A_008_AGNO_CONTRACT_ALWAYS_V1.json",
+      "config/agno/",
+      "config/agno/runtime_entrypoint.json",
+      "planning/runs/",
+      "0_desenvolvimentos/lab_experimentos/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/",
+      "0_desenvolvimentos/lab_experimentos/fase1_vendas/task_specs/TASK_LV_F1_006_RUN_WINNER_FROZEN_ACTIVE_V1.json"
+    ]
+  },
+  "workflow": [
+    {
+      "step_id": "S1_GATE_ALLOWLIST",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && git status --porcelain | head -n 200"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_006/S1_GATE_ALLOWLIST.txt"
+      ]
+    },
+    {
+      "step_id": "S2_RUNNER_VERSION",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python scripts/agno_runner.py --version"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_006/S2_RUNNER_VERSION.txt"
+      ]
+    },
+    {
+      "step_id": "S3_RUN_LAB_RULESET_WARMUP2022",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && python 0_desenvolvimentos/lab_experimentos/fase1_vendas/runners/run_fase1_vendas_full_v1.py --spec 0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/SPEC_FROZEN_MIRROR_V1.json --active 0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/ACTIVE_RULESET.json --out 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final"
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_006/S3_RUN_LAB_RULESET_WARMUP2022.txt"
+      ]
+    },
+    {
+      "step_id": "S4_VERIFY_RULESET_WARMUP_ARTIFACTS",
+      "type": "shell",
+      "commands": [
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/lab_run_report.json",
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/metrics/portfolio_summary.json",
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/orders/orders.csv",
+        "cd /home/wilson/PortfolioZero && test -f 0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/metrics/ticker_metrics_sample.csv",
+        "cd /home/wilson/PortfolioZero && python -c \"import json; p='0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/lab_run_report.json'; d=json.load(open(p)); assert d.get('decision_metrics_asof')=='D-1'; assert 'warmup_range_used' in d\"",
+        "cd /home/wilson/PortfolioZero && python -c \"import pandas as pd; p='0_desenvolvimentos/lab_experimentos/fase1_vendas/outputs/run_winner_final/metrics/ticker_metrics_sample.csv'; df=pd.read_csv(p); req={'date','asof_date','ticker','drawdown_20d','drawdown_60d'}; assert req.issubset(df.columns); d0=df['date'].min(); sub=df[df['date']==d0]; assert sub['drawdown_20d'].notna().any(); assert sub['drawdown_60d'].notna().any()\""
+      ],
+      "artifacts": [
+        "planning/runs/TASK_LV_F1_006/S4_VERIFY_RULESET_WARMUP_ARTIFACTS.txt"
+      ]
+    }
+  ]
+}
