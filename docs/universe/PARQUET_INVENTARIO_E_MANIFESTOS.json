@@ -1,0 +1,3706 @@
+{
+  "generated_at_utc": "2026-01-28 19:58:06 UTC",
+  "parquet_records": {
+    "data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet": {
+      "size_bytes": 1224,
+      "mtime_utc": "2026-01-24 16:08:24 UTC",
+      "rows": 10,
+      "schema": {
+        "ticker": "String",
+        "quantity": "Float64",
+        "avg_price": "Float64"
+      },
+      "date_ranges": {}
+    },
+    "data/portfolio/incoming/PORTFOLIO_POSITIONS_SOURCE.parquet": {
+      "size_bytes": 1258,
+      "mtime_utc": "2026-01-24 16:08:15 UTC",
+      "rows": 10,
+      "schema": {
+        "ticker": "String",
+        "quantity": "Int64",
+        "avg_price": "Float64"
+      },
+      "date_ranges": {}
+    },
+    "data/portfolio/positions_archive/20260124T160824Z_PORTFOLIO_POSITIONS_REAL_02ca8f2da0.parquet": {
+      "size_bytes": 1224,
+      "mtime_utc": "2026-01-24 16:08:24 UTC",
+      "rows": 10,
+      "schema": {
+        "ticker": "String",
+        "quantity": "Float64",
+        "avg_price": "Float64"
+      },
+      "date_ranges": {}
+    },
+    "data/raw/market/prices/AAPL34_SA.parquet": {
+      "size_bytes": 25442,
+      "mtime_utc": "2026-01-23 08:30:29 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ABBV34_SA.parquet": {
+      "size_bytes": 24018,
+      "mtime_utc": "2026-01-23 08:30:43 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ABEV3_SA.parquet": {
+      "size_bytes": 22890,
+      "mtime_utc": "2026-01-23 08:30:02 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ADBE34_SA.parquet": {
+      "size_bytes": 24806,
+      "mtime_utc": "2026-01-23 08:30:39 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ALPA4_SA.parquet": {
+      "size_bytes": 23984,
+      "mtime_utc": "2026-01-23 08:30:06 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ALUP11_SA.parquet": {
+      "size_bytes": 24929,
+      "mtime_utc": "2026-01-23 08:30:01 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/AMER3_SA.parquet": {
+      "size_bytes": 20639,
+      "mtime_utc": "2026-01-23 08:30:04 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/AMZO34_SA.parquet": {
+      "size_bytes": 25796,
+      "mtime_utc": "2026-01-23 08:30:30 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ANIM3_SA.parquet": {
+      "size_bytes": 22258,
+      "mtime_utc": "2026-01-23 08:30:07 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ASAI3_SA.parquet": {
+      "size_bytes": 24902,
+      "mtime_utc": "2026-01-23 08:30:04 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/AURE3_SA.parquet": {
+      "size_bytes": 21327,
+      "mtime_utc": "2026-01-23 08:30:00 UTC",
+      "rows": 956,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-03-28",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/AZUL4_SA.parquet": {
+      "size_bytes": 24660,
+      "mtime_utc": "2026-01-23 08:30:11 UTC",
+      "rows": 999,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2025-12-30"
+        ]
+      }
+    },
+    "data/raw/market/prices/B3SA3_SA.parquet": {
+      "size_bytes": 23798,
+      "mtime_utc": "2026-01-23 08:29:51 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BABA34_SA.parquet": {
+      "size_bytes": 24817,
+      "mtime_utc": "2026-01-23 08:30:44 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BBAS3_SA.parquet": {
+      "size_bytes": 25654,
+      "mtime_utc": "2026-01-23 10:09:19 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BBDC3_SA.parquet": {
+      "size_bytes": 23620,
+      "mtime_utc": "2026-01-23 10:09:22 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BBDC4_SA.parquet": {
+      "size_bytes": 24863,
+      "mtime_utc": "2026-01-23 10:09:19 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BBSE3_SA.parquet": {
+      "size_bytes": 24353,
+      "mtime_utc": "2026-01-23 08:29:51 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BEEF3_SA.parquet": {
+      "size_bytes": 23441,
+      "mtime_utc": "2026-01-23 08:30:16 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BERK34_SA.parquet": {
+      "size_bytes": 24025,
+      "mtime_utc": "2026-01-23 08:30:43 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BHIA3_SA.parquet": {
+      "size_bytes": 23499,
+      "mtime_utc": "2026-01-23 08:30:06 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BMOB3_SA.parquet": {
+      "size_bytes": 23591,
+      "mtime_utc": "2026-01-23 08:30:14 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BOAC34_SA.parquet": {
+      "size_bytes": 24632,
+      "mtime_utc": "2026-01-23 08:30:40 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BPAC11_SA.parquet": {
+      "size_bytes": 25633,
+      "mtime_utc": "2026-01-23 10:07:58 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/BRAP4_SA.parquet": {
+      "size_bytes": 24384,
+      "mtime_utc": "2026-01-23 08:29:55 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CASH3_SA.parquet": {
+      "size_bytes": 23893,
+      "mtime_utc": "2026-01-23 08:30:13 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CMIG4_SA.parquet": {
+      "size_bytes": 23669,
+      "mtime_utc": "2026-01-23 10:09:28 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CMIN3_SA.parquet": {
+      "size_bytes": 21795,
+      "mtime_utc": "2026-01-23 08:29:56 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/COCA34_SA.parquet": {
+      "size_bytes": 23981,
+      "mtime_utc": "2026-01-23 08:30:41 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/COGN3_SA.parquet": {
+      "size_bytes": 21218,
+      "mtime_utc": "2026-01-23 08:30:07 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CPFE3_SA.parquet": {
+      "size_bytes": 23921,
+      "mtime_utc": "2026-01-23 08:29:59 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CPLE6_SA.parquet": {
+      "size_bytes": 22237,
+      "mtime_utc": "2026-01-23 08:29:59 UTC",
+      "rows": 964,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2025-11-07"
+        ]
+      }
+    },
+    "data/raw/market/prices/CSAN3_SA.parquet": {
+      "size_bytes": 24580,
+      "mtime_utc": "2026-01-23 08:30:27 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CSCO34_SA.parquet": {
+      "size_bytes": 24194,
+      "mtime_utc": "2026-01-23 08:30:40 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CSMG3_SA.parquet": {
+      "size_bytes": 24568,
+      "mtime_utc": "2026-01-23 10:09:48 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CSNA3_SA.parquet": {
+      "size_bytes": 24664,
+      "mtime_utc": "2026-01-23 08:29:54 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CVCB3_SA.parquet": {
+      "size_bytes": 24060,
+      "mtime_utc": "2026-01-23 08:30:12 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/CYRE3_SA.parquet": {
+      "size_bytes": 24829,
+      "mtime_utc": "2026-01-23 08:30:10 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/DASA3_SA.parquet": {
+      "size_bytes": 23608,
+      "mtime_utc": "2026-01-23 08:30:08 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/DISB34_SA.parquet": {
+      "size_bytes": 24407,
+      "mtime_utc": "2026-01-23 08:30:42 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/DXCO3_SA.parquet": {
+      "size_bytes": 23367,
+      "mtime_utc": "2026-01-23 08:29:56 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ECOR3_SA.parquet": {
+      "size_bytes": 22598,
+      "mtime_utc": "2026-01-23 08:30:16 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/EGIE3_SA.parquet": {
+      "size_bytes": 24204,
+      "mtime_utc": "2026-01-23 08:30:01 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ELET3_SA.parquet": {
+      "size_bytes": 24445,
+      "mtime_utc": "2026-01-23 08:29:57 UTC",
+      "rows": 980,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2025-12-01"
+        ]
+      }
+    },
+    "data/raw/market/prices/ELET6_SA.parquet": {
+      "size_bytes": 24203,
+      "mtime_utc": "2026-01-23 08:29:57 UTC",
+      "rows": 980,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2025-12-01"
+        ]
+      }
+    },
+    "data/raw/market/prices/EMBR3_SA.parquet": {
+      "size_bytes": 25081,
+      "mtime_utc": "2026-01-23 08:30:09 UTC",
+      "rows": 980,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2025-12-01"
+        ]
+      }
+    },
+    "data/raw/market/prices/ENGI11_SA.parquet": {
+      "size_bytes": 25260,
+      "mtime_utc": "2026-01-23 08:29:59 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/EQTL3_SA.parquet": {
+      "size_bytes": 25412,
+      "mtime_utc": "2026-01-23 08:30:10 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/EVEN3_SA.parquet": {
+      "size_bytes": 21650,
+      "mtime_utc": "2026-01-23 08:30:10 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/FLRY3_SA.parquet": {
+      "size_bytes": 24747,
+      "mtime_utc": "2026-01-23 08:30:08 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/GGBR3_SA.parquet": {
+      "size_bytes": 24299,
+      "mtime_utc": "2026-01-23 08:29:56 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/GGBR4_SA.parquet": {
+      "size_bytes": 25860,
+      "mtime_utc": "2026-01-23 08:29:55 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/GOAU4_SA.parquet": {
+      "size_bytes": 23149,
+      "mtime_utc": "2026-01-23 08:29:56 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/GRND3_SA.parquet": {
+      "size_bytes": 21246,
+      "mtime_utc": "2026-01-23 09:32:17 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/GSGI34_SA.parquet": {
+      "size_bytes": 25110,
+      "mtime_utc": "2026-01-23 08:30:41 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/HAPV3_SA.parquet": {
+      "size_bytes": 23008,
+      "mtime_utc": "2026-01-23 08:30:07 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/HYPE3_SA.parquet": {
+      "size_bytes": 25363,
+      "mtime_utc": "2026-01-23 08:30:08 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/INBR32_SA.parquet": {
+      "size_bytes": 21979,
+      "mtime_utc": "2026-01-23 08:30:40 UTC",
+      "rows": 850,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-08-26",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/INTB3_SA.parquet": {
+      "size_bytes": 24950,
+      "mtime_utc": "2026-01-23 08:30:13 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/IRBR3_SA.parquet": {
+      "size_bytes": 25250,
+      "mtime_utc": "2026-01-23 08:29:53 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ITSA4_SA.parquet": {
+      "size_bytes": 24899,
+      "mtime_utc": "2026-01-23 10:07:57 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ITUB4_SA.parquet": {
+      "size_bytes": 25981,
+      "mtime_utc": "2026-01-23 10:07:56 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/JNJB34_SA.parquet": {
+      "size_bytes": 24180,
+      "mtime_utc": "2026-01-23 08:30:43 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/JPMC34_SA.parquet": {
+      "size_bytes": 24808,
+      "mtime_utc": "2026-01-23 08:30:40 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/KLBN11_SA.parquet": {
+      "size_bytes": 24733,
+      "mtime_utc": "2026-01-23 08:29:56 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/LREN3_SA.parquet": {
+      "size_bytes": 26542,
+      "mtime_utc": "2026-01-23 08:30:03 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/LWSA3_SA.parquet": {
+      "size_bytes": 23128,
+      "mtime_utc": "2026-01-23 08:30:13 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/MGLU3_SA.parquet": {
+      "size_bytes": 25912,
+      "mtime_utc": "2026-01-23 08:30:02 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/MLAS3_SA.parquet": {
+      "size_bytes": 20773,
+      "mtime_utc": "2026-01-23 08:30:14 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/MOVI3_SA.parquet": {
+      "size_bytes": 24189,
+      "mtime_utc": "2026-01-23 08:30:06 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/MRCK34_SA.parquet": {
+      "size_bytes": 24547,
+      "mtime_utc": "2026-01-23 08:30:43 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/MRVE3_SA.parquet": {
+      "size_bytes": 23568,
+      "mtime_utc": "2026-01-23 08:30:10 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/MSCD34_SA.parquet": {
+      "size_bytes": 24635,
+      "mtime_utc": "2026-01-23 08:30:41 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/MSFT34_SA.parquet": {
+      "size_bytes": 25610,
+      "mtime_utc": "2026-01-23 08:30:29 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/NEOE3_SA.parquet": {
+      "size_bytes": 23685,
+      "mtime_utc": "2026-01-23 08:30:00 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/NFLX34_SA.parquet": {
+      "size_bytes": 26783,
+      "mtime_utc": "2026-01-23 08:30:39 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/NIKE34_SA.parquet": {
+      "size_bytes": 24613,
+      "mtime_utc": "2026-01-23 08:30:42 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/NVDC34_SA.parquet": {
+      "size_bytes": 26717,
+      "mtime_utc": "2026-01-23 08:30:30 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ONCO3_SA.parquet": {
+      "size_bytes": 24740,
+      "mtime_utc": "2026-01-23 08:30:08 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/ORCL34_SA.parquet": {
+      "size_bytes": 24817,
+      "mtime_utc": "2026-01-23 08:30:40 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/PCAR3_SA.parquet": {
+      "size_bytes": 23198,
+      "mtime_utc": "2026-01-23 08:30:03 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/PETR3_SA.parquet": {
+      "size_bytes": 25518,
+      "mtime_utc": "2026-01-23 08:29:54 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/PETR4_SA.parquet": {
+      "size_bytes": 25938,
+      "mtime_utc": "2026-01-23 08:29:54 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/PETZ3_SA.parquet": {
+      "size_bytes": 22943,
+      "mtime_utc": "2026-01-23 08:30:05 UTC",
+      "rows": 1002,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-06"
+        ]
+      }
+    },
+    "data/raw/market/prices/PFIZ34_SA.parquet": {
+      "size_bytes": 24224,
+      "mtime_utc": "2026-01-23 08:30:43 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/POSI3_SA.parquet": {
+      "size_bytes": 22814,
+      "mtime_utc": "2026-01-23 08:30:13 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/PRIO3_SA.parquet": {
+      "size_bytes": 25653,
+      "mtime_utc": "2026-01-23 08:30:27 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/PYPL34_SA.parquet": {
+      "size_bytes": 24175,
+      "mtime_utc": "2026-01-23 08:30:41 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/QUAL3_SA.parquet": {
+      "size_bytes": 22550,
+      "mtime_utc": "2026-01-23 08:30:08 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/RADL3_SA.parquet": {
+      "size_bytes": 25330,
+      "mtime_utc": "2026-01-23 08:30:08 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/RAIL3_SA.parquet": {
+      "size_bytes": 24168,
+      "mtime_utc": "2026-01-23 08:30:26 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/RAIZ4_SA.parquet": {
+      "size_bytes": 21870,
+      "mtime_utc": "2026-01-23 08:30:27 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/RAPT4_SA.parquet": {
+      "size_bytes": 22853,
+      "mtime_utc": "2026-01-23 08:30:12 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/RDOR3_SA.parquet": {
+      "size_bytes": 25315,
+      "mtime_utc": "2026-01-23 08:30:07 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/RENT3_SA.parquet": {
+      "size_bytes": 26920,
+      "mtime_utc": "2026-01-23 08:30:09 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/SANB11_SA.parquet": {
+      "size_bytes": 24081,
+      "mtime_utc": "2026-01-23 10:09:20 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/SAPR11_SA.parquet": {
+      "size_bytes": 24431,
+      "mtime_utc": "2026-01-23 08:30:28 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/SBSP3_SA.parquet": {
+      "size_bytes": 25829,
+      "mtime_utc": "2026-01-23 08:30:11 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/SBUB34_SA.parquet": {
+      "size_bytes": 24284,
+      "mtime_utc": "2026-01-23 08:30:42 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/SEER3_SA.parquet": {
+      "size_bytes": 22841,
+      "mtime_utc": "2026-01-23 08:30:07 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/SLCE3_SA.parquet": {
+      "size_bytes": 24702,
+      "mtime_utc": "2026-01-23 08:30:28 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/SMTO3_SA.parquet": {
+      "size_bytes": 25322,
+      "mtime_utc": "2026-01-23 08:30:28 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/SUZB3_SA.parquet": {
+      "size_bytes": 25393,
+      "mtime_utc": "2026-01-23 08:29:55 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/TAEE11_SA.parquet": {
+      "size_bytes": 23475,
+      "mtime_utc": "2026-01-23 08:29:59 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/TEND3_SA.parquet": {
+      "size_bytes": 25902,
+      "mtime_utc": "2026-01-23 08:30:10 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/TIMS3_SA.parquet": {
+      "size_bytes": 23853,
+      "mtime_utc": "2026-01-23 10:09:41 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/TOTS3_SA.parquet": {
+      "size_bytes": 24897,
+      "mtime_utc": "2026-01-23 08:30:13 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/TSLA34_SA.parquet": {
+      "size_bytes": 26109,
+      "mtime_utc": "2026-01-23 08:30:30 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/TUPY3_SA.parquet": {
+      "size_bytes": 24347,
+      "mtime_utc": "2026-01-23 08:30:12 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/UGPA3_SA.parquet": {
+      "size_bytes": 24482,
+      "mtime_utc": "2026-01-23 08:30:26 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/UNIP6_SA.parquet": {
+      "size_bytes": 26258,
+      "mtime_utc": "2026-01-23 08:29:57 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/USIM5_SA.parquet": {
+      "size_bytes": 23274,
+      "mtime_utc": "2026-01-23 08:29:55 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/VALE3_SA.parquet": {
+      "size_bytes": 26376,
+      "mtime_utc": "2026-01-23 08:29:54 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/VBBR3_SA.parquet": {
+      "size_bytes": 26037,
+      "mtime_utc": "2026-01-23 08:30:27 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/VISA34_SA.parquet": {
+      "size_bytes": 24741,
+      "mtime_utc": "2026-01-23 08:30:41 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/VIVA3_SA.parquet": {
+      "size_bytes": 24824,
+      "mtime_utc": "2026-01-23 08:30:06 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/VIVT3_SA.parquet": {
+      "size_bytes": 24972,
+      "mtime_utc": "2026-01-23 08:30:12 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/WALM34_SA.parquet": {
+      "size_bytes": 25048,
+      "mtime_utc": "2026-01-23 08:30:42 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/WEGE3_SA.parquet": {
+      "size_bytes": 25355,
+      "mtime_utc": "2026-01-23 08:30:09 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/WIZC3_SA.parquet": {
+      "size_bytes": 21349,
+      "mtime_utc": "2026-01-23 08:29:53 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/raw/market/prices/YDUQ3_SA.parquet": {
+      "size_bytes": 24750,
+      "mtime_utc": "2026-01-23 08:30:06 UTC",
+      "rows": 1014,
+      "schema": {
+        "date": "Date",
+        "ticker": "String",
+        "open": "Float64",
+        "high": "Float64",
+        "low": "Float64",
+        "close": "Float64",
+        "adj_close": "Float64",
+        "volume": "Int64",
+        "tipo_instrumento": "String",
+        "setor": "String"
+      },
+      "date_ranges": {
+        "date": [
+          "2022-01-03",
+          "2026-01-22"
+        ]
+      }
+    },
+    "data/universe/UNIVERSE_CANDIDATES.parquet": {
+      "size_bytes": 7132,
+      "mtime_utc": "2025-12-02 20:22:40 UTC",
+      "rows": 68,
+      "schema": {
+        "ticker": "String",
+        "tipo_instrumento": "String",
+        "setor": "String",
+        "date_first": "Date",
+        "date_last": "Date",
+        "history_days": "UInt32",
+        "trading_days_ratio_252d": "Float64",
+        "avg_volume_21d_brl": "Float64",
+        "avg_price_recent_brl": "Float64",
+        "last_price": "Float64",
+        "annualized_vol_60d": "Float64",
+        "volatility_class": "String",
+        "liquidity_class": "String"
+      },
+      "date_ranges": {
+        "date_first": [
+          "2022-01-03",
+          "2022-08-26"
+        ],
+        "date_last": [
+          "2025-11-07",
+          "2025-12-01"
+        ]
+      }
+    },
+    "data/universe/UNIVERSE_SUPERVISED.parquet": {
+      "size_bytes": 5960,
+      "mtime_utc": "2025-12-02 20:53:07 UTC",
+      "rows": 30,
+      "schema": {
+        "ticker": "String",
+        "tipo_instrumento": "String",
+        "setor": "String",
+        "date_first": "Date",
+        "date_last": "Date",
+        "history_days": "Int64",
+        "trading_days_ratio_252d": "Float64",
+        "avg_volume_21d_brl": "Float64",
+        "avg_price_recent_brl": "Float64",
+        "last_price": "Float64",
+        "annualized_vol_60d": "Float64",
+        "volatility_class": "String",
+        "liquidity_class": "String"
+      },
+      "date_ranges": {
+        "date_first": [
+          "2022-01-03",
+          "2022-03-28"
+        ],
+        "date_last": [
+          "2025-11-07",
+          "2025-12-01"
+        ]
+      }
+    },
+    "data/universe/supervised_TASK_A_010/UNIVERSE_SUPERVISED.parquet": {
+      "size_bytes": 5962,
+      "mtime_utc": "2026-01-22 14:23:37 UTC",
+      "rows": 30,
+      "schema": {
+        "ticker": "String",
+        "tipo_instrumento": "String",
+        "setor": "String",
+        "date_first": "Date",
+        "date_last": "Date",
+        "history_days": "Int64",
+        "trading_days_ratio_252d": "Float64",
+        "avg_volume_21d_brl": "Float64",
+        "avg_price_recent_brl": "Float64",
+        "last_price": "Float64",
+        "annualized_vol_60d": "Float64",
+        "volatility_class": "String",
+        "liquidity_class": "String"
+      },
+      "date_ranges": {
+        "date_first": [
+          "2022-01-03",
+          "2022-03-28"
+        ],
+        "date_last": [
+          "2025-11-07",
+          "2025-12-01"
+        ]
+      }
+    },
+    "data/universe/supervised_TASK_A_012/UNIVERSE_SUPERVISED.parquet": {
+      "size_bytes": 5961,
+      "mtime_utc": "2026-01-23 10:09:57 UTC",
+      "rows": 30,
+      "schema": {
+        "ticker": "String",
+        "tipo_instrumento": "String",
+        "setor": "String",
+        "date_first": "Date",
+        "date_last": "Date",
+        "history_days": "Int64",
+        "trading_days_ratio_252d": "Float64",
+        "avg_volume_21d_brl": "Float64",
+        "avg_price_recent_brl": "Float64",
+        "last_price": "Float64",
+        "annualized_vol_60d": "Float64",
+        "volatility_class": "String",
+        "liquidity_class": "String"
+      },
+      "date_ranges": {
+        "date_first": [
+          "2022-01-03",
+          "2022-03-28"
+        ],
+        "date_last": [
+          "2025-11-07",
+          "2025-12-01"
+        ]
+      }
+    }
+  },
+  "price_group_summary": {
+    "count": 121,
+    "schema_unique_count": 1,
+    "rows_unique_count": 7,
+    "date_range_reference": [
+      "2022-01-03",
+      "2026-01-22"
+    ],
+    "row_anomalies": [
+      "data/raw/market/prices/AAPL34_SA.parquet",
+      "data/raw/market/prices/ABBV34_SA.parquet",
+      "data/raw/market/prices/ABEV3_SA.parquet",
+      "data/raw/market/prices/ADBE34_SA.parquet",
+      "data/raw/market/prices/ALPA4_SA.parquet",
+      "data/raw/market/prices/ALUP11_SA.parquet",
+      "data/raw/market/prices/AMER3_SA.parquet",
+      "data/raw/market/prices/AMZO34_SA.parquet",
+      "data/raw/market/prices/ANIM3_SA.parquet",
+      "data/raw/market/prices/ASAI3_SA.parquet",
+      "data/raw/market/prices/AURE3_SA.parquet",
+      "data/raw/market/prices/AZUL4_SA.parquet",
+      "data/raw/market/prices/B3SA3_SA.parquet",
+      "data/raw/market/prices/BABA34_SA.parquet",
+      "data/raw/market/prices/BBAS3_SA.parquet",
+      "data/raw/market/prices/BBDC3_SA.parquet",
+      "data/raw/market/prices/BBDC4_SA.parquet",
+      "data/raw/market/prices/BBSE3_SA.parquet",
+      "data/raw/market/prices/BEEF3_SA.parquet",
+      "data/raw/market/prices/BERK34_SA.parquet",
+      "data/raw/market/prices/BHIA3_SA.parquet",
+      "data/raw/market/prices/BMOB3_SA.parquet",
+      "data/raw/market/prices/BOAC34_SA.parquet",
+      "data/raw/market/prices/BPAC11_SA.parquet",
+      "data/raw/market/prices/BRAP4_SA.parquet",
+      "data/raw/market/prices/CASH3_SA.parquet",
+      "data/raw/market/prices/CMIG4_SA.parquet",
+      "data/raw/market/prices/CMIN3_SA.parquet",
+      "data/raw/market/prices/COCA34_SA.parquet",
+      "data/raw/market/prices/COGN3_SA.parquet",
+      "data/raw/market/prices/CPFE3_SA.parquet",
+      "data/raw/market/prices/CSAN3_SA.parquet",
+      "data/raw/market/prices/CSCO34_SA.parquet",
+      "data/raw/market/prices/CSMG3_SA.parquet",
+      "data/raw/market/prices/CSNA3_SA.parquet",
+      "data/raw/market/prices/CVCB3_SA.parquet",
+      "data/raw/market/prices/CYRE3_SA.parquet",
+      "data/raw/market/prices/DASA3_SA.parquet",
+      "data/raw/market/prices/DISB34_SA.parquet",
+      "data/raw/market/prices/DXCO3_SA.parquet",
+      "data/raw/market/prices/ECOR3_SA.parquet",
+      "data/raw/market/prices/EGIE3_SA.parquet",
+      "data/raw/market/prices/ELET3_SA.parquet",
+      "data/raw/market/prices/ELET6_SA.parquet",
+      "data/raw/market/prices/EMBR3_SA.parquet",
+      "data/raw/market/prices/ENGI11_SA.parquet",
+      "data/raw/market/prices/EQTL3_SA.parquet",
+      "data/raw/market/prices/EVEN3_SA.parquet",
+      "data/raw/market/prices/FLRY3_SA.parquet",
+      "data/raw/market/prices/GGBR3_SA.parquet",
+      "data/raw/market/prices/GGBR4_SA.parquet",
+      "data/raw/market/prices/GOAU4_SA.parquet",
+      "data/raw/market/prices/GRND3_SA.parquet",
+      "data/raw/market/prices/GSGI34_SA.parquet",
+      "data/raw/market/prices/HAPV3_SA.parquet",
+      "data/raw/market/prices/HYPE3_SA.parquet",
+      "data/raw/market/prices/INBR32_SA.parquet",
+      "data/raw/market/prices/INTB3_SA.parquet",
+      "data/raw/market/prices/IRBR3_SA.parquet",
+      "data/raw/market/prices/ITSA4_SA.parquet",
+      "data/raw/market/prices/ITUB4_SA.parquet",
+      "data/raw/market/prices/JNJB34_SA.parquet",
+      "data/raw/market/prices/JPMC34_SA.parquet",
+      "data/raw/market/prices/KLBN11_SA.parquet",
+      "data/raw/market/prices/LREN3_SA.parquet",
+      "data/raw/market/prices/LWSA3_SA.parquet",
+      "data/raw/market/prices/MGLU3_SA.parquet",
+      "data/raw/market/prices/MLAS3_SA.parquet",
+      "data/raw/market/prices/MOVI3_SA.parquet",
+      "data/raw/market/prices/MRCK34_SA.parquet",
+      "data/raw/market/prices/MRVE3_SA.parquet",
+      "data/raw/market/prices/MSCD34_SA.parquet",
+      "data/raw/market/prices/MSFT34_SA.parquet",
+      "data/raw/market/prices/NEOE3_SA.parquet",
+      "data/raw/market/prices/NFLX34_SA.parquet",
+      "data/raw/market/prices/NIKE34_SA.parquet",
+      "data/raw/market/prices/NVDC34_SA.parquet",
+      "data/raw/market/prices/ONCO3_SA.parquet",
+      "data/raw/market/prices/ORCL34_SA.parquet",
+      "data/raw/market/prices/PCAR3_SA.parquet",
+      "data/raw/market/prices/PETR3_SA.parquet",
+      "data/raw/market/prices/PETR4_SA.parquet",
+      "data/raw/market/prices/PETZ3_SA.parquet",
+      "data/raw/market/prices/PFIZ34_SA.parquet",
+      "data/raw/market/prices/POSI3_SA.parquet",
+      "data/raw/market/prices/PRIO3_SA.parquet",
+      "data/raw/market/prices/PYPL34_SA.parquet",
+      "data/raw/market/prices/QUAL3_SA.parquet",
+      "data/raw/market/prices/RADL3_SA.parquet",
+      "data/raw/market/prices/RAIL3_SA.parquet",
+      "data/raw/market/prices/RAIZ4_SA.parquet",
+      "data/raw/market/prices/RAPT4_SA.parquet",
+      "data/raw/market/prices/RDOR3_SA.parquet",
+      "data/raw/market/prices/RENT3_SA.parquet",
+      "data/raw/market/prices/SANB11_SA.parquet",
+      "data/raw/market/prices/SAPR11_SA.parquet",
+      "data/raw/market/prices/SBSP3_SA.parquet",
+      "data/raw/market/prices/SBUB34_SA.parquet",
+      "data/raw/market/prices/SEER3_SA.parquet",
+      "data/raw/market/prices/SLCE3_SA.parquet",
+      "data/raw/market/prices/SMTO3_SA.parquet",
+      "data/raw/market/prices/SUZB3_SA.parquet",
+      "data/raw/market/prices/TAEE11_SA.parquet",
+      "data/raw/market/prices/TEND3_SA.parquet",
+      "data/raw/market/prices/TIMS3_SA.parquet",
+      "data/raw/market/prices/TOTS3_SA.parquet",
+      "data/raw/market/prices/TSLA34_SA.parquet",
+      "data/raw/market/prices/TUPY3_SA.parquet",
+      "data/raw/market/prices/UGPA3_SA.parquet",
+      "data/raw/market/prices/UNIP6_SA.parquet",
+      "data/raw/market/prices/USIM5_SA.parquet",
+      "data/raw/market/prices/VALE3_SA.parquet",
+      "data/raw/market/prices/VBBR3_SA.parquet",
+      "data/raw/market/prices/VISA34_SA.parquet",
+      "data/raw/market/prices/VIVA3_SA.parquet",
+      "data/raw/market/prices/VIVT3_SA.parquet",
+      "data/raw/market/prices/WALM34_SA.parquet",
+      "data/raw/market/prices/WEGE3_SA.parquet",
+      "data/raw/market/prices/WIZC3_SA.parquet",
+      "data/raw/market/prices/YDUQ3_SA.parquet"
+    ],
+    "date_anomalies": [
+      "data/raw/market/prices/AURE3_SA.parquet",
+      "data/raw/market/prices/AZUL4_SA.parquet",
+      "data/raw/market/prices/CPLE6_SA.parquet",
+      "data/raw/market/prices/ELET3_SA.parquet",
+      "data/raw/market/prices/ELET6_SA.parquet",
+      "data/raw/market/prices/EMBR3_SA.parquet",
+      "data/raw/market/prices/INBR32_SA.parquet",
+      "data/raw/market/prices/PETZ3_SA.parquet"
+    ]
+  },
+  "manifest_check": {
+    "portfolio_positions": {
+      "manifest_path": "data/portfolio/manifest_positions_real.json",
+      "manifest_current": {
+        "ingested_at_utc": "2026-01-24T16:08:24Z",
+        "source_in_parquet": "data/portfolio/incoming/PORTFOLIO_POSITIONS_SOURCE.parquet",
+        "current_path": "data/portfolio/PORTFOLIO_POSITIONS_REAL.parquet",
+        "archive_path": "data/portfolio/positions_archive/20260124T160824Z_PORTFOLIO_POSITIONS_REAL_02ca8f2da0.parquet",
+        "sha256": "02ca8f2da02aa381a6e0186a593800d38ef21b7df88a05d0a67dd1960cf5f5e7",
+        "rows": 10,
+        "tickers": 10,
+        "schema": {
+          "ticker": "String",
+          "quantity": "Float64",
+          "avg_price": "Float64"
+        },
+        "columns_used_norm": {
+          "ticker": "ticker",
+          "quantity": "quantity",
+          "avg_price": "avg_price"
+        }
+      },
+      "checks": {
+        "source_in_parquet": {
+          "exists": true,
+          "rows_actual": 10,
+          "schema_actual": {
+            "ticker": "String",
+            "quantity": "Int64",
+            "avg_price": "Float64"
+          },
+          "sha256_actual": "9b36a72574326b2efe3683a8af046d602283291f185f234e4863df3a710545f2"
+        },
+        "current_path": {
+          "exists": true,
+          "rows_actual": 10,
+          "schema_actual": {
+            "ticker": "String",
+            "quantity": "Float64",
+            "avg_price": "Float64"
+          },
+          "sha256_actual": "02ca8f2da02aa381a6e0186a593800d38ef21b7df88a05d0a67dd1960cf5f5e7"
+        },
+        "archive_path": {
+          "exists": true,
+          "rows_actual": 10,
+          "schema_actual": {
+            "ticker": "String",
+            "quantity": "Float64",
+            "avg_price": "Float64"
+          },
+          "sha256_actual": "02ca8f2da02aa381a6e0186a593800d38ef21b7df88a05d0a67dd1960cf5f5e7"
+        }
+      }
+    },
+    "prices": {
+      "manifest_path": "data/raw/market/prices/manifest_prices.json",
+      "missing_files": [],
+      "mismatches": [
+        {
+          "ticker": "AAPL34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ABBV34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ABEV3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ADBE34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ALPA4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ALUP11.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "AMER3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "AMZO34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ANIM3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ASAI3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "AURE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "AZUL4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "B3SA3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BABA34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BBAS3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BBDC3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BBDC4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BBSE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BEEF3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BERK34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BHIA3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BMOB3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BOAC34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BPAC11.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "BRAP4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CASH3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CMIG4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CMIN3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "COCA34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "COGN3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CPFE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CPLE6.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CSAN3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CSCO34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CSMG3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CSNA3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CVCB3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "CYRE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "DASA3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "DISB34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "DXCO3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ECOR3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "EGIE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ELET3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ELET6.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "EMBR3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ENGI11.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "EQTL3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "EVEN3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "FLRY3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "GGBR3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "GGBR4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "GOAU4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "GRND3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "GSGI34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "HAPV3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "HYPE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "INBR32.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "INTB3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "IRBR3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ITSA4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ITUB4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "JNJB34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "JPMC34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "KLBN11.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "LREN3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "LWSA3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "MGLU3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "MLAS3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "MOVI3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "MRCK34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "MRVE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "MSCD34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "MSFT34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "NEOE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "NFLX34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "NIKE34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "NVDC34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ONCO3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "ORCL34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "PCAR3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "PETR3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "PETR4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "PETZ3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "PFIZ34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "POSI3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "PRIO3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "PYPL34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "QUAL3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "RADL3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "RAIL3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "RAIZ4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "RAPT4.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "RDOR3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "RENT3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "SANB11.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "SAPR11.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "SBSP3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "SBUB34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "SEER3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "SLCE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "SMTO3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "SUZB3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "TAEE11.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "TEND3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "TIMS3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "TOTS3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "TSLA34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "TUPY3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "UGPA3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "UNIP6.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "USIM5.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "VALE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "VBBR3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "VISA34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "VIVA3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "VIVT3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "WALM34.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "WEGE3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "WIZC3.SA",
+          "issue": "content_hash mismatch"
+        },
+        {
+          "ticker": "YDUQ3.SA",
+          "issue": "content_hash mismatch"
+        }
+      ]
+    }
+  },
+  "universe_schema_check": {
+    "schema_doc_path": "data/universe/UNIVERSE_CANDIDATES.schema.md",
+    "documented_columns": [
+      "ticker",
+      "AAPL34",
+      "tipo_instrumento",
+      "BDR",
+      "setor",
+      "Commodities",
+      "subsetor",
+      "volume_medio_21d",
+      "preco_medio_21d",
+      "volatilidade_21d",
+      "flag_ibov",
+      "false",
+      "flag_ibrx50",
+      "flag_ibrx100",
+      "liquidez_classe",
+      "BAIXA",
+      "volatilidade_classe",
+      "categoria",
+      "OPORTUNIDADE",
+      "flag_excluir_owner",
+      "motivo_exclusao",
+      "flag_supervisionado",
+      "data_inclusao"
+    ],
+    "candidate_parquet_path": "data/universe/UNIVERSE_CANDIDATES.parquet",
+    "actual_columns": [
+      "ticker",
+      "tipo_instrumento",
+      "setor",
+      "date_first",
+      "date_last",
+      "history_days",
+      "trading_days_ratio_252d",
+      "avg_volume_21d_brl",
+      "avg_price_recent_brl",
+      "last_price",
+      "annualized_vol_60d",
+      "volatility_class",
+      "liquidity_class"
+    ],
+    "missing_from_file": [
+      "AAPL34",
+      "BDR",
+      "Commodities",
+      "subsetor",
+      "volume_medio_21d",
+      "preco_medio_21d",
+      "volatilidade_21d",
+      "flag_ibov",
+      "false",
+      "flag_ibrx50",
+      "flag_ibrx100",
+      "liquidez_classe",
+      "BAIXA",
+      "volatilidade_classe",
+      "categoria",
+      "OPORTUNIDADE",
+      "flag_excluir_owner",
+      "motivo_exclusao",
+      "flag_supervisionado",
+      "data_inclusao"
+    ],
+    "extra_in_file": [
+      "date_first",
+      "date_last",
+      "history_days",
+      "trading_days_ratio_252d",
+      "avg_volume_21d_brl",
+      "avg_price_recent_brl",
+      "last_price",
+      "annualized_vol_60d",
+      "volatility_class",
+      "liquidity_class"
+    ]
+  }
+}
