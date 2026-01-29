@@ -1,0 +1,34 @@
+{
+  "ruleset_id": "SELL_RULESET_02",
+  "intent": "Regime: vol spike + drawdown. Evita zerar por ruído; zera apenas quando regime ruim persiste.",
+  "windows": {
+    "vol_days": [21, 60, 252],
+    "drawdown_days": [20, 60]
+  },
+  "priority_order": [
+    "EXIT_IF_NOT_IN_SUPERVISED",
+    "HARD_STOP",
+    "SOFT_STOP"
+  ],
+  "actions": {
+    "reduce": { "fraction_of_position_to_sell": 0.4, "min_notional_brl_to_trade": 1000.0 },
+    "zero": { "sell_all": true }
+  },
+  "soft_stop": {
+    "all_of": [
+      { "metric": "vol_60d_over_vol_252d", "op": ">=", "value": 1.6 },
+      { "metric": "drawdown_20d", "op": ">=", "value": 0.06 }
+    ],
+    "action": "REDUCE"
+  },
+  "hard_stop": {
+    "all_of": [
+      { "metric": "vol_60d_over_vol_252d", "op": ">=", "value": 1.8 },
+      { "metric": "drawdown_60d", "op": ">=", "value": 0.12 }
+    ],
+    "action": "ZERO"
+  },
+  "reentry": {
+    "quarantine_sessions_after_zero": 10
+  }
+}

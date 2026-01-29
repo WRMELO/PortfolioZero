@@ -1,0 +1,41 @@
+{
+  "ruleset_id": "SELL_RULESET_03",
+  "intent": "Defensivo por carteira: quando risco agregado sobe, reduz proporcionalmente; zera apenas os piores sob stress.",
+  "windows": {
+    "portfolio_drawdown_days": [20, 60],
+    "portfolio_var_window_days": 252
+  },
+  "priority_order": [
+    "EXIT_IF_NOT_IN_SUPERVISED",
+    "PORTFOLIO_HARD_STOP",
+    "PORTFOLIO_SOFT_STOP",
+    "TICKER_HARD_STOP"
+  ],
+  "actions": {
+    "portfolio_reduce": { "fraction_each_position": 0.2 },
+    "ticker_zero": { "sell_all": true }
+  },
+  "portfolio_soft_stop": {
+    "any_of": [
+      { "metric": "portfolio_drawdown_20d", "op": ">=", "value": 0.06 },
+      { "metric": "portfolio_var_95_1d_252d", "op": ">=", "value": 0.02 }
+    ],
+    "action": "PORTFOLIO_REDUCE"
+  },
+  "portfolio_hard_stop": {
+    "any_of": [
+      { "metric": "portfolio_drawdown_60d", "op": ">=", "value": 0.10 },
+      { "metric": "portfolio_var_95_1d_252d", "op": ">=", "value": 0.03 }
+    ],
+    "action": "PORTFOLIO_REDUCE"
+  },
+  "ticker_hard_stop": {
+    "any_of": [
+      { "metric": "drawdown_60d", "op": ">=", "value": 0.18 }
+    ],
+    "action": "TICKER_ZERO"
+  },
+  "reentry": {
+    "quarantine_sessions_after_zero": 10
+  }
+}

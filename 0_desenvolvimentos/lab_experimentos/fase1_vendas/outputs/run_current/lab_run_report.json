@@ -1,0 +1,24 @@
+{
+  "runner": "run_fase1_vendas",
+  "status": "OK",
+  "timestamp_utc": "2026-01-29T17:36:26.661774+00:00",
+  "inputs": {
+    "spec_path": "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/SPEC_FROZEN_MIRROR_V1.json",
+    "active_ruleset_path": "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/ACTIVE_RULESET.json"
+  },
+  "active_ruleset": {
+    "use_ruleset_file": "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/rulesets/SELL_RULESET_01.json"
+  },
+  "spec_summary": {
+    "project": {
+      "name": "PORTIFOLIOZERO",
+      "repo_root": "/home/wilson/PortfolioZero",
+      "lab_root": "0_desenvolvimentos/lab_experimentos/fase1_vendas"
+    },
+    "experiment_horizon": {
+      "history_warmup_start": "2022-01-01",
+      "d0_policy": "first_trading_day_of_2023",
+      "end_date": "2026-01-22"
+    }
+  }
+}

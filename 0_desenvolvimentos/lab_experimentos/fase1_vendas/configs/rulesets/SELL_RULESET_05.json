@@ -1,0 +1,45 @@
+{
+  "ruleset_id": "SELL_RULESET_05",
+  "intent": "Stress sistêmico: prioriza cortar (e eventualmente zerar) ativos com beta alto quando IBOV está em stress.",
+  "windows": {
+    "beta_days": 60,
+    "ibov_vol_days": 60,
+    "drawdown_days": [20, 60],
+    "var_cvar_window_days": 252
+  },
+  "priority_order": [
+    "EXIT_IF_NOT_IN_SUPERVISED",
+    "SYSTEMIC_STRESS_HARD_STOP",
+    "SYSTEMIC_STRESS_SOFT_STOP",
+    "IDIOSYNCRATIC_HARD_STOP"
+  ],
+  "actions": {
+    "reduce": { "fraction_of_position_to_sell": 0.4, "min_notional_brl_to_trade": 1000.0 },
+    "zero": { "sell_all": true }
+  },
+  "systemic_stress_soft_stop": {
+    "all_of": [
+      { "metric": "ibov_vol_60d", "op": ">=", "value": 0.25 },
+      { "metric": "beta_to_ibov_60d", "op": ">=", "value": 1.2 },
+      { "metric": "drawdown_20d", "op": ">=", "value": 0.06 }
+    ],
+    "action": "REDUCE"
+  },
+  "systemic_stress_hard_stop": {
+    "all_of": [
+      { "metric": "ibov_vol_60d", "op": ">=", "value": 0.30 },
+      { "metric": "beta_to_ibov_60d", "op": ">=", "value": 1.3 },
+      { "metric": "cvar_95_1d_252d", "op": ">=", "value": 0.045 }
+    ],
+    "action": "ZERO"
+  },
+  "idiosyncratic_hard_stop": {
+    "any_of": [
+      { "metric": "drawdown_60d", "op": ">=", "value": 0.18 }
+    ],
+    "action": "ZERO"
+  },
+  "reentry": {
+    "quarantine_sessions_after_zero": 10
+  }
+}

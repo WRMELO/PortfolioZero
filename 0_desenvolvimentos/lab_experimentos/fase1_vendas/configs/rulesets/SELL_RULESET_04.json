@@ -1,0 +1,34 @@
+{
+  "ruleset_id": "SELL_RULESET_04",
+  "intent": "Tendência: combina drawdown com perda de médias móveis para reduzir e zerar de forma disciplinada.",
+  "windows": {
+    "drawdown_days": [20, 60],
+    "sma_days": [100, 200]
+  },
+  "priority_order": [
+    "EXIT_IF_NOT_IN_SUPERVISED",
+    "HARD_STOP",
+    "SOFT_STOP"
+  ],
+  "actions": {
+    "reduce": { "fraction_of_position_to_sell": 0.5, "min_notional_brl_to_trade": 1000.0 },
+    "zero": { "sell_all": true }
+  },
+  "soft_stop": {
+    "all_of": [
+      { "metric": "close_below_sma_100", "op": "==", "value": true },
+      { "metric": "drawdown_20d", "op": ">=", "value": 0.06 }
+    ],
+    "action": "REDUCE"
+  },
+  "hard_stop": {
+    "all_of": [
+      { "metric": "close_below_sma_200", "op": "==", "value": true },
+      { "metric": "drawdown_60d", "op": ">=", "value": 0.12 }
+    ],
+    "action": "ZERO"
+  },
+  "reentry": {
+    "quarantine_sessions_after_zero": 10
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "project": {
+    "name": "PORTIFOLIOZERO",
+    "repo_root": "/home/wilson/PortfolioZero",
+    "lab_root": "0_desenvolvimentos/lab_experimentos/fase1_vendas"
+  },
+  "data_contracts": {
+    "prices_dir": "data/raw/market/prices",
+    "universe_candidates_file": "data/universe/UNIVERSE_CANDIDATES.parquet",
+    "universe_supervised_dir": "data/universe/supervised_TASK_A_012",
+    "universe_supervised_file": "data/universe/supervised_TASK_A_012/UNIVERSE_SUPERVISED.parquet",
+    "ibov_ticker": "_BVSP"
+  },
+  "experiment_horizon": {
+    "history_warmup_start": "2022-01-01",
+    "d0_policy": "first_trading_day_of_2023",
+    "end_date": "2026-01-22"
+  },
+  "portfolio": {
+    "initial_capital_brl": 500000.0,
+    "target_positions": 10,
+    "initial_allocation_mode": "equal_weight",
+    "initial_per_ticker_brl": 50000.0
+  },
+  "dry_run_execution": {
+    "official_price": "close_d_minus_1",
+    "sell_settlement_days": 2,
+    "buy_uses_only_cash_available_in_d": true,
+    "fees": {
+      "fee_percent_per_order": 0.0015,
+      "fee_fixed_brl_per_order": 10.0
+    }
+  },
+  "weekly_buy_rule_phase1": {
+    "enabled": true,
+    "day_of_week": "MON",
+    "fallback_if_holiday": "first_trading_day_of_week",
+    "use_100_percent_of_available_cash": true,
+    "allocation_policy": {
+      "step_1_fill_missing_positions_to_target": true,
+      "step_2_top_up_existing_toward_equal_weight": true
+    },
+    "new_position_selection": {
+      "universe_source": "supervised",
+      "exclude_quarantine": true,
+      "ranking_policy": [
+        "min_drawdown_lookback",
+        "min_volatility_lookback",
+        "max_return_tiebreak"
+      ],
+      "lookback_trading_days": 252
+    },
+    "balance_constraints": {
+      "max_positions_per_setor": 3,
+      "max_positions_per_tipo_instrumento": 3
+    }
+  },
+  "quarantine": {
+    "enabled": true,
+    "sessions_after_zero": 10
+  },
+  "benchmarks": {
+    "ibov": {
+      "enabled": true,
+      "ticker": "_BVSP",
+      "index_base": 100.0,
+      "base_date_policy": "d0"
+    },
+    "cdi": {
+      "enabled": true,
+      "index_base": 100.0,
+      "base_month": "2023-01",
+      "update_frequency": "monthly",
+      "series_source": "manual_csv",
+      "csv_path": "0_desenvolvimentos/lab_experimentos/fase1_vendas/configs/CDI_MONTHLY.csv"
+    }
+  },
+  "outputs": {
+    "write_parquets": true,
+    "write_csv": true,
+    "write_plots_png": true
+  }
+}
